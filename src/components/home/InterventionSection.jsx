@@ -92,7 +92,7 @@ const InterventionSection = () => {
   };
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative w-full py-20">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <div
@@ -103,8 +103,8 @@ const InterventionSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen">
-        <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="relative z-10 py-16">
+        <div className="container mx-auto px-4">
           <motion.div
             ref={ref}
             initial="hidden"

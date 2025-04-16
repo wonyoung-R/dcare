@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactFullpage from '@fullpage/react-fullpage';
 import { motion } from 'framer-motion';
 
 // Home page sections
@@ -19,69 +18,6 @@ const fadeInUp = {
 };
 
 const Home = () => {
-  // Fullpage.js options
-  const fullpageOptions = {
-    licenseKey: 'YOUR_KEY_HERE', // Replace with your license key or use OPEN-SOURCE-GPLV3
-    scrollingSpeed: 1000,
-    navigation: true,
-    navigationPosition: 'right',
-    navigationTooltips: [
-      '홈', '의료서비스', '인터벤션', '의료진', '의료장비', '병원특징', '협력기관', '오시는 길'
-    ],
-    showActiveTooltip: false,
-    anchors: ['home', 'services', 'intervention', 'doctors', 'equipment', 'features', 'partners', 'location'],
-    sectionsColor: ['#ffffff', '#f8fafc', '#ffffff', '#f8fafc', '#ffffff', '#f1f5f9', '#ffffff', '#f8fafc'],
-    responsiveWidth: 768, // Disable fullpage.js on mobile
-    afterLoad: (origin, destination, direction) => {
-      // You can add custom logic here after a section loads
-    },
-    render: ({ state, fullpageApi }) => {
-      return (
-        <ReactFullpage.Wrapper>
-          {/* Hero Section */}
-          <div className="section fp-auto-height-responsive">
-            <HeroSection fullpageApi={fullpageApi} />
-          </div>
-
-          {/* Services Section */}
-          <div className="section">
-            <ServicesSection />
-          </div>
-
-          {/* Intervention Section */}
-          <div className="section">
-            <InterventionSection />
-          </div>
-
-          {/* Doctors Section */}
-          <div className="section">
-            <DoctorsSection />
-          </div>
-
-          {/* Equipment Section */}
-          <div className="section">
-            <EquipmentSection />
-          </div>
-
-          {/* Features Section */}
-          <div className="section">
-            <FeaturesSection />
-          </div>
-
-          {/* Partners Section */}
-          <div className="section">
-            <PartnersSection />
-          </div>
-
-          {/* Location Section */}
-          <div className="section fp-auto-height">
-            <LocationSection />
-          </div>
-        </ReactFullpage.Wrapper>
-      );
-    }
-  };
-
   return (
     <motion.div
       initial="hidden"
@@ -89,9 +25,45 @@ const Home = () => {
       variants={fadeInUp}
       className="home-page"
     >
-      <ReactFullpage
-        {...fullpageOptions}
-      />
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen">
+        <HeroSection />
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20">
+        <ServicesSection />
+      </section>
+
+      {/* Intervention Section */}
+      <section id="intervention" className="min-h-screen">
+        <InterventionSection />
+      </section>
+
+      {/* Doctors Section */}
+      <section id="doctors" className="py-20">
+        <DoctorsSection />
+      </section>
+
+      {/* Equipment Section */}
+      <section id="equipment" className="py-20">
+        <EquipmentSection />
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 bg-gray-50">
+        <FeaturesSection />
+      </section>
+
+      {/* Partners Section */}
+      <section id="partners" className="py-20">
+        <PartnersSection />
+      </section>
+
+      {/* Location Section */}
+      <section id="location" className="py-20 bg-gray-50">
+        <LocationSection />
+      </section>
     </motion.div>
   );
 };

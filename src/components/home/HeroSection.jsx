@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowDown } from 'react-icons/fa';
 
-const HeroSection = ({ fullpageApi }) => {
+const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -14,10 +14,11 @@ const HeroSection = ({ fullpageApi }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle scroll down button click
+  // Handle scroll down button click - scroll to services section
   const handleScrollDown = () => {
-    if (fullpageApi) {
-      fullpageApi.moveSectionDown();
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -44,7 +45,7 @@ const HeroSection = ({ fullpageApi }) => {
   };
 
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className="relative h-screen w-full overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         {/* Gradient Background as fallback */}
