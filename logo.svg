@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
+  <rect width="50" height="50" rx="10" fill="#5046E4" />
+  <text x="25" y="35" font-family="Arial" font-size="30" font-weight="bold" fill="white" text-anchor="middle">D</text>
+  <text x="80" y="30" font-family="Arial" font-size="20" font-weight="bold" fill="#5046E4" text-anchor="start">DCARE</text>
+  <text x="80" y="45" font-family="Arial" font-size="12" fill="#333333" text-anchor="start">HOSPITAL</text>
+</svg> 
