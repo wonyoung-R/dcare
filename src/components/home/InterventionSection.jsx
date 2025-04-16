@@ -96,10 +96,7 @@ const InterventionSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <div
-          className="w-full h-full bg-cover bg-center bg-gradient-to-r from-blue-900 to-primary"
-          /* style={{
-            backgroundImage: "url('./intervention-bg.jpg')",
-          }} */
+          className="w-full h-full bg-gradient-to-r from-blue-900 to-indigo-900"
         ></div>
         {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-primary/70"></div>

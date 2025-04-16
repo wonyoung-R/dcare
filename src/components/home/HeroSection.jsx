@@ -47,23 +47,8 @@ const HeroSection = ({ fullpageApi }) => {
     <div className="relative h-full w-full overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
-        {/*<video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="object-cover w-full h-full"
-          poster="./placeholder-hero.jpg"
-        >
-          <source src="./hero-video.mp4" type="video/mp4" />
-          <img
-            src="./placeholder-hero.jpg"
-            alt="디케어 병원"
-            className="object-cover w-full h-full"
-          />
-        </video>*/}
-        {/* 비디오 대신 배경색 사용 */}
-        <div className="w-full h-full bg-gradient-to-r from-blue-900 to-primary"></div>
+        {/* Gradient Background as fallback */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-primary"></div>
         {/* Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
       </div>
