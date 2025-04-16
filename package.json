@@ -2,7 +2,7 @@
   "name": "dcare",
   "version": "1.0.0",
   "description": "Dcare Hospital Website",
-  "homepage": "https://wonyoung-r.github.io/dcare",
+  "homepage": "https://wonyoung-r.github.io/dcare/",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
