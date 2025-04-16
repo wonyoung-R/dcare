@@ -58,7 +58,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block mb-6">
               <img 
-                src="/logo-white.svg" 
+                src="./logo-white.svg" 
                 alt="디케어 병원" 
                 className="h-12"
                 onError={(e) => {

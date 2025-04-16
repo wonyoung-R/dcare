@@ -23,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.40",
+    "@headlessui/react": "^2.2.1",
     "framer-motion": "^10.16.4",
     "heroicons": "^2.0.18",
     "react": "^18.2.0",

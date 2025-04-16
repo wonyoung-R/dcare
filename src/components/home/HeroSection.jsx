@@ -53,12 +53,12 @@ const HeroSection = ({ fullpageApi }) => {
           loop
           playsInline
           className="object-cover w-full h-full"
-          poster="/placeholder-hero.jpg"
+          poster="./placeholder-hero.jpg"
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src="./hero-video.mp4" type="video/mp4" />
           {/* Fallback image for browsers that don't support video */}
           <img
-            src="/placeholder-hero.jpg"
+            src="./placeholder-hero.jpg"
             alt="디케어 병원"
             className="object-cover w-full h-full"
           />

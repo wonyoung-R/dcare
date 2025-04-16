@@ -98,7 +98,7 @@ const InterventionSection = () => {
         <div
           className="w-full h-full bg-cover bg-center"
           style={{
-            backgroundImage: "url('/intervention-bg.jpg')",
+            backgroundImage: "url('./intervention-bg.jpg')",
           }}
         ></div>
         {/* Overlay Gradient */}
