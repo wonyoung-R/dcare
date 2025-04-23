@@ -134,10 +134,19 @@ const DoctorsSection = () => {
               </motion.h2>
               <motion.p 
                 variants={titleVariants} 
-                className="section-subtitle text-white/90 mx-auto text-center px-4 w-full max-w-2xl break-words whitespace-normal overflow-hidden"
-                style={{ textAlign: 'center', margin: '0 auto', display: 'block' }}
+                className="section-subtitle text-white/90 mx-auto text-center px-4 sm:px-6 w-full max-w-full sm:max-w-md md:max-w-xl lg:max-w-2xl break-words whitespace-normal overflow-hidden"
+                style={{ 
+                  textAlign: 'center', 
+                  margin: '0 auto', 
+                  display: 'block',
+                  wordBreak: 'break-word',
+                  overflowWrap: 'break-word',
+                  maxWidth: '100%',
+                  fontSize: '0.95rem'
+                }}
               >
-                디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며, <br />환자분들께 최고의 의료 서비스를 제공하기 위해 노력하고 있습니다.
+                디케어 병원의 의료진은 각 분야의<br className="block sm:hidden" /> 전문가로 구성되어 있으며,<br /> 
+                환자분들께 최고의 의료 서비스를<br className="block sm:hidden" /> 제공하기 위해 노력하고 있습니다.
               </motion.p>
             </div>
 
