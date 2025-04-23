@@ -10,14 +10,14 @@ const Greenhouse = () => {
   
   // 로컬 이미지 파일 경로 배열
   const images = [
-    '/images/greenhouse/entrance-01.jpeg',
-    '/images/greenhouse/entrance-03.jpeg',
-    '/images/greenhouse/main-lobby-02.jpeg',
-    '/images/greenhouse/main-lobby-03.jpeg',
-    '/images/greenhouse/main-lobby-04.jpeg',
-    '/images/greenhouse/VIPRoom-01.jpeg',
-    '/images/greenhouse/waitingroom-01.jpeg',
-    '/images/greenhouse/waitingroom-02.jpeg',
+    './images/greenhouse/entrance-01.jpeg',
+    './images/greenhouse/entrance-03.jpeg',
+    './images/greenhouse/main-lobby-02.jpeg',
+    './images/greenhouse/main-lobby-03.jpeg',
+    './images/greenhouse/main-lobby-04.jpeg',
+    './images/greenhouse/VIPRoom-01.jpeg',
+    './images/greenhouse/waitingroom-01.jpeg',
+    './images/greenhouse/waitingroom-02.jpeg',
   ];
 
   // 이미지 설명 배열

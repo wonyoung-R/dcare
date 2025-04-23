@@ -5,17 +5,17 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 const Facilities = () => {
   // 병원시설 이미지
   const hospitalFacilities = [
-    { id: 1, src: '/images/facilities/waitingroom-01.jpeg', alt: '대기실', description: '환자분들이 편안하게 대기할 수 있는 공간입니다.' },
-    { id: 2, src: '/images/facilities/waitingroom-02.jpeg', alt: '대기실', description: '쾌적한 환경의 환자 대기 공간입니다.' },
-    { id: 3, src: '/images/facilities/waitingroom-03.jpeg', alt: '대기실', description: '넓고 편안한 환자 휴식 공간입니다.' },
-    { id: 4, src: '/images/facilities/lobby-01.jpeg', alt: '로비', description: '넓고 쾌적한 로비 공간입니다.' }
+    { id: 1, src: './images/facilities/waitingroom-01.jpeg', alt: '대기실', description: '환자분들이 편안하게 대기할 수 있는 공간입니다.' },
+    { id: 2, src: './images/facilities/waitingroom-02.jpeg', alt: '대기실', description: '쾌적한 환경의 환자 대기 공간입니다.' },
+    { id: 3, src: './images/facilities/waitingroom-03.jpeg', alt: '대기실', description: '넓고 편안한 환자 휴식 공간입니다.' },
+    { id: 4, src: './images/facilities/lobby-01.jpeg', alt: '로비', description: '넓고 쾌적한 로비 공간입니다.' }
   ];
 
   // 검사시설 이미지
   const checkupFacilities = [
-    { id: 1, src: '/images/facilities/checkup-01.jpeg', alt: '검사실', description: '최신 장비를 갖춘 검사실입니다.' },
-    { id: 2, src: '/images/facilities/checkup-02.jpeg', alt: '검사실', description: '정확한 검진을 위한 검사 공간입니다.' },
-    { id: 3, src: '/images/facilities/checkup-03.jpg', alt: '검사실', description: '첨단 장비를 갖춘 정밀 검사실입니다.' }
+    { id: 1, src: './images/facilities/checkup-01.jpeg', alt: '검사실', description: '최신 장비를 갖춘 검사실입니다.' },
+    { id: 2, src: './images/facilities/checkup-02.jpeg', alt: '검사실', description: '정확한 검진을 위한 검사 공간입니다.' },
+    { id: 3, src: './images/facilities/checkup-03.jpg', alt: '검사실', description: '첨단 장비를 갖춘 정밀 검사실입니다.' }
   ];
 
   const [currentHospitalIndex, setCurrentHospitalIndex] = useState(0);

@@ -45,7 +45,7 @@ const Checkup = () => {
               </div>
               <div className="lg:w-1/3 bg-gray-100 rounded-lg overflow-hidden h-full min-h-[200px]">
                 <img 
-                  src="/images/healthcheck/healthcheck-01.jpg" 
+                  src="./images/healthcheck/healthcheck-01.jpg" 
                   alt="검진내용" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -99,7 +99,7 @@ const Checkup = () => {
               </div>
               <div className="lg:w-1/3 bg-gray-100 rounded-lg overflow-hidden h-full min-h-[200px]">
                 <img 
-                  src="/images/healthcheck/healthcheck-02.jpg" 
+                  src="./images/healthcheck/healthcheck-02.jpg" 
                   alt="정밀검진" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -137,7 +137,7 @@ const Checkup = () => {
               </div>
               <div className="lg:w-1/3 bg-gray-100 rounded-lg overflow-hidden h-full min-h-[200px]">
                 <img 
-                  src="/images/healthcheck/healthcheck-03.jpg" 
+                  src="./images/healthcheck/healthcheck-03.jpg" 
                   alt="고객관리프로그램" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -175,7 +175,7 @@ const Checkup = () => {
               </div>
               <div className="lg:w-1/3 bg-gray-100 rounded-lg overflow-hidden h-full min-h-[200px]">
                 <img 
-                  src="/images/healthcheck/healthcheck-04.jpg" 
+                  src="./images/healthcheck/healthcheck-04.jpg" 
                   alt="진단프로그램" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
