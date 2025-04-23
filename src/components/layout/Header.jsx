@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaGlobe, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
-  const [langMenuOpen, setLangMenuOpen] = useState(false);
   const location = useLocation();
   const { t, i18n } = useTranslation();
 
@@ -18,7 +17,6 @@ const Header = () => {
   // 언어 변경 함수
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
-    setLangMenuOpen(false);
   };
 
   // 번역된 네비게이션 항목
@@ -153,17 +151,7 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center space-x-4">
-            {/* Mobile Language Selector */}
-            <button
-              className={`flex items-center text-sm font-medium ${
-                (scrolled || !isHomePage) ? 'text-gray-800' : 'text-white'
-              }`}
-              onClick={() => setLangMenuOpen(!langMenuOpen)}
-            >
-              <FaGlobe className="h-5 w-5" />
-            </button>
-            
+          <div className="flex lg:hidden items-center">
             <button
               className="focus:outline-none"
               onClick={toggleMenu}
@@ -178,36 +166,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile Language Menu */}
-      <AnimatePresence>
-        {langMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden bg-white shadow-lg"
-          >
-            <div className="container mx-auto px-4 py-2">
-              <div className="flex justify-center space-x-4">
-                <button
-                  onClick={() => changeLanguage('kr')}
-                  className={`px-4 py-2 rounded ${currentLanguage === 'kr' ? 'bg-primary text-white' : 'text-gray-700'}`}
-                >
-                  KR
-                </button>
-                <button
-                  onClick={() => changeLanguage('en')}
-                  className={`px-4 py-2 rounded ${currentLanguage === 'en' ? 'bg-primary text-white' : 'text-gray-700'}`}
-                >
-                  EN
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Mobile Menu */}
       <AnimatePresence>

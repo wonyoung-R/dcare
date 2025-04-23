@@ -103,7 +103,7 @@ const HeroSection = () => {
             className="text-center"
           >
             <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-relaxed"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight"
               variants={itemVariants}
             >
               건강검진을 넘어, 건강증진과<br />위험 예방, 치유까지 한번에.
@@ -113,11 +113,11 @@ const HeroSection = () => {
               className="space-y-1"
               variants={itemVariants}
             >
-              <p className="text-xl md:text-xl text-white">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white">
                 치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에 
               </p>
               
-              <p className="text-xl md:text-xl text-white mb-10">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 sm:mb-8 md:mb-10">
                 꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
               </p>
             </motion.div>
