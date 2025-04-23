@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import ResponsiveText from '../components/common/ResponsiveText';
+import { ResponsiveSection, ResponsiveTextContainer } from '../components/layout/ResponsiveLayout';
 
 const doctors = [
   {
@@ -58,7 +60,9 @@ const DoctorCard = ({ doctor }) => {
           <p className="text-primary font-medium">{doctor.position}</p>
         </div>
         
-        <p className="text-gray-600 mb-6">{doctor.description}</p>
+        <ResponsiveText variant="body" className="text-gray-600 mb-6">
+          {doctor.description}
+        </ResponsiveText>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
@@ -95,18 +99,20 @@ const DoctorCard = ({ doctor }) => {
 
 const Doctors = () => {
   return (
-    <div className="min-h-screen py-20 mt-16">
+    <ResponsiveSection className="min-h-screen py-20 mt-16">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="section-title text-center">의료진 소개</h1>
-          <p className="section-subtitle text-center mx-auto whitespace-nowrap">
+          <ResponsiveText as="h1" variant="title" className="text-center mx-auto">
+            의료진 소개
+          </ResponsiveText>
+          <ResponsiveText variant="body" className="text-center mx-auto mb-8">
             디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며,
             환자분들께 최고의 의료 서비스를 제공하기 위해 노력하고 있습니다.
-          </p>
+          </ResponsiveText>
           
           <div className="space-y-10 mt-12">
             {doctors.map((doctor) => (
@@ -115,7 +121,7 @@ const Doctors = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+    </ResponsiveSection>
   );
 };
 

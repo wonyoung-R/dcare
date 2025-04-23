@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import ResponsiveLayout from './components/layout/ResponsiveLayout';
 
 // Lazy-loaded page components
 const Home = lazy(() => import('./pages/Home'));
@@ -28,27 +29,50 @@ const LoadingFallback = () => (
   </div>
 );
 
+// 페이지 컴포넌트에 반응형 레이아웃을 적용하는 래퍼 함수
+const withResponsiveLayout = (Component) => {
+  return (props) => (
+    <Component {...props} />
+  );
+};
+
 function App() {
+  // 반응형 페이지 컴포넌트 생성
+  const pages = {
+    Home: withResponsiveLayout(Home),
+    About: withResponsiveLayout(About),
+    Services: withResponsiveLayout(Services),
+    Doctors: withResponsiveLayout(Doctors),
+    Equipment: withResponsiveLayout(Equipment),
+    Contact: withResponsiveLayout(Contact),
+    Checkup: withResponsiveLayout(Checkup),
+    Greenhouse: withResponsiveLayout(Greenhouse),
+    General: withResponsiveLayout(General),
+    Stemcell: withResponsiveLayout(Stemcell),
+    NotFound: withResponsiveLayout(NotFound),
+    Facilities: withResponsiveLayout(Facilities),
+  };
+
   return (
     <div className="App">
       <ScrollToTop />
       <Header />
-      <main>
+      <main className="overflow-x-hidden">
         <AnimatePresence mode="wait">
           <Suspense fallback={<LoadingFallback />}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/doctors" element={<Doctors />} />
-              <Route path="/equipment" element={<Equipment />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/checkup" element={<Checkup />} />
-              <Route path="/greenhouse" element={<Greenhouse />} />
-              <Route path="/general" element={<General />} />
-              <Route path="/stemcell" element={<Stemcell />} />
-              <Route path="/facilities" element={<Facilities />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="/" element={<pages.Home />} />
+              <Route path="/about" element={<pages.About />} />
+              <Route path="/services" element={<pages.Services />} />
+              <Route path="/doctors" element={<pages.Doctors />} />
+              <Route path="/equipment" element={<pages.Equipment />} />
+              <Route path="/contact" element={<pages.Contact />} />
+              <Route path="/checkup" element={<pages.Checkup />} />
+              <Route path="/greenhouse" element={<pages.Greenhouse />} />
+              <Route path="/general" element={<pages.General />} />
+              <Route path="/stemcell" element={<pages.Stemcell />} />
+              <Route path="/facilities" element={<pages.Facilities />} />
+              <Route path="*" element={<pages.NotFound />} />
             </Routes>
           </Suspense>
         </AnimatePresence>

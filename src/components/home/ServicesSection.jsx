@@ -4,6 +4,8 @@ import { useInView } from 'react-intersection-observer';
 import { FaStethoscope, FaHeartbeat, FaUserMd, FaLeaf } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ResponsiveText from '../common/ResponsiveText';
+import { ResponsiveSection, ResponsiveTextContainer } from '../layout/ResponsiveLayout';
 
 const ServicesSection = () => {
   const controls = useAnimation();
@@ -77,7 +79,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <div id="services" className="min-h-screen flex items-center py-16 md:py-24">
+    <div id="services" className="min-h-screen flex items-center py-16 md:py-24 overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -86,12 +88,19 @@ const ServicesSection = () => {
           variants={sectionVariants}
           className="text-center mb-12 md:mb-16"
         >
-          <motion.h2 variants={titleVariants} className="section-title">
-            의료서비스
-          </motion.h2>
-          <motion.p variants={titleVariants} className="section-subtitle mx-auto whitespace-nowrap">
-            디케어 병원은 최첨단 의료장비와 전문 의료진을 통해 환자분들께 최상의 의료 서비스를 제공합니다.
-          </motion.p>
+          <motion.div variants={titleVariants}>
+            <ResponsiveText as="h2" variant="title" className="mx-auto text-center mb-4">
+              의료서비스
+            </ResponsiveText>
+          </motion.div>
+          <motion.div variants={titleVariants} className="w-full flex justify-center">
+            <ResponsiveTextContainer>
+              <ResponsiveText variant="body" className="text-secondary-400 text-center mb-8 w-full px-4 sm:px-0">
+                디케어 병원은 최첨단 의료장비와 전문 의료진을 통해
+                환자분들께 최상의 의료 서비스를 제공합니다.
+              </ResponsiveText>
+            </ResponsiveTextContainer>
+          </motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -144,8 +153,12 @@ const ServiceCard = ({ service, index, t }) => {
           <div className="bg-white/20 rounded-full p-4 w-16 h-16 flex items-center justify-center mb-6">
             {service.icon}
           </div>
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-3">{t(service.titleKey)}</h3>
-          <p className="text-white/90 mb-6">{t(service.descriptionKey)}</p>
+          <ResponsiveText as="h3" variant="subtitle" className="text-white mb-3">
+            {t(service.titleKey)}
+          </ResponsiveText>
+          <ResponsiveText variant="body" className="text-white/90 mb-6">
+            {t(service.descriptionKey)}
+          </ResponsiveText>
         </div>
         <div className="mt-auto p-6 pt-0">
           <Link

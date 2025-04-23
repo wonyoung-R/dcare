@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowDown } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import ResponsiveText from '../common/ResponsiveText';
 
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -93,8 +94,8 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-6 md:px-12 h-full flex items-center">
-        <div className="w-full max-w-4xl mx-auto">
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 md:px-8 h-full flex items-center justify-center">
+        <div className="w-full max-w-3xl mx-auto">
           {/* Text Content */}
           <motion.div
             variants={containerVariants}
@@ -102,24 +103,33 @@ const HeroSection = () => {
             animate={isLoaded ? 'visible' : 'hidden'}
             className="text-center"
           >
-            <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight"
-              variants={itemVariants}
-            >
-              건강검진을 넘어, 건강증진과<br />위험 예방, 치유까지 한번에.
-            </motion.h1>
+            <motion.div variants={itemVariants}>
+              <ResponsiveText 
+                as="h1" 
+                variant="title" 
+                className="text-white mb-2 sm:mb-4 mx-auto"
+              >
+                {t('hero.title')}
+              </ResponsiveText>
+            </motion.div>
             
             <motion.div
-              className="space-y-1"
+              className="space-y-2 mt-2"
               variants={itemVariants}
             >
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white">
-                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에 
-              </p>
+              <ResponsiveText 
+                variant="body" 
+                className="text-white opacity-90 mx-auto"
+              >
+                {t('hero.subtitle1')}
+              </ResponsiveText>
               
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-6 sm:mb-8 md:mb-10">
-                꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
-              </p>
+              <ResponsiveText 
+                variant="body" 
+                className="text-white opacity-90 mb-4 sm:mb-6 md:mb-8 mx-auto"
+              >
+                {t('hero.subtitle2')}
+              </ResponsiveText>
             </motion.div>
           </motion.div>
         </div>
@@ -127,18 +137,18 @@ const HeroSection = () => {
 
       {/* Scroll Down Button */}
       <motion.button
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 text-white flex flex-col items-center"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-30 text-white flex flex-col items-center"
         onClick={handleScrollDown}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.6 }}
       >
-        <span className="text-sm mb-2">{t('hero.scroll')}</span>
+        <span className="text-xs sm:text-sm mb-1 sm:mb-2">{t('hero.scroll')}</span>
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
-          <FaArrowDown className="h-6 w-6" />
+          <FaArrowDown className="h-4 w-4 sm:h-6 sm:w-6" />
         </motion.div>
       </motion.button>
     </div>
