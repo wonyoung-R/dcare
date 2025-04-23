@@ -84,7 +84,7 @@ const Header = () => {
   }, [location]);
 
   // 현재 경로가 홈페이지인지 확인
-  const isHomePage = location.pathname === '/';
+  const isHomePage = location.pathname === '/' || location.pathname === '';
 
   return (
     <header 

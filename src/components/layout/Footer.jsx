@@ -12,10 +12,10 @@ const footerLinks = [
   {
     title: '바로가기',
     links: [
-      { name: '병원소개', path: '/#about' },
-      { name: '의료진 소개', path: '/#doctors' },
-      { name: '의료서비스', path: '/#services' },
-      { name: '오시는 길', path: '/#location' },
+      { name: '병원소개', path: '/' },
+      { name: '의료진 소개', path: '/doctors' },
+      { name: '의료서비스', path: '/services' },
+      { name: '문의하기', path: '/contact' },
     ],
   },
   {
@@ -41,7 +41,7 @@ const Footer = () => {
           <div>
             <Link to="/" className="inline-block mb-6">
               <img 
-                src="/images/logo-main.png" 
+                src="./images/logo-main.png" 
                 alt="디케어 병원" 
                 className="h-12"
                 onError={(e) => {
@@ -75,12 +75,12 @@ const Footer = () => {
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex} className="flex items-center">
                     <FaChevronRight className="text-primary mr-2 h-3 w-3" />
-                    <a 
-                      href={link.path}
+                    <Link 
+                      to={link.path}
                       className="text-sm text-gray-300 hover:text-primary transition-colors duration-200"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
