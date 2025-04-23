@@ -108,34 +108,56 @@ const EquipmentSection = () => {
   const [imagesLoaded, setImagesLoaded] = useState({});
   
   useEffect(() => {
+    console.log('[EquipmentSection] 컴포넌트 마운트됨');
+    
     if (inView) {
       controls.start('visible');
     }
     
     // 이미지 경로 디버깅을 위한 로그
-    console.log('Equipment images paths:', equipments.map(eq => ({ jpg: eq.image, webp: eq.webpImage })));
+    console.log('[EquipmentSection] 이미지 경로:', equipments.map(eq => ({ jpg: eq.image, webp: eq.webpImage })));
     
     // 배포환경/개발환경 확인
-    console.log('NODE_ENV:', process.env.NODE_ENV);
-    console.log('BASE_URL:', import.meta.env.BASE_URL);
+    console.log('[EquipmentSection] NODE_ENV:', process.env.NODE_ENV);
+    console.log('[EquipmentSection] BASE_URL:', import.meta.env.BASE_URL);
+    
+    // 브라우저 정보 로깅
+    const printBrowserInfo = () => {
+      console.log('[EquipmentSection] 브라우저 환경:');
+      console.log('UserAgent:', navigator.userAgent);
+      console.log('모바일 여부:', /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+      console.log('화면 크기:', window.innerWidth, 'x', window.innerHeight);
+      console.log('픽셀 비율:', window.devicePixelRatio);
+      
+      // WebP 지원 여부 확인 (간접적인 방법)
+      const canvas = document.createElement('canvas');
+      const webpSupport = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+      console.log('WebP 지원 여부:', webpSupport);
+    };
+    
+    printBrowserInfo();
     
     // 이미지 프리로드 및 테스트
     equipments.forEach(equipment => {
-      const preloadImage = (src) => {
+      const preloadImage = (src, type) => {
         const img = new Image();
         img.onload = () => {
-          console.log(`Image preloaded successfully: ${src}`);
+          console.log(`[EquipmentSection] ${type} 이미지 프리로드 성공: ${src}`);
         };
-        img.onerror = () => {
-          console.error(`Image preload failed: ${src}`);
+        img.onerror = (e) => {
+          console.error(`[EquipmentSection] ${type} 이미지 프리로드 실패: ${src}`, e);
         };
         img.src = src;
       };
       
       // WebP 및 일반 이미지 모두 프리로드
-      if (equipment.webpImage) preloadImage(equipment.webpImage);
-      if (equipment.image) preloadImage(equipment.image);
+      if (equipment.webpImage) preloadImage(equipment.webpImage, 'WebP');
+      if (equipment.image) preloadImage(equipment.image, 'JPEG');
     });
+    
+    return () => {
+      console.log('[EquipmentSection] 컴포넌트 언마운트됨');
+    };
   }, [controls, inView]);
 
   const sectionVariants = {
@@ -159,22 +181,22 @@ const EquipmentSection = () => {
 
   // 이미지 로드 핸들러
   const handleImageLoad = (id, e) => {
-    console.log('Image loaded successfully:', e.target.src);
+    console.log(`[EquipmentSection] 이미지 로드 성공 (ID: ${id}):`, e.target.src);
     setImagesLoaded(prev => ({ ...prev, [id]: true }));
   };
 
   // 이미지 오류 핸들러
   const handleImageError = (equipment, e) => {
-    console.error('WebP image failed to load:', e.target.src);
+    console.error(`[EquipmentSection] WebP 이미지 로드 실패 (ID: ${equipment.id}):`, e.target.src);
     
     // WebP 이미지가 실패하면 일반 JPG로 대체 시도
     if (e.target.src.includes('webp') && equipment.image) {
-      console.log(`Trying fallback image: ${equipment.image}`);
+      console.log(`[EquipmentSection] 대체 이미지 시도 (ID: ${equipment.id}): ${equipment.image}`);
       e.target.src = equipment.image;
       return;
     }
     
-    console.error('All image formats failed to load');
+    console.error(`[EquipmentSection] 모든 이미지 형식 로드 실패 (ID: ${equipment.id})`);
     e.target.onerror = null;
     e.target.style.display = 'none';
     
