@@ -34,7 +34,7 @@ const Home = () => {
       initial="hidden"
       animate="visible"
       variants={fadeInUp}
-      className="home-page responsive-text-container"
+      className="home-page"
     >
       {/* Hero Section */}
       <section id="home" className="min-h-screen">

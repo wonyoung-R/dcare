@@ -120,12 +120,17 @@
   /* 데스크탑 텍스트 컨테이너 */
   @media (min-width: 1024px) {
     .responsive-text-container {
-      max-width: var(--max-text-width-desktop);
+      max-width: 100%;
       margin-left: auto;
       margin-right: auto;
       padding-left: 2rem;
       padding-right: 2rem;
       width: 100%;
+    }
+    
+    /* PC 화면에서 특정 섹션만 너비 제한 */
+    .section-subtitle {
+      max-width: 60rem; /* 960px */
     }
   }
   
