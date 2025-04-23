@@ -34,13 +34,16 @@
   }
   
   .section-subtitle {
-    @apply text-lg md:text-xl text-secondary-400 mb-8 max-w-3xl whitespace-normal break-words;
+    @apply text-lg md:text-xl text-secondary-400 mb-8 max-w-3xl whitespace-normal break-words overflow-hidden;
   }
   
   /* 화면 크기에 따라 section-subtitle의 너비 제한 */
   @media (max-width: 640px) {
     .section-subtitle {
-      @apply max-w-full px-4 text-base;
+      @apply max-w-full px-4 text-base break-words overflow-hidden text-center;
+      width: 100% !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
     }
     
     /* 모든 whitespace-nowrap 클래스 무효화 */
@@ -60,13 +63,15 @@
       max-width: 100%;
       overflow-wrap: break-word;
       word-wrap: break-word;
+      word-break: break-word;
       hyphens: auto;
     }
   }
   
   @media (min-width: 641px) and (max-width: 1023px) {
     .section-subtitle {
-      @apply max-w-2xl px-4;
+      @apply max-w-2xl px-4 break-words overflow-hidden text-center;
+      overflow-wrap: break-word !important;
     }
     
     /* 태블릿에서도 whitespace-nowrap 클래스 무효화 */
