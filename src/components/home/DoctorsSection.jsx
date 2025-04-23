@@ -46,14 +46,14 @@ const DoctorCard = ({ doctor }) => {
       <div className="p-6 flex flex-col">
         <div className="mb-4">
           <h4 className="text-lg font-semibold text-gray-800 mb-2">전문 분야</h4>
-          <p className="text-gray-600">{doctor.specialty}</p>
+          <p className="text-gray-600 break-words">{doctor.specialty}</p>
         </div>
         <div className="mb-4">
           <h4 className="text-lg font-semibold text-gray-800 mb-2">학력</h4>
           <ul className="text-gray-600 text-sm space-y-1">
             {doctor.education.map((edu, index) => (
               <li key={index} className="flex items-start">
-                <span className="text-primary mr-2">•</span> {edu}
+                <span className="text-primary mr-2">•</span> <span className="break-words">{edu}</span>
               </li>
             ))}
           </ul>
@@ -63,12 +63,12 @@ const DoctorCard = ({ doctor }) => {
           <ul className="text-gray-600 text-sm space-y-1">
             {doctor.experience.map((exp, index) => (
               <li key={index} className="flex items-start">
-                <span className="text-primary mr-2">•</span> {exp}
+                <span className="text-primary mr-2">•</span> <span className="break-words">{exp}</span>
               </li>
             ))}
             {doctor.experience.length === 0 && (
               <li className="flex items-start">
-                <span className="text-primary mr-2">•</span> <span className="text-gray-500 italic">경력 정보 업데이트 예정</span>
+                <span className="text-primary mr-2">•</span> <span className="text-gray-500 italic break-words">경력 정보 업데이트 예정</span>
               </li>
             )}
           </ul>
@@ -132,7 +132,10 @@ const DoctorsSection = () => {
               <motion.h2 variants={titleVariants} className="section-title text-white">
                 전문 의료진
               </motion.h2>
-              <motion.p variants={titleVariants} className="section-subtitle text-white/90 max-w-none mx-auto text-center break-words">
+              <motion.p 
+                variants={titleVariants} 
+                className="section-subtitle text-white/90 mx-auto text-center px-4 w-full max-w-2xl break-words whitespace-normal overflow-hidden"
+              >
                 디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며, 환자분들께 최고의 의료 서비스를 제공하기 위해 노력하고 있습니다.
               </motion.p>
             </div>
