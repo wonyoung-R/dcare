@@ -13,8 +13,8 @@ const About = () => {
           className="max-w-4xl mx-auto"
         >
           <h1 className="section-title text-center">병원 소개</h1>
-          <p className="section-subtitle text-center whitespace-nowrap">
-            디케어 병원은 최첨단 의료 장비와 전문 의료진을 통해
+          <p className="section-subtitle text-center mx-auto mb-12">
+            디케어 병원은 최첨단 의료 장비와 전문 의료진을 통해<br />
             환자 중심의 맞춤형 의료 서비스를 제공합니다.
           </p>
           

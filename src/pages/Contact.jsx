@@ -12,7 +12,7 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="section-title text-center">문의하기</h1>
-          <p className="section-subtitle text-center mx-auto">
+          <p className="section-subtitle text-center mx-auto mb-12">
             디케어 병원에 궁금한 사항이 있으시면 아래 양식을 통해 문의해 주세요. <br />
             빠른 시일 내에 답변 드리겠습니다.
           </p>

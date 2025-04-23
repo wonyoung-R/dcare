@@ -70,7 +70,7 @@ const Facilities = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="section-title text-center">시설소개</h1>
-          <p className="section-subtitle text-center mx-auto whitespace-nowrap">
+          <p className="section-subtitle text-center mx-auto mb-12">
             최첨단 의료 장비와 편안한 환경을 갖춘 디케어 병원의 시설을 소개합니다.
           </p>
           
