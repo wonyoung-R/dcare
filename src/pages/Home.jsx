@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 // Home page sections
@@ -15,6 +15,20 @@ const fadeInUp = {
 };
 
 const Home = () => {
+  // 페이지 로드 시 최상단으로 스크롤
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+    
+    // 추가 대비책으로 setTimeout으로 스크롤 다시 실행
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+  }, []);
+
   return (
     <motion.div
       initial="hidden"
