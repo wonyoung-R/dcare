@@ -28,32 +28,19 @@ const ResponsiveText = ({
     caption: 'text-xs sm:text-sm leading-normal',
   };
 
+  // 반응형 패딩 및 너비 클래스
+  const responsiveClasses = 'max-w-full sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] px-2 sm:px-0';
+
   // 기본 반응형 스타일
   const baseStyles = `
-    max-w-full 
     break-words 
     whitespace-pre-line
   `;
 
   return (
     <Component 
-      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
-      style={{
-        ...style,
-        // 모바일에서의 최대 너비 제한
-        '@media (max-width: 640px)': {
-          maxWidth: '100%',
-          fontSize: variant === 'title' ? '1.5rem' : 
-                   variant === 'subtitle' ? '1.25rem' : 
-                   variant === 'body' ? '0.875rem' : '0.75rem',
-          lineHeight: variant === 'title' ? '1.25' : '1.5',
-          padding: '0 0.5rem'
-        },
-        // 태블릿에서의 최대 너비 제한
-        '@media (min-width: 768px)': {
-          maxWidth: '90%',
-        }
-      }}
+      className={`${baseStyles} ${variantStyles[variant]} ${responsiveClasses} ${className}`}
+      style={style}
       {...rest}
     >
       {children}
