@@ -123,7 +123,7 @@ const EquipmentSection = () => {
   };
 
   return (
-    <div className="min-h-screen py-16 md:py-24">
+    <div className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
