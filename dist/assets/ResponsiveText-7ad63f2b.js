@@ -1,0 +1,5 @@
+import{j as l}from"./index-b71411b2.js";const o=({children:e,className:t="",fullWidth:s=!1})=>l.jsx("div",{className:`responsive-container ${s?"max-w-full":"max-w-7xl"} ${t}`,children:e}),r=({children:e,className:t="",id:s})=>l.jsx("section",{id:s,className:`py-12 md:py-16 lg:py-20 ${t}`,children:l.jsx(o,{children:e})}),p=({children:e,className:t=""})=>l.jsx("div",{className:`responsive-text max-w-prose mx-auto ${t}`,children:e}),c=({children:e,as:t="p",className:s="",style:i={},variant:x="body",...m})=>{const n={title:"text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight",subtitle:"text-xl sm:text-2xl md:text-3xl font-semibold leading-snug",body:"text-sm sm:text-base md:text-lg leading-relaxed",caption:"text-xs sm:text-sm leading-normal"},a=`
+    max-w-full 
+    break-words 
+    whitespace-pre-line
+  `;return l.jsx(t,{className:`${a} ${n[x]} ${s}`,style:{...i,"@media (max-width: 640px)":{maxWidth:"100%",fontSize:x==="title"?"1.5rem":x==="subtitle"?"1.25rem":x==="body"?"0.875rem":"0.75rem",lineHeight:x==="title"?"1.25":"1.5",padding:"0 0.5rem"},"@media (min-width: 768px)":{maxWidth:"90%"}},...m,children:e})};export{c as R,p as a,r as b};
