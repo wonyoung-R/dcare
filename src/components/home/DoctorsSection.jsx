@@ -132,7 +132,7 @@ const DoctorsSection = () => {
               <motion.h2 variants={titleVariants} className="section-title text-white">
                 전문 의료진
               </motion.h2>
-              <motion.p variants={titleVariants} className="section-subtitle mx-auto text-white/90 max-w-3xl">
+              <motion.p variants={titleVariants} className="section-subtitle mx-auto text-white/90 max-w-3xl sm:max-w-xl md:max-w-4xl lg:max-w-6xl break-words text-center">
                 디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며, 환자분들께 최고의 의료 서비스를 제공하기 위해 노력하고 있습니다.
               </motion.p>
             </div>
