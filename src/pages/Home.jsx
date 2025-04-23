@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import HeroSection from '../components/home/HeroSection';
 import ServicesSection from '../components/home/ServicesSection';
 import DoctorsSection from '../components/home/DoctorsSection';
-import EquipmentSection from '../components/home/EquipmentSection';
+import EquipmentSectionAlt from '../components/home/EquipmentSectionAlt';
 import LocationSection from '../components/home/LocationSection';
 import ErrorBoundary from '../components/common/ErrorBoundary';
 
@@ -55,7 +55,7 @@ const Home = () => {
       {/* Equipment Section */}
       <section id="equipment" className="py-0">
         <ErrorBoundary>
-          <EquipmentSection />
+          <EquipmentSectionAlt />
         </ErrorBoundary>
       </section>
 
