@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --max-text-width-mobile: min(100vw - 2rem, 65ch);
+  --max-text-width-tablet: min(100vw - 3rem, 75ch);
+  --max-text-width-desktop: min(100vw - 4rem, 85ch);
+}
+
 @layer base {
   html {
     @apply scroll-smooth;
@@ -44,6 +50,7 @@
       width: 100% !important;
       overflow-wrap: break-word !important;
       word-break: break-word !important;
+      max-width: var(--max-text-width-mobile) !important;
     }
     
     /* 모든 whitespace-nowrap 클래스 무효화 */
@@ -56,6 +63,7 @@
     /* 모바일용 반응형 텍스트 클래스 */
     .responsive-text {
       @apply max-w-full px-4 whitespace-normal break-words text-base;
+      max-width: var(--max-text-width-mobile) !important;
     }
     
     /* 모바일에서 텍스트 오버플로우 방지 */
@@ -66,12 +74,23 @@
       word-break: break-word;
       hyphens: auto;
     }
+    
+    /* 모바일 텍스트 컨테이너 */
+    .responsive-text-container {
+      max-width: var(--max-text-width-mobile);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      width: 100%;
+    }
   }
   
   @media (min-width: 641px) and (max-width: 1023px) {
     .section-subtitle {
       @apply max-w-2xl px-4 break-words overflow-hidden text-center;
       overflow-wrap: break-word !important;
+      max-width: var(--max-text-width-tablet) !important;
     }
     
     /* 태블릿에서도 whitespace-nowrap 클래스 무효화 */
@@ -84,6 +103,29 @@
     /* 태블릿용 반응형 텍스트 클래스 */
     .responsive-text {
       @apply max-w-[90%] px-4 whitespace-normal break-words;
+      max-width: var(--max-text-width-tablet) !important;
+    }
+    
+    /* 태블릿 텍스트 컨테이너 */
+    .responsive-text-container {
+      max-width: var(--max-text-width-tablet);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      width: 100%;
+    }
+  }
+  
+  /* 데스크탑 텍스트 컨테이너 */
+  @media (min-width: 1024px) {
+    .responsive-text-container {
+      max-width: var(--max-text-width-desktop);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      width: 100%;
     }
   }
   

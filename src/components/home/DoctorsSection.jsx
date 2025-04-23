@@ -134,7 +134,7 @@ const DoctorsSection = () => {
               </motion.h2>
               <motion.p 
                 variants={titleVariants} 
-                className="section-subtitle text-white/90 mx-auto text-center px-4 sm:px-6 w-full max-w-full sm:max-w-md md:max-w-xl lg:max-w-2xl break-words whitespace-normal overflow-hidden"
+                className="section-subtitle text-white/90 mx-auto text-center px-4 sm:px-6 w-full max-w-full sm:max-w-md md:max-w-xl lg:max-w-2xl break-words whitespace-normal overflow-hidden responsive-text-container"
                 style={{ 
                   textAlign: 'center', 
                   margin: '0 auto', 
