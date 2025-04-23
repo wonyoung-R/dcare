@@ -93,7 +93,12 @@ const Facilities = () => {
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "https://via.placeholder.com/800x500?text=이미지+준비중";
+                        e.target.style.display = 'none';
+                        e.target.parentNode.classList.add('placeholder-image');
+                        const textElement = document.createElement('div');
+                        textElement.textContent = '이미지 준비중';
+                        textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200';
+                        e.target.parentNode.appendChild(textElement);
                       }}
                     />
                   </div>
@@ -153,7 +158,12 @@ const Facilities = () => {
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "https://via.placeholder.com/800x500?text=이미지+준비중";
+                        e.target.style.display = 'none';
+                        e.target.parentNode.classList.add('placeholder-image');
+                        const textElement = document.createElement('div');
+                        textElement.textContent = '이미지 준비중';
+                        textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200';
+                        e.target.parentNode.appendChild(textElement);
                       }}
                     />
                   </div>

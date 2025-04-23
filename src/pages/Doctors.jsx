@@ -39,7 +39,12 @@ const DoctorCard = ({ doctor }) => {
           className="w-full h-full object-cover object-center"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = `https://via.placeholder.com/300x400?text=${doctor.name}`;
+            e.target.style.display = 'none';
+            e.target.parentNode.classList.add('placeholder-image');
+            const textElement = document.createElement('div');
+            textElement.textContent = doctor.name;
+            textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200';
+            e.target.parentNode.appendChild(textElement);
           }}
         />
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary to-transparent p-4 md:hidden">

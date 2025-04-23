@@ -33,7 +33,7 @@ const Stemcell = () => {
       {/* Single Image */}
       <div className="mb-16 flex justify-center">
         <img 
-          src="/images/stemcells/stemcells.png" 
+          src="./images/stemcells/stemcells.png" 
           alt="줄기세포 치료" 
           className="rounded-lg shadow-lg w-full max-w-4xl object-cover"
         />
@@ -53,7 +53,7 @@ const Stemcell = () => {
         </p>
       </div>
 
-      {/* Key Benefits - Centered Box */}
+      {/* Key Benefits - Centered Box with 80% width */}
       <div className="w-4/5 mx-auto bg-blue-50 rounded-xl p-8 mb-16 shadow-md">
         <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
           줄기세포 치료의 핵심 이점

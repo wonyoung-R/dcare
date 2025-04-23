@@ -97,7 +97,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/images/logo-main.png" 
+              src="./images/logo-main.png" 
               alt="디케어 병원" 
               className="h-10 md:h-12"
               onError={(e) => {
