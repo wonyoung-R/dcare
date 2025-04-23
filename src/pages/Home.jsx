@@ -4,11 +4,8 @@ import { motion } from 'framer-motion';
 // Home page sections
 import HeroSection from '../components/home/HeroSection';
 import ServicesSection from '../components/home/ServicesSection';
-import InterventionSection from '../components/home/InterventionSection';
 import DoctorsSection from '../components/home/DoctorsSection';
 import EquipmentSection from '../components/home/EquipmentSection';
-import FeaturesSection from '../components/home/FeaturesSection';
-import PartnersSection from '../components/home/PartnersSection';
 import LocationSection from '../components/home/LocationSection';
 
 // Animation variants
@@ -31,37 +28,22 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20">
+      <section id="services" className="py-0">
         <ServicesSection />
       </section>
 
-      {/* Intervention Section */}
-      <section id="intervention" className="min-h-screen">
-        <InterventionSection />
-      </section>
-
       {/* Doctors Section */}
-      <section id="doctors" className="py-20">
+      <section id="doctors" className="py-0">
         <DoctorsSection />
       </section>
 
       {/* Equipment Section */}
-      <section id="equipment" className="py-20">
+      <section id="equipment" className="py-0">
         <EquipmentSection />
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-20 bg-gray-50">
-        <FeaturesSection />
-      </section>
-
-      {/* Partners Section */}
-      <section id="partners" className="py-20">
-        <PartnersSection />
-      </section>
-
       {/* Location Section */}
-      <section id="location" className="py-20 bg-gray-50">
+      <section id="location" className="py-0 bg-gray-50">
         <LocationSection />
       </section>
     </motion.div>

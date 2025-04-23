@@ -7,7 +7,8 @@ import {
   FaClock, 
   FaSubway, 
   FaBus, 
-  FaCar 
+  FaCar,
+  FaExternalLinkAlt
 } from 'react-icons/fa';
 
 const LocationSection = () => {
@@ -26,28 +27,32 @@ const LocationSection = () => {
 
   // Initialize Kakao Map
   useEffect(() => {
+    // 디케어센터 정확한 좌표
+    const latitude = 35.864703;  // 위도
+    const longitude = 128.55810800000037; // 경도
+
     const initMap = () => {
       if (window.kakao && window.kakao.maps && mapRef.current) {
         const options = {
-          center: new window.kakao.maps.LatLng(37.4988, 127.0311), // 강남역 좌표
+          center: new window.kakao.maps.LatLng(latitude, longitude), // 디케어센터 좌표
           level: 3,
         };
 
         const map = new window.kakao.maps.Map(mapRef.current, options);
         const marker = new window.kakao.maps.Marker({
-          position: new window.kakao.maps.LatLng(37.4988, 127.0311),
+          position: new window.kakao.maps.LatLng(latitude, longitude),
           map: map,
         });
 
         // Custom overlay for hospital name
         const content = `
           <div style="padding:5px;background:#fff;border-radius:4px;border:1px solid #ddd;font-size:12px;font-weight:bold;">
-            디케어 병원
+            디케어센터
           </div>
         `;
 
         new window.kakao.maps.CustomOverlay({
-          position: new window.kakao.maps.LatLng(37.4988, 127.0311),
+          position: new window.kakao.maps.LatLng(latitude, longitude),
           content: content,
           map: map,
           yAnchor: 1.5,
@@ -55,22 +60,25 @@ const LocationSection = () => {
       }
     };
 
-    // Check if Kakao Maps API is already loaded
+    // 카카오맵 API 로드
     if (window.kakao && window.kakao.maps) {
       initMap();
     } else {
-      const script = document.querySelector('script[src*="//dapi.kakao.com/v2/maps/sdk.js"]');
-      if (script) {
-        script.addEventListener('load', initMap);
-      }
+      // API가 아직 로드되지 않았으면 동적으로 스크립트 추가
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=6df064a56d1b3dc79847950b6c9258f7&autoload=false`;
+      
+      script.onload = () => {
+        window.kakao.maps.load(initMap);
+      };
+      
+      document.head.appendChild(script);
+      
+      return () => {
+        document.head.removeChild(script);
+      };
     }
-
-    return () => {
-      const script = document.querySelector('script[src*="//dapi.kakao.com/v2/maps/sdk.js"]');
-      if (script) {
-        script.removeEventListener('load', initMap);
-      }
-    };
   }, [mapRef]);
 
   const sectionVariants = {
@@ -96,29 +104,30 @@ const LocationSection = () => {
 
   const transportationInfo = [
     {
-      icon: <FaSubway className="text-primary mr-2" />,
-      title: '지하철',
-      details: [
-        '2호선 강남역 11번 출구 도보 3분',
-        '신분당선 강남역 8번 출구 도보 5분'
-      ]
-    },
-    {
       icon: <FaBus className="text-primary mr-2" />,
       title: '버스',
       details: [
-        '간선버스: 140, 144, 145, 340, 420',
-        '지선버스: 3412, 4412',
-        '광역버스: 9404, 9408'
+        'BUS 대구의료원 라파엘웰빙센터 건너 정류장(서구1-1, 급행1, 급행8)'
+      ]
+    },
+    {
+      icon: <FaSubway className="text-primary mr-2" />,
+      title: '지하철',
+      details: [
+        '2호선 죽전역 1번 출구 ▶ 죽전119안전센터앞 정류장(서구1, 급행8) ▶ 대구의료원 라파엘웰빙센터 정류장 하차'
       ]
     },
     {
       icon: <FaCar className="text-primary mr-2" />,
       title: '자가용',
       details: [
-        '지하 주차장 이용 가능 (최초 30분 무료)',
-        '주차 공간이 협소하여 대중교통 이용을 권장합니다.'
-      ]
+        '지하 주차장 이용 가능 (최초 30분 무료)'
+      ],
+      button: {
+        text: '카카오 맵 길안내',
+        link: 'https://kko.kakao.com/NbwXEgiBWa', // 카카오맵 공유 링크
+        icon: <FaExternalLinkAlt className="ml-1 h-3 w-3" />
+      }
     }
   ];
 
@@ -136,7 +145,7 @@ const LocationSection = () => {
               오시는 길
             </motion.h2>
             <motion.p variants={itemVariants} className="section-subtitle mx-auto">
-              디케어 병원은 서울 강남 중심부에 위치하여
+              디케어 병원은 대구 달서구 와룡로에 위치하여
               환자분들이 쉽게 찾아오실 수 있습니다.
             </motion.p>
           </div>
@@ -186,13 +195,24 @@ const LocationSection = () => {
                       {transportationInfo.map((item, index) => (
                         <div key={index} className="flex items-start">
                           {item.icon}
-                          <div>
+                          <div className="flex-1">
                             <h5 className="font-medium text-gray-800">{item.title}</h5>
                             <ul className="text-sm text-gray-600 mt-1">
                               {item.details.map((detail, detailIndex) => (
                                 <li key={detailIndex} className="mb-1">{detail}</li>
                               ))}
                             </ul>
+                            {item.button && (
+                              <a 
+                                href={item.button.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center mt-2 px-3 py-1 bg-primary text-white text-xs rounded-md hover:bg-primary-light transition-colors"
+                              >
+                                {item.button.text}
+                                {item.button.icon}
+                              </a>
+                            )}
                           </div>
                         </div>
                       ))}

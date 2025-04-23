@@ -2,96 +2,54 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaGlobe, FaChevronDown } from 'react-icons/fa';
-
-const navItems = [
-  { 
-    name: '병원안내', 
-    path: '/about',
-    submenu: [
-      { name: '병원소개', path: '/about' },
-      { name: '의료진 소개', path: '/doctors' },
-      { name: '둘러보기', path: '/tour' },
-      { name: '오시는 길', path: '/contact' },
-    ]
-  },
-  { 
-    name: '진료안내', 
-    path: '/services',
-    submenu: [
-      { name: '진료과목', path: '/services' },
-      { name: '진료시간', path: '/hours' },
-      { name: '예약안내', path: '/reservation' },
-    ]
-  },
-  { 
-    name: '종합건강검진', 
-    path: '/checkup',
-    submenu: [
-      { name: '건강검진 안내', path: '/checkup' },
-      { name: '검진 프로그램', path: '/checkup/programs' },
-    ]
-  },
-  { 
-    name: '인터벤션', 
-    path: '/intervention',
-    submenu: [
-      { name: '인터벤션 소개', path: '/intervention' },
-      { name: '시술 안내', path: '/intervention/procedures' },
-      { name: '전문의 소개', path: '/intervention/specialists' },
-    ]
-  },
-  { 
-    name: 'MRI', 
-    path: '/mri',
-    submenu: [
-      { name: 'MRI 소개', path: '/mri' },
-      { name: '검사 안내', path: '/mri/exams' },
-      { name: '장비 소개', path: '/mri/equipment' },
-    ]
-  },
-  { 
-    name: 'CT', 
-    path: '/ct',
-    submenu: [
-      { name: 'CT 소개', path: '/ct' },
-      { name: '검사 안내', path: '/ct/exams' },
-      { name: '장비 소개', path: '/ct/equipment' },
-    ]
-  },
-  { 
-    name: '초음파', 
-    path: '/ultrasound',
-    submenu: [
-      { name: '초음파 소개', path: '/ultrasound' },
-      { name: '검사 안내', path: '/ultrasound/exams' },
-      { name: '장비 소개', path: '/ultrasound/equipment' },
-    ]
-  },
-  { 
-    name: '일반촬영 및 기타', 
-    path: '/xray',
-    submenu: [
-      { name: '일반촬영 소개', path: '/xray' },
-      { name: '검사 안내', path: '/xray/exams' },
-      { name: '기타 검사', path: '/xray/others' },
-    ]
-  },
-  { 
-    name: '커뮤니티', 
-    path: '/community',
-    submenu: [
-      { name: '공지사항', path: '/community/news' },
-      { name: '건강정보', path: '/community/health' },
-      { name: '문의하기', path: '/community/inquiry' },
-    ]
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
   const location = useLocation();
+  const { t, i18n } = useTranslation();
+
+  // 현재 언어 가져오기
+  const currentLanguage = i18n.language;
+
+  // 언어 변경 함수
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setLangMenuOpen(false);
+  };
+
+  // 번역된 네비게이션 항목
+  const navItems = [
+    { 
+      name: t('header.about'),
+      path: '/about',
+      submenu: [
+        { name: t('header.about_submenu.introduction'), path: '/about' },
+        { name: t('header.about_submenu.doctors'), path: '/doctors' },
+        { name: t('header.about_submenu.facilities'), path: '/facilities' },
+        { name: t('header.about_submenu.inquiry'), path: '/contact' },
+      ]
+    },
+    { 
+      name: t('header.checkup'),
+      path: '/checkup',
+    },
+    { 
+      name: t('header.greenhouse'),
+      path: '/greenhouse',
+    },
+    { 
+      name: t('header.general'),
+      path: '/general',
+    },
+    { 
+      name: t('header.stemcell'),
+      path: '/stemcell',
+    },
+  ];
 
   // Toggle mobile menu
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -125,10 +83,13 @@ const Header = () => {
     setActiveSubmenu(null);
   }, [location]);
 
+  // 현재 경로가 홈페이지인지 확인
+  const isHomePage = location.pathname === '/';
+
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        (scrolled || !isHomePage) ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -136,7 +97,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="./logo.svg" 
+              src="/images/logo-main.png" 
               alt="디케어 병원" 
               className="h-10 md:h-12"
               onError={(e) => {
@@ -156,7 +117,7 @@ const Header = () => {
                   className={`text-sm font-medium transition-colors duration-200 py-2 ${
                     location.pathname === item.path
                       ? 'text-primary'
-                      : scrolled ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary'
+                      : (scrolled || !isHomePage) ? 'text-gray-800 hover:text-primary' : 'text-white hover:text-primary-light'
                   }`}
                   onMouseEnter={() => setActiveSubmenu(index)}
                 >
@@ -191,29 +152,62 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Right Side Menu */}
-          <div className="hidden lg:flex items-center">
-            <button className="flex items-center text-sm font-medium">
-              <FaGlobe className="mr-1" />
-              <span>KR</span>
-              <FaChevronDown className="ml-1 h-3 w-3" />
+          {/* Mobile Menu Button */}
+          <div className="flex lg:hidden items-center space-x-4">
+            {/* Mobile Language Selector */}
+            <button
+              className={`flex items-center text-sm font-medium ${
+                (scrolled || !isHomePage) ? 'text-gray-800' : 'text-white'
+              }`}
+              onClick={() => setLangMenuOpen(!langMenuOpen)}
+            >
+              <FaGlobe className="h-5 w-5" />
+            </button>
+            
+            <button
+              className="focus:outline-none"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? (
+                <FaTimes className={`h-6 w-6 ${(scrolled || !isHomePage) ? 'text-gray-800' : 'text-white'}`} />
+              ) : (
+                <FaBars className={`h-6 w-6 ${(scrolled || !isHomePage) ? 'text-gray-800' : 'text-white'}`} />
+              )}
             </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden focus:outline-none"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? (
-              <FaTimes className={`h-6 w-6 ${scrolled ? 'text-gray-800' : 'text-white'}`} />
-            ) : (
-              <FaBars className={`h-6 w-6 ${scrolled ? 'text-gray-800' : 'text-white'}`} />
-            )}
-          </button>
         </div>
       </div>
+
+      {/* Mobile Language Menu */}
+      <AnimatePresence>
+        {langMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden bg-white shadow-lg"
+          >
+            <div className="container mx-auto px-4 py-2">
+              <div className="flex justify-center space-x-4">
+                <button
+                  onClick={() => changeLanguage('kr')}
+                  className={`px-4 py-2 rounded ${currentLanguage === 'kr' ? 'bg-primary text-white' : 'text-gray-700'}`}
+                >
+                  KR
+                </button>
+                <button
+                  onClick={() => changeLanguage('en')}
+                  className={`px-4 py-2 rounded ${currentLanguage === 'en' ? 'bg-primary text-white' : 'text-gray-700'}`}
+                >
+                  EN
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -249,21 +243,20 @@ const Header = () => {
                         />
                       )}
                     </div>
-                    
+
                     {/* Mobile Submenu */}
                     {item.submenu && activeSubmenu === index && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="pl-4 py-2 bg-gray-50"
+                        className="ml-4 mt-2 space-y-2"
                       >
                         {item.submenu.map((subItem, subIndex) => (
                           <Link
                             key={subIndex}
                             to={subItem.path}
-                            className="block py-2 text-sm text-gray-700 hover:text-primary"
+                            className="block py-2 text-sm text-gray-600 hover:text-primary"
                           >
                             {subItem.name}
                           </Link>
@@ -273,15 +266,6 @@ const Header = () => {
                   </div>
                 ))}
               </nav>
-              
-              {/* Mobile Right Side Menu */}
-              <div className="flex items-center justify-end mt-6 pt-4 border-t border-gray-100">
-                <button className="flex items-center text-sm font-medium px-4 py-2 border border-gray-300 rounded hover:bg-gray-100 transition-colors duration-200">
-                  <FaGlobe className="mr-1" />
-                  <span>KR</span>
-                  <FaChevronDown className="ml-1 h-3 w-3" />
-                </button>
-              </div>
             </div>
           </motion.div>
         )}

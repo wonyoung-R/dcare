@@ -1,81 +1,26 @@
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 const doctors = [
   {
     id: 1,
-    name: '김영호',
-    position: '영상의학과 원장',
-    specialty: 'MRI, CT, 인터벤션',
-    education: ['서울대학교 의과대학', '서울대학교병원 영상의학과 전문의'],
-    experience: ['前 서울대학교병원 교수', '대한인터벤션영상의학회 이사'],
-    image: '/doctor-1.jpg',
-    socialLinks: {
-      email: 'doctor1@dcare.com',
-      linkedin: 'https://linkedin.com'
-    }
+    name: '류효충',
+    position: '대표원장',
+    specialty: '산부인과전문의, 여성검진, 산부인과진료',
+    education: ['계명대학교 의과대학', '계명대학교 산부인과 전문의'],
+    experience: ['현 디케어건강검진센터 대표원장', '전 신라산부인과 원장', '전 영재산부인과 원장'],
+    image: '/doctor-male-60s.jpg'
   },
   {
     id: 2,
-    name: '이미영',
-    position: '영상의학과 전문의',
-    specialty: '유방 영상, 인터벤션',
-    education: ['연세대학교 의과대학', '세브란스병원 영상의학과 전문의'],
-    experience: ['前 세브란스병원 조교수', '대한유방영상의학회 정회원'],
-    image: '/doctor-2.jpg',
-    socialLinks: {
-      email: 'doctor2@dcare.com',
-      linkedin: 'https://linkedin.com'
-    }
-  },
-  {
-    id: 3,
-    name: '박준서',
-    position: '영상의학과 전문의',
-    specialty: '신경계 영상, 두경부 영상',
-    education: ['고려대학교 의과대학', '고려대학교병원 영상의학과 전문의'],
-    experience: ['前 고려대학교병원 조교수', '대한신경영상의학회 정회원'],
-    image: '/doctor-3.jpg',
-    socialLinks: {
-      email: 'doctor3@dcare.com',
-      linkedin: 'https://linkedin.com'
-    }
-  },
-  {
-    id: 4,
-    name: '최지원',
-    position: '영상의학과 전문의',
-    specialty: '복부 영상, 초음파',
-    education: ['가톨릭대학교 의과대학', '서울성모병원 영상의학과 전문의'],
-    experience: ['前 서울성모병원 임상조교수', '대한복부영상의학회 정회원'],
-    image: '/doctor-4.jpg',
-    socialLinks: {
-      email: 'doctor4@dcare.com',
-      linkedin: 'https://linkedin.com'
-    }
-  },
-  {
-    id: 5,
-    name: '정현우',
-    position: '영상의학과 전문의',
-    specialty: '근골격계 영상, 척추 인터벤션',
-    education: ['울산대학교 의과대학', '서울아산병원 영상의학과 전문의'],
-    experience: ['前 서울아산병원 교수', '대한근골격영상의학회 이사'],
-    image: '/doctor-5.jpg',
-    socialLinks: {
-      email: 'doctor5@dcare.com',
-      linkedin: 'https://linkedin.com'
-    }
+    name: '한정우',
+    position: '원장',
+    specialty: '영남의대 대장항문외과 전문의, 위ㆍ대장내시경',
+    education: ['영남대학교 의과대학', '영남대학교 대장항문외과 전문의'],
+    experience: [],
+    image: '/doctor-male-60s-2.jpg'
   }
 ];
 
@@ -98,7 +43,7 @@ const DoctorCard = ({ doctor }) => {
           <p className="text-white/90 text-sm">{doctor.position}</p>
         </div>
       </div>
-      <div className="p-6">
+      <div className="p-6 flex flex-col">
         <div className="mb-4">
           <h4 className="text-lg font-semibold text-gray-800 mb-2">전문 분야</h4>
           <p className="text-gray-600">{doctor.specialty}</p>
@@ -113,7 +58,7 @@ const DoctorCard = ({ doctor }) => {
             ))}
           </ul>
         </div>
-        <div className="mb-4">
+        <div className="mb-4 mt-auto">
           <h4 className="text-lg font-semibold text-gray-800 mb-2">경력</h4>
           <ul className="text-gray-600 text-sm space-y-1">
             {doctor.experience.map((exp, index) => (
@@ -121,25 +66,12 @@ const DoctorCard = ({ doctor }) => {
                 <span className="text-primary mr-2">•</span> {exp}
               </li>
             ))}
+            {doctor.experience.length === 0 && (
+              <li className="flex items-start">
+                <span className="text-primary mr-2">•</span> <span className="text-gray-500 italic">경력 정보 업데이트 예정</span>
+              </li>
+            )}
           </ul>
-        </div>
-        <div className="flex space-x-3 mt-6">
-          <a 
-            href={`mailto:${doctor.socialLinks.email}`}
-            className="p-2 bg-gray-100 rounded-full hover:bg-primary hover:text-white transition-colors duration-200"
-            aria-label="Send email"
-          >
-            <FaEnvelope className="h-5 w-5" />
-          </a>
-          <a 
-            href={doctor.socialLinks.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 bg-gray-100 rounded-full hover:bg-primary hover:text-white transition-colors duration-200"
-            aria-label="LinkedIn profile"
-          >
-            <FaLinkedin className="h-5 w-5" />
-          </a>
         </div>
       </div>
     </div>
@@ -179,60 +111,43 @@ const DoctorsSection = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={controls}
-          variants={sectionVariants}
-        >
-          <div className="text-center mb-12 md:mb-16">
-            <motion.h2 variants={titleVariants} className="section-title">
-              전문 의료진
-            </motion.h2>
-            <motion.p variants={titleVariants} className="section-subtitle mx-auto">
-              디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며,
-              환자분들께 최고의 의료 서비스를 제공하기 위해 노력하고 있습니다.
-            </motion.p>
-          </div>
+    <div className="relative w-full py-16 md:py-24">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 z-0">
+        <div className="w-full h-full bg-gradient-to-r from-blue-900 to-indigo-900"></div>
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-primary/70"></div>
+      </div>
 
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
-            navigation
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-              1280: {
-                slidesPerView: 4,
-              },
-            }}
-            className="doctors-swiper"
+      {/* Content */}
+      <div className="relative z-10">
+        <div className="container mx-auto px-4">
+          <motion.div
+            ref={ref}
+            initial="hidden"
+            animate={controls}
+            variants={sectionVariants}
           >
-            {doctors.map((doctor) => (
-              <SwiperSlide key={doctor.id}>
-                <DoctorCard doctor={doctor} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            <div className="text-center mb-12 md:mb-16">
+              <motion.h2 variants={titleVariants} className="section-title text-white">
+                전문 의료진
+              </motion.h2>
+              <motion.p variants={titleVariants} className="section-subtitle mx-auto text-white/90 whitespace-nowrap">
+                디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며, 환자분들께 최고의 의료 서비스를 제공하기 위해 노력하고 있습니다.
+              </motion.p>
+            </div>
 
-          <div className="text-center mt-10">
-            <Link
-              to="/doctors"
-              className="btn btn-primary"
-            >
-              의료진 더 보기
-            </Link>
-          </div>
-        </motion.div>
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                {doctors.map((doctor) => (
+                  <div key={doctor.id} className="px-4 h-full">
+                    <DoctorCard doctor={doctor} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );

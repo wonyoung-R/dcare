@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowDown } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { t } = useTranslation();
+
+  const backgroundImages = [
+    '/images/main-background1.jpeg',
+    '/images/main-background2.jpeg',
+    '/images/main-background3.jpeg'
+  ];
 
   useEffect(() => {
     // Set loaded state to true after timeout to ensure smooth animation
@@ -12,6 +21,17 @@ const HeroSection = () => {
     }, 500);
 
     return () => clearTimeout(timer);
+  }, []);
+
+  // Image slider effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   // Handle scroll down button click - scroll to services section
@@ -46,44 +66,63 @@ const HeroSection = () => {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {/* Video Background */}
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        {/* Gradient Background as fallback */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-primary"></div>
+        {/* Background Image Slider with Cross-fade */}
+        <div className="absolute inset-0">
+          {backgroundImages.map((image, index) => (
+            <div 
+              key={index}
+              className="absolute inset-0 transition-opacity duration-1500"
+              style={{ 
+                opacity: index === currentImageIndex ? 1 : 0,
+                zIndex: index === currentImageIndex ? 1 : 0,
+                transition: 'opacity 1.5s ease-in-out'
+              }}
+            >
+              <img 
+                src={image} 
+                alt="병원 배경" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
         {/* Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
       </div>
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-4 h-full flex items-center">
-        <motion.div
-          className="max-w-4xl"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isLoaded ? 'visible' : 'hidden'}
-        >
-          <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-            variants={itemVariants}
+      <div className="relative z-20 container mx-auto px-6 md:px-12 h-full flex items-center">
+        <div className="w-full max-w-4xl mx-auto">
+          {/* Text Content */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isLoaded ? 'visible' : 'hidden'}
+            className="text-center"
           >
-            첨단 의료 장비와 함께하는<br />
-            <span className="text-primary">디케어 병원</span>
-          </motion.h1>
-          
-          <motion.p
-            className="text-xl md:text-2xl text-white mb-10 max-w-2xl"
-            variants={itemVariants}
-          >
-            최첨단 의료장비와 전문 의료진의 협력으로
-            환자 중심의 맞춤형 의료 서비스를 제공합니다.
-          </motion.p>
-          
-          <motion.div className="flex flex-wrap gap-4" variants={itemVariants}>
-            <button className="btn btn-outline text-white border-white hover:bg-white hover:text-gray-900">
-              병원 둘러보기
-            </button>
+            <motion.h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-relaxed"
+              variants={itemVariants}
+            >
+              건강검진을 넘어, 건강증진과<br />위험 예방, 치유까지 한번에.
+            </motion.h1>
+            
+            <motion.div
+              className="space-y-1"
+              variants={itemVariants}
+            >
+              <p className="text-xl md:text-xl text-white">
+                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에 
+              </p>
+              
+              <p className="text-xl md:text-xl text-white mb-10">
+                꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
+              </p>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll Down Button */}
@@ -94,7 +133,7 @@ const HeroSection = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.6 }}
       >
-        <span className="text-sm mb-2">스크롤</span>
+        <span className="text-sm mb-2">{t('hero.scroll')}</span>
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}

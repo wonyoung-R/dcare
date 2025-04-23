@@ -1,0 +1,85 @@
+{
+  "header": {
+    "about": "병원안내",
+    "about_submenu": {
+      "introduction": "병원소개",
+      "doctors": "의료진 소개",
+      "facilities": "시설소개",
+      "inquiry": "문의하기"
+    },
+    "checkup": "종합건강검진",
+    "greenhouse": "Healing Greenhouse",
+    "general": "검진외일반진료",
+    "stemcell": "줄기세포 치료"
+  },
+  "hero": {
+    "title": "건강검진을 넘어, 건강증진과 위험 예방, 치유까지 한번에.",
+    "subtitle1": "치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에 꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터",
+    "subtitle2": "어디에서도 만나본 적 없는 최상의 시스템과 수준 높은 공간을 경험할 수 있습니다",
+    "scroll": "스크롤",
+    "image_placeholder": "메인 이미지 영역"
+  },
+  "services": {
+    "title": "의료 서비스",
+    "subtitle": "디케어 병원은 최첨단 의료장비와 전문 의료진을 통해 환자분들께 최상의 의료 서비스를 제공합니다.",
+    "checkup": {
+      "title": "종합건강검진",
+      "description": "최신 의료장비를 통한 체계적인 건강검진으로 질병을 조기에 발견하고 예방합니다."
+    },
+    "greenhouse": {
+      "title": "Healing Greenhouse",
+      "description": "자연 친화적 공간에서 몸과 마음의 치유를 위한 특별한 힐링 경험을 제공합니다."
+    },
+    "general": {
+      "title": "검진외 일반진료",
+      "description": "내과, 산부인과 등 다양한 전문 진료를 통해 고객님의 건강을 책임집니다."
+    },
+    "doctors": {
+      "title": "전문 의료진",
+      "description": "풍부한 경험을 갖춘 전문 의료진이 정확한 진단과 맞춤형 치료를 제공합니다."
+    },
+    "view_more": "자세히 보기"
+  },
+  "doctors": {
+    "title": "전문 의료진",
+    "description": "디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며, 환자분들께 최고의 의료 서비스를 제공하기 위해 노력하고 있습니다.",
+    "info": {
+      "specialty": "전문 분야",
+      "education": "학력",
+      "experience": "경력"
+    }
+  },
+  "partners": {
+    "title": "협력기관",
+    "description": "디케어센터는 아래 의료기관들과 협력하여 환자분들께 더 나은 의료서비스를 제공하기 위해 노력합니다."
+  },
+  "location": {
+    "title": "오시는 길",
+    "description": "디케어 병원은 대구 달서구 와룡로에 위치하여 환자분들이 쉽게 찾아오실 수 있습니다.",
+    "hospitalInfo": "병원 정보",
+    "address": "주소",
+    "contact": "연락처",
+    "hours": "진료시간",
+    "addressValue": "대구광역시 달서구 와룡로 307 디센터 1976 2층",
+    "phoneValue": "대표전화: 053.288.3000",
+    "websiteValue": "홈페이지: www.dcare.or.kr",
+    "weekdayHours": "평일: 08:30 - 17:30",
+    "saturdayHours": "토요일: 08:30 - 13:00",
+    "sundayHours": "일요일 및 공휴일 휴진",
+    "findUs": "찾아오시는 방법",
+    "subway": "지하철",
+    "bus": "버스",
+    "car": "자가용",
+    "kakaoMap": "카카오 맵 길안내"
+  },
+  "footer": {
+    "shortcuts": "바로가기",
+    "services": "서비스",
+    "privacyPolicy": "개인정보처리방침",
+    "terms": "이용약관",
+    "copyright": "© 2023 디케어 병원. All rights reserved."
+  },
+  "common": {
+    "language": "KR"
+  }
+} 

@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#009db4', // Main teal/cyan color
+        primary: '#3e8491', // 진한색
+        'primary-light': '#81babe', // 연한색
         secondary: {
           100: '#f1f5f9', // Light gray
           200: '#e2e8f0', // Medium light gray
