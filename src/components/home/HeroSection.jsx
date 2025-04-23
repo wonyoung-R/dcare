@@ -9,9 +9,9 @@ const HeroSection = () => {
   const { t } = useTranslation();
 
   const backgroundImages = [
-    '/images/main-background1.jpeg',
-    '/images/main-background2.jpeg',
-    '/images/main-background3.jpeg'
+    './images/main-background1.jpeg',
+    './images/main-background2.jpeg',
+    './images/main-background3.jpeg'
   ];
 
   useEffect(() => {

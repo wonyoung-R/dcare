@@ -11,7 +11,7 @@ const doctors = [
     specialty: '산부인과전문의, 여성검진, 산부인과진료',
     education: ['계명대학교 의과대학', '계명대학교 산부인과 전문의'],
     experience: ['현 디케어건강검진센터 대표원장', '전 신라산부인과 원장', '전 영재산부인과 원장'],
-    image: '/images/logo-main.png'
+    image: './images/logo-main.png'
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const doctors = [
     specialty: '영남의대 대장항문외과 전문의, 위ㆍ대장내시경',
     education: ['영남대학교 의과대학', '영남대학교 대장항문외과 전문의'],
     experience: [],
-    image: '/images/logo-main.png'
+    image: './images/logo-main.png'
   }
 ];
 

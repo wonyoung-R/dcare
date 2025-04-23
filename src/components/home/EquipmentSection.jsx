@@ -15,7 +15,7 @@ const equipments = [
       '초당 192mm 촬영 속도'
     ],
     optimumFor: '심장 및 폐 영상, 움직이는 장기 촬영',
-    image: '/images/medicalequipment/CT128ch.jpeg',
+    image: './images/medicalequipment/CT128ch.jpeg',
     category: 'CT'
   },
   {
@@ -29,7 +29,7 @@ const equipments = [
       '이온화 방사선 없음'
     ],
     optimumFor: '다발성 경화증, 동맥류, 관절 손상 진단',
-    image: '/images/medicalequipment/xray.jpeg',
+    image: './images/medicalequipment/xray.jpeg',
     category: 'MRI'
   },
   {
@@ -43,7 +43,7 @@ const equipments = [
       '방사선 없음'
     ],
     optimumFor: '골다공증 진단 및 모니터링',
-    image: '/images/medicalequipment/bone-density-scanner.jpeg',
+    image: './images/medicalequipment/bone-density-scanner.jpeg',
     category: '골밀도'
   },
   {
@@ -57,7 +57,7 @@ const equipments = [
       '3D 유방단층촬영'
     ],
     optimumFor: '유방암 조기 발견',
-    image: '/images/medicalequipment/MAMMO.jpeg',
+    image: './images/medicalequipment/MAMMO.jpeg',
     category: '유방촬영'
   },
   {
@@ -71,7 +71,7 @@ const equipments = [
       '비침습적 검사'
     ],
     optimumFor: '심부전, 판막증, 선천성 심장질환 진단',
-    image: '/images/medicalequipment/heart-ultrasound.jpeg',
+    image: './images/medicalequipment/heart-ultrasound.jpeg',
     category: '초음파'
   },
   {
@@ -85,7 +85,7 @@ const equipments = [
       '실시간 영상 기록 및 주석 기능'
     ],
     optimumFor: '자궁 및 난소 질환 평가, 임신 초기 태아 관찰, 골반 내 이상 소견 확인',
-    image: '/images/medicalequipment/obstetric-ultrasound.jpeg',
+    image: './images/medicalequipment/obstetric-ultrasound.jpeg',
     category: '초음파'
   }
 ];
@@ -162,7 +162,12 @@ const EquipmentSection = () => {
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = `https://via.placeholder.com/400x300?text=${encodeURIComponent(equipment.name)}`;
+                      e.target.style.display = 'none';
+                      e.target.parentNode.classList.add('placeholder-image');
+                      const textElement = document.createElement('div');
+                      textElement.textContent = equipment.name;
+                      textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200';
+                      e.target.parentNode.appendChild(textElement);
                     }}
                   />
                   <div className="absolute top-0 left-0 m-3">
