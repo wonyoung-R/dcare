@@ -92,93 +92,98 @@ const equipmentItems = [
 
 // 메인 Equipment 섹션 컴포넌트
 const EquipmentSectionAlt = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  // 모바일 환경에서는 즉시 표시하기 위해 초기값을 true로 설정
+  const isMobile = typeof window !== 'undefined' && 
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  const [isVisible, setIsVisible] = useState(isMobile);
   const sectionRef = React.useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // 페이지 로드 시 즉시 표시하기 위한 처리
+    const timeoutId = setTimeout(() => {
+      setIsVisible(true);
+      setIsLoading(false);
+    }, isMobile ? 100 : 300); // 모바일에서는 더 빠르게
+    
     // 컴포넌트 마운트 로깅
     console.log('[EquipmentSectionAlt] 컴포넌트 마운트됨');
+    console.log('[EquipmentSectionAlt] 모바일 환경:', isMobile);
     
     // 브라우저 환경 로깅
     console.log('[EquipmentSectionAlt] 브라우저 환경:', {
       userAgent: navigator.userAgent,
-      isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
       screenSize: `${window.innerWidth}x${window.innerHeight}`,
       pixelRatio: window.devicePixelRatio
     });
     
     // 이미지 프리페칭
     const prefetchImages = () => {
+      console.log('[EquipmentSectionAlt] 이미지 프리페칭 시작');
       equipmentItems.forEach(item => {
         const link = document.createElement('link');
         link.rel = 'prefetch';
         link.href = item.image;
         link.as = 'image';
         document.head.appendChild(link);
+        console.log(`[EquipmentSectionAlt] 이미지 프리페치: ${item.image}`);
       });
     };
     
-    // 모바일에서 IntersectionObserver를 지원하지 않을 경우 대비
-    if (!('IntersectionObserver' in window)) {
-      console.log('[EquipmentSectionAlt] IntersectionObserver 지원하지 않음, 즉시 표시');
-      setIsVisible(true);
+    // 모바일 환경에서는 즉시 프리페치
+    if (isMobile) {
       prefetchImages();
-      return;
-    }
-    
-    // IntersectionObserver를 사용하여 보이는 영역으로 스크롤되면 표시
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            console.log('[EquipmentSectionAlt] 화면에 보임');
-            setIsVisible(true);
-            prefetchImages();
+    } else {
+      // IntersectionObserver를 지원하는 환경에서만 사용
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                console.log('[EquipmentSectionAlt] 화면에 보임');
+                setIsVisible(true);
+                setIsLoading(false);
+                prefetchImages();
+                observer.disconnect();
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '100px' }
+        );
+        
+        // 현재 컴포넌트 관찰 시작 (ref 사용)
+        if (sectionRef.current) {
+          console.log('[EquipmentSectionAlt] 관찰 시작:', sectionRef.current);
+          observer.observe(sectionRef.current);
+        }
+        
+        return () => {
+          clearTimeout(timeoutId);
+          if (observer) {
             observer.disconnect();
           }
-        });
-      },
-      { threshold: 0.1, rootMargin: '50px' }
-    );
-    
-    // 현재 컴포넌트 관찰 시작 (ref 사용)
-    if (sectionRef.current) {
-      console.log('[EquipmentSectionAlt] 관찰 시작:', sectionRef.current);
-      observer.observe(sectionRef.current);
-    } else {
-      console.warn('[EquipmentSectionAlt] ref가 없음, 즉시 표시');
-      setIsVisible(true);
+        };
+      } else {
+        // IntersectionObserver를 지원하지 않는 환경에서는 즉시 표시
+        setIsVisible(true);
+        setIsLoading(false);
+        prefetchImages();
+      }
     }
     
     return () => {
+      clearTimeout(timeoutId);
       console.log('[EquipmentSectionAlt] 컴포넌트 언마운트됨');
-      if (observer) {
-        observer.disconnect();
-      }
     };
   }, []);
 
-  // 모바일에서 첫 렌더링 시 즉시 표시를 위한 추가 처리
-  useEffect(() => {
-    // 모바일 환경에서 1초 후 강제로 표시 (fallback)
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    if (isMobile) {
-      const timer = setTimeout(() => {
-        if (!isVisible) {
-          console.log('[EquipmentSectionAlt] 모바일 환경에서 타임아웃으로 강제 표시');
-          setIsVisible(true);
-        }
-      }, 1000);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible]);
-
   return (
-    <div ref={sectionRef} className="py-16 md:py-24">
+    <div ref={sectionRef} className="py-12 md:py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="text-center mb-12 md:mb-16">
+        {/* 로딩 중인 경우에도 기본 뼈대 출력 */}
+        <div className={`transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="text-center mb-8 md:mb-12">
             <h2 className="section-title">의료 장비</h2>
             <p className="section-subtitle mx-auto">
               디케어 병원은 최첨단 의료 장비를 갖추고 있어
@@ -186,18 +191,25 @@ const EquipmentSectionAlt = () => {
             </p>
           </div>
 
+          {/* 로딩 중 표시 */}
+          {isLoading && (
+            <div className="flex justify-center items-center py-10">
+              <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          )}
+
           {/* 반응형 그리드 - 모바일에서 1열, 태블릿에서 2열, 데스크탑에서 3열 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 ${isLoading ? 'hidden' : 'block'}`}>
             {equipmentItems.map((equipment) => (
               <div 
                 key={equipment.id} 
-                className={`transition-all duration-500 transform ${
+                className={`transition-all duration-300 transform ${
                   isVisible 
                     ? 'translate-y-0 opacity-100' 
-                    : 'translate-y-10 opacity-0'
+                    : 'translate-y-4 opacity-0'
                 }`}
                 style={{ 
-                  transitionDelay: `${equipment.id * 100}ms` 
+                  transitionDelay: `${isMobile ? 0 : equipment.id * 50}ms` 
                 }}
               >
                 <EquipmentCard equipment={equipment} />
@@ -205,7 +217,7 @@ const EquipmentSectionAlt = () => {
             ))}
           </div>
           
-          <div className="text-center mt-12">
+          <div className="text-center mt-10 md:mt-12">
             <Link 
               to="/equipment" 
               className="btn btn-primary"

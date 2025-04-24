@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 /**
  * 의료 장비 카드 컴포넌트
@@ -6,71 +8,85 @@ import React, { useState } from 'react';
  */
 const EquipmentCard = ({ equipment }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageFailed, setImageFailed] = useState(false);
-
+  const [imageError, setImageError] = useState(false);
+  
   const handleImageLoad = () => {
-    console.log(`[EquipmentCard] 이미지 로드 성공: ${equipment.name}`);
     setImageLoaded(true);
   };
-
+  
   const handleImageError = () => {
-    console.error(`[EquipmentCard] 이미지 로드 실패: ${equipment.name}`);
-    setImageFailed(true);
+    console.error(`Failed to load image: ${equipment.image}`);
+    setImageError(true);
+    setImageLoaded(true); // 에러 상태에서도 로딩 완료 처리
   };
+  
+  // 이미지 미리 로드 설정
+  React.useEffect(() => {
+    const img = new Image();
+    img.src = equipment.image;
+    img.onload = handleImageLoad;
+    img.onerror = handleImageError;
+    
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [equipment.image]);
 
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
-      <div className="relative overflow-hidden aspect-[4/3]">
-        {!imageFailed ? (
-          <img
-            src={equipment.image}
-            alt={equipment.name}
-            className={`w-full h-full object-cover transition-transform duration-500 hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-            loading="lazy"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200">
-            {equipment.name}
-          </div>
-        )}
-        
-        {!imageLoaded && !imageFailed && (
+    <motion.div 
+      className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col"
+      whileHover={{ 
+        scale: 1.02,
+        transition: { duration: 0.2 }
+      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      {/* 이미지 컨테이너 - 일정 높이 유지 */}
+      <div className="relative overflow-hidden" style={{ height: '220px' }}>
+        {/* 이미지가 로드되지 않은 경우 표시할 로딩 플레이스홀더 */}
+        {!imageLoaded && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
             <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
           </div>
         )}
         
-        <div className="absolute top-0 left-0 m-3">
-          <span className="bg-primary/90 text-white px-3 py-1 rounded-full text-sm font-medium">
-            {equipment.category}
-          </span>
-        </div>
+        {/* 이미지 로드 에러 시 표시할 플레이스홀더 */}
+        {imageError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+            <div className="text-center p-4">
+              <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938-9L12 3.75 19.938 9 19.938 15.75 12 21.75 4.062 15.75z" />
+              </svg>
+              <p className="mt-2 text-sm text-gray-500">이미지를 불러올 수 없습니다</p>
+            </div>
+          </div>
+        )}
+        
+        {/* 이미지 - 로드되기 전에는 opacity-0으로 숨김 */}
+        <img
+          src={equipment.image}
+          alt={equipment.name}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoaded && !imageError ? 'opacity-100' : 'opacity-0'}`}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          loading="lazy"
+        />
       </div>
       
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-gray-800 mb-3">{equipment.name}</h3>
-        <p className="text-gray-600 mb-4">{equipment.description}</p>
+      {/* 텍스트 컨텐츠 */}
+      <div className="p-5 flex-grow flex flex-col">
+        <h3 className="text-xl font-bold mb-2 text-primary">{equipment.name}</h3>
+        <p className="text-gray-600 mb-4 flex-grow">{equipment.description}</p>
         
-        <div className="mb-4">
-          <h4 className="text-lg font-semibold text-gray-800 mb-2">주요 특징</h4>
-          <ul className="space-y-1">
-            {equipment.features.map((feature, index) => (
-              <li key={index} className="flex items-start">
-                <span className="text-primary mr-2 mt-1">•</span>
-                <span className="text-gray-600 text-sm">{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        
-        <div className="mt-auto">
-          <h4 className="text-lg font-semibold text-gray-800 mb-2">최적 활용 분야</h4>
-          <p className="text-gray-600 text-sm">{equipment.optimumFor}</p>
-        </div>
+        {/* 버튼 */}
+        <Link to={`/equipment/${equipment.id}`} className="btn btn-secondary w-full mt-auto">
+          자세히 보기
+        </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
