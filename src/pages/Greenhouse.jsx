@@ -9,16 +9,28 @@ const Greenhouse = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   // 로컬 이미지 파일 경로 배열 (WebP 포맷으로 변경)
-  const images = [
-    '/dcare/images/greenhouse/webp/entrance-01.webp',
-    '/dcare/images/greenhouse/webp/entrance-03.webp',
-    '/dcare/images/greenhouse/webp/main-lobby-02.webp',
-    '/dcare/images/greenhouse/webp/main-lobby-03.webp',
-    '/dcare/images/greenhouse/webp/main-lobby-04.webp',
-    '/dcare/images/greenhouse/webp/VIPRoom-01.webp',
-    '/dcare/images/greenhouse/webp/waitingroom-01.webp',
-    '/dcare/images/greenhouse/webp/waitingroom-02.webp',
-  ];
+  const images = {
+    webp: [
+      '/dcare/images/greenhouse/webp/entrance-01.webp?v=2',
+      '/dcare/images/greenhouse/webp/entrance-03.webp?v=2',
+      '/dcare/images/greenhouse/webp/main-lobby-02.webp?v=2',
+      '/dcare/images/greenhouse/webp/main-lobby-03.webp?v=2',
+      '/dcare/images/greenhouse/webp/main-lobby-04.webp?v=2',
+      '/dcare/images/greenhouse/webp/VIPRoom-01.webp?v=2',
+      '/dcare/images/greenhouse/webp/waitingroom-01.webp?v=2',
+      '/dcare/images/greenhouse/webp/waitingroom-02.webp?v=2',
+    ],
+    jpeg: [
+      '/dcare/images/greenhouse/entrance-01.jpeg?v=2',
+      '/dcare/images/greenhouse/entrance-03.jpeg?v=2',
+      '/dcare/images/greenhouse/main-lobby-02.jpeg?v=2',
+      '/dcare/images/greenhouse/main-lobby-03.jpeg?v=2',
+      '/dcare/images/greenhouse/main-lobby-04.jpeg?v=2',
+      '/dcare/images/greenhouse/VIPRoom-01.jpeg?v=2',
+      '/dcare/images/greenhouse/waitingroom-01.jpeg?v=2',
+      '/dcare/images/greenhouse/waitingroom-02.jpeg?v=2',
+    ]
+  };
 
   // 이미지 설명 배열
   const imageDescriptions = [
@@ -69,25 +81,31 @@ const Greenhouse = () => {
           {/* 병원 시설 슬라이드 */}
           <div className="relative w-full h-[600px] rounded-lg overflow-hidden shadow-xl mb-12">
             <Slider {...sliderSettings} className="h-full">
-              {images.map((image, index) => (
+              {imageDescriptions.map((description, index) => (
                 <div key={index} className="h-[600px] outline-none">
                   <div className="relative w-full h-full">
-                    <img 
-                      src={image}
-                      alt={imageDescriptions[index]}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.style.display = 'none';
-                        e.target.parentNode.classList.add('placeholder-image');
-                        const textElement = document.createElement('div');
-                        textElement.textContent = '이미지 준비중';
-                        textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200';
-                        e.target.parentNode.appendChild(textElement);
-                      }}
-                    />
+                    <picture>
+                      <source 
+                        srcSet={images.webp[index]} 
+                        type="image/webp" 
+                      />
+                      <img 
+                        src={images.jpeg[index]}
+                        alt={description}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.style.display = 'none';
+                          e.target.parentNode.classList.add('placeholder-image');
+                          const textElement = document.createElement('div');
+                          textElement.textContent = '이미지 준비중';
+                          textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200';
+                          e.target.parentNode.appendChild(textElement);
+                        }}
+                      />
+                    </picture>
                     <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4">
-                      <p className="text-center">{imageDescriptions[index]}</p>
+                      <p className="text-center">{description}</p>
                     </div>
                   </div>
                 </div>
@@ -96,7 +114,7 @@ const Greenhouse = () => {
             
             {/* 슬라이드 인디케이터 (선택 사항) */}
             <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-10">
-              {images.map((_, index) => (
+              {imageDescriptions.map((_, index) => (
                 <div 
                   key={index}
                   className={`h-2 w-2 rounded-full transition-all duration-300 ${
