@@ -7,9 +7,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:custom": "CUSTOM_DOMAIN=true vite build",
     "preview": "vite preview",
     "lint": "prettier --write \"src/**/*.{js,jsx}\"",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build:custom && cp public/CNAME dist/",
     "deploy": "gh-pages -d dist"
   },
   "keywords": [

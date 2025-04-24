@@ -7,9 +7,17 @@
  * @returns {string} The base URL for assets
  */
 export const getBaseUrl = () => {
-  // 현재 경로에서 base를 판단 (GitHub Pages는 '/dcare/'를 사용)
-  const isProduction = window.location.pathname.includes('/dcare/');
-  return isProduction ? '/dcare' : '';
+  // 현재 URL을 확인
+  const currentUrl = window.location.hostname;
+  
+  // 커스텀 도메인인지 확인 (dcarecenter.kr)
+  if (currentUrl === 'dcarecenter.kr' || currentUrl === 'www.dcarecenter.kr') {
+    return '';
+  }
+  
+  // GitHub Pages인지 확인 (pathname에 /dcare/가 포함되어 있는지)
+  const isGitHubPages = window.location.pathname.includes('/dcare/');
+  return isGitHubPages ? '/dcare' : '';
 };
 
 /**
