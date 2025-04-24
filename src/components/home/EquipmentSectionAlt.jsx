@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import EquipmentCard from './EquipmentCard';
+import { getBaseUrl } from '../../utils/imagePaths';
 
 // 장비 데이터
 const equipmentItems = [
@@ -15,7 +16,7 @@ const equipmentItems = [
       '초당 192mm 촬영 속도'
     ],
     optimumFor: '심장 및 폐 영상, 움직이는 장기 촬영',
-    image: '/dcare/images/medicalequipment/webp/CT128ch.webp?v=1',
+    image: `${getBaseUrl()}/images/medicalequipment/webp/CT128ch.webp?v=1`,
     category: 'CT'
   },
   {
@@ -29,7 +30,7 @@ const equipmentItems = [
       '이온화 방사선 없음'
     ],
     optimumFor: '다발성 경화증, 동맥류, 관절 손상 진단',
-    image: '/dcare/images/medicalequipment/webp/xray.webp?v=1',
+    image: `${getBaseUrl()}/images/medicalequipment/webp/xray.webp?v=1`,
     category: 'MRI'
   },
   {
@@ -43,7 +44,7 @@ const equipmentItems = [
       '방사선 없음'
     ],
     optimumFor: '골다공증 진단 및 모니터링',
-    image: '/dcare/images/medicalequipment/webp/bone-density-scanner.webp?v=1',
+    image: `${getBaseUrl()}/images/medicalequipment/webp/bone-density-scanner.webp?v=1`,
     category: '골밀도'
   },
   {
@@ -57,7 +58,7 @@ const equipmentItems = [
       '3D 유방단층촬영'
     ],
     optimumFor: '유방암 조기 발견',
-    image: '/dcare/images/medicalequipment/webp/MAMMO.webp?v=1',
+    image: `${getBaseUrl()}/images/medicalequipment/webp/MAMMO.webp?v=1`,
     category: '유방촬영'
   },
   {
@@ -71,7 +72,7 @@ const equipmentItems = [
       '비침습적 검사'
     ],
     optimumFor: '심부전, 판막증, 선천성 심장질환 진단',
-    image: '/dcare/images/medicalequipment/webp/heart-ultrasound.webp?v=1',
+    image: `${getBaseUrl()}/images/medicalequipment/webp/heart-ultrasound.webp?v=1`,
     category: '초음파'
   },
   {
@@ -85,7 +86,7 @@ const equipmentItems = [
       '실시간 영상 기록 및 주석 기능'
     ],
     optimumFor: '자궁 및 난소 질환 평가, 임신 초기 태아 관찰, 골반 내 이상 소견 확인',
-    image: '/dcare/images/medicalequipment/webp/obstetric-ultrasound.webp',
+    image: `${getBaseUrl()}/images/medicalequipment/webp/obstetric-ultrasound.webp`,
     category: '초음파'
   }
 ];

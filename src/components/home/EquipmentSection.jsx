@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
+import { getBaseUrl } from '../../utils/imagePaths';
 
 // 이미지 경로를 절대 경로로 수정
 const equipments = [
@@ -16,8 +17,8 @@ const equipments = [
       '초당 192mm 촬영 속도'
     ],
     optimumFor: '심장 및 폐 영상, 움직이는 장기 촬영',
-    image: '/images/medicalequipment/CT128ch.jpeg',
-    webpImage: '/images/medicalequipment/webp/CT128ch.webp',
+    image: `${getBaseUrl()}/images/medicalequipment/CT128ch.jpeg`,
+    webpImage: `${getBaseUrl()}/images/medicalequipment/webp/CT128ch.webp`,
     category: 'CT'
   },
   {
@@ -31,8 +32,8 @@ const equipments = [
       '이온화 방사선 없음'
     ],
     optimumFor: '다발성 경화증, 동맥류, 관절 손상 진단',
-    image: '/images/medicalequipment/xray.jpeg',
-    webpImage: '/images/medicalequipment/webp/xray.webp',
+    image: `${getBaseUrl()}/images/medicalequipment/xray.jpeg`,
+    webpImage: `${getBaseUrl()}/images/medicalequipment/webp/xray.webp`,
     category: 'MRI'
   },
   {
@@ -46,8 +47,8 @@ const equipments = [
       '방사선 없음'
     ],
     optimumFor: '골다공증 진단 및 모니터링',
-    image: '/images/medicalequipment/bone-density-scanner.jpeg',
-    webpImage: '/images/medicalequipment/webp/bone-density-scanner.webp',
+    image: `${getBaseUrl()}/images/medicalequipment/bone-density-scanner.jpeg`,
+    webpImage: `${getBaseUrl()}/images/medicalequipment/webp/bone-density-scanner.webp`,
     category: '골밀도'
   },
   {
@@ -61,8 +62,8 @@ const equipments = [
       '3D 유방단층촬영'
     ],
     optimumFor: '유방암 조기 발견',
-    image: '/images/medicalequipment/MAMMO.jpeg',
-    webpImage: '/images/medicalequipment/webp/MAMMO.webp',
+    image: `${getBaseUrl()}/images/medicalequipment/MAMMO.jpeg`,
+    webpImage: `${getBaseUrl()}/images/medicalequipment/webp/MAMMO.webp`,
     category: '유방촬영'
   },
   {
@@ -76,8 +77,8 @@ const equipments = [
       '비침습적 검사'
     ],
     optimumFor: '심부전, 판막증, 선천성 심장질환 진단',
-    image: '/images/medicalequipment/heart-ultrasound.jpeg',
-    webpImage: '/images/medicalequipment/webp/heart-ultrasound.webp',
+    image: `${getBaseUrl()}/images/medicalequipment/heart-ultrasound.jpeg`,
+    webpImage: `${getBaseUrl()}/images/medicalequipment/webp/heart-ultrasound.webp`,
     category: '초음파'
   },
   {
@@ -91,8 +92,8 @@ const equipments = [
       '실시간 영상 기록 및 주석 기능'
     ],
     optimumFor: '자궁 및 난소 질환 평가, 임신 초기 태아 관찰, 골반 내 이상 소견 확인',
-    image: '/images/medicalequipment/obstetric-ultrasound.jpeg',
-    webpImage: '/images/medicalequipment/webp/obstetric-ultrasound.webp',
+    image: `${getBaseUrl()}/images/medicalequipment/obstetric-ultrasound.jpeg`,
+    webpImage: `${getBaseUrl()}/images/medicalequipment/webp/obstetric-ultrasound.webp`,
     category: '초음파'
   }
 ];
