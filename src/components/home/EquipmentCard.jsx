@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 /**
@@ -73,18 +72,14 @@ const EquipmentCard = ({ equipment }) => {
           onLoad={handleImageLoad}
           onError={handleImageError}
           loading="lazy"
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
       </div>
       
       {/* 텍스트 컨텐츠 */}
       <div className="p-5 flex-grow flex flex-col">
         <h3 className="text-xl font-bold mb-2 text-primary">{equipment.name}</h3>
-        <p className="text-gray-600 mb-4 flex-grow">{equipment.description}</p>
-        
-        {/* 버튼 */}
-        <Link to={`/equipment/${equipment.id}`} className="btn btn-secondary w-full mt-auto">
-          자세히 보기
-        </Link>
+        <p className="text-gray-600 mb-0 flex-grow">{equipment.description}</p>
       </div>
     </motion.div>
   );
