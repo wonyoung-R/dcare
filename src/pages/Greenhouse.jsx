@@ -230,9 +230,14 @@ const Greenhouse = () => {
                   {imagePaths.map((_, index) => (
                     <div 
                       key={index} 
-                      className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ${
-                        index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                      className={`absolute top-0 left-0 w-full h-full ${
+                        index === currentSlide ? 'opacity-100' : 'opacity-0'
                       }`}
+                      style={{
+                        transition: 'opacity 0.5s ease-in-out',
+                        zIndex: index === currentSlide ? 10 : 0,
+                        pointerEvents: index === currentSlide ? 'auto' : 'none'
+                      }}
                     >
                       <picture className="w-full h-full block">
                         <source 
@@ -286,8 +291,8 @@ const Greenhouse = () => {
                     <button
                       key={index}
                       onClick={() => goToSlide(index)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        currentSlide === index ? 'bg-white w-4' : 'bg-white/50 w-2'
+                      className={`rounded-full transition-all duration-300 ${
+                        currentSlide === index ? 'bg-white w-4 h-1.5' : 'bg-white/50 w-2 h-1.5'
                       }`}
                       aria-label={`슬라이드 ${index + 1}로 이동`}
                     />

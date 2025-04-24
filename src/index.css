@@ -256,7 +256,7 @@ picture {
   }
 }
 
-/* 커스텀 슬라이더 스타일 */
+/* 커스텀 슬라이더 스타일 수정 - 깜빡임 제거 및 인디케이터 크기 조정 */
 .custom-slider {
   position: relative;
   width: 100%;
@@ -270,34 +270,43 @@ picture {
   overflow: hidden;
 }
 
-/* 슬라이드 전환 애니메이션 */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
+/* 슬라이드 전환 애니메이션 개선 */
 .custom-slider .opacity-100 {
-  animation: fadeIn 0.5s ease-in-out;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  z-index: 10;
 }
 
 .custom-slider .opacity-0 {
-  animation: fadeOut 0.5s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 0;
 }
+
+/* 애니메이션 키프레임 삭제 (깜빡임 방지) */
 
 /* 모바일 터치 최적화 */
 @media (max-width: 768px) {
   .custom-slider button {
-    width: 40px;
-    height: 40px;
-    padding: 8px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
   }
   
   .custom-slider .absolute.bottom-16 {
     bottom: 60px;
+  }
+  
+  /* 모바일에서 인디케이터 크기 조정 */
+  .custom-slider .bottom-16 button {
+    height: 6px !important;
+  }
+  
+  .custom-slider .bottom-16 button.w-4 {
+    width: 18px !important;
+  }
+  
+  .custom-slider .bottom-16 button.w-2 {
+    width: 6px !important;
   }
 } 
