@@ -44,7 +44,7 @@ const EquipmentCard = ({ equipment }) => {
       transition={{ duration: 0.3 }}
     >
       {/* 이미지 컨테이너 - 일정 높이 유지 */}
-      <div className="relative overflow-hidden" style={{ height: '280px' }}>
+      <div className="relative overflow-hidden" style={{ height: '220px' }}>
         {/* 이미지가 로드되지 않은 경우 표시할 로딩 플레이스홀더 */}
         {!imageLoaded && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
@@ -72,7 +72,12 @@ const EquipmentCard = ({ equipment }) => {
           onLoad={handleImageLoad}
           onError={handleImageError}
           loading="lazy"
-          style={{ objectFit: 'contain', objectPosition: 'center' }}
+          style={{ 
+            objectFit: 'cover', 
+            objectPosition: 'center',
+            width: '100%',
+            transform: 'scale(1.2)'
+          }}
         />
       </div>
       
