@@ -115,7 +115,7 @@ const Greenhouse = () => {
     
     autoplayTimerRef.current = setInterval(() => {
       nextSlide();
-    }, 4000);
+    }, 3500);
   };
   
   // 이전 슬라이드로 이동
@@ -271,18 +271,18 @@ const Greenhouse = () => {
                 {/* 이전/다음 버튼 */}
                 <button 
                   onClick={prevSlide} 
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/50 hover:bg-white/70 rounded-full p-3 focus:outline-none transition-all duration-300"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-primary hover:bg-primary-light rounded-full p-3 flex items-center justify-center focus:outline-none transition-all duration-300"
                   aria-label="이전 슬라이드"
                 >
-                  <FaChevronLeft className="text-gray-800 text-xl" />
+                  <FaChevronLeft className="text-white text-xl" />
                 </button>
                 
                 <button 
                   onClick={nextSlide} 
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/50 hover:bg-white/70 rounded-full p-3 focus:outline-none transition-all duration-300"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-primary hover:bg-primary-light rounded-full p-3 flex items-center justify-center focus:outline-none transition-all duration-300"
                   aria-label="다음 슬라이드"
                 >
-                  <FaChevronRight className="text-gray-800 text-xl" />
+                  <FaChevronRight className="text-white text-xl" />
                 </button>
                 
                 {/* 슬라이드 인디케이터 */}
