@@ -286,13 +286,13 @@ const Greenhouse = () => {
                 </button>
                 
                 {/* 슬라이드 인디케이터 */}
-                <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-20">
+                <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-4 z-20">
                   {imagePaths.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => goToSlide(index)}
-                      className={`rounded-full transition-all duration-300 ${
-                        currentSlide === index ? 'bg-white w-3 h-1.5' : 'bg-white/50 w-2 h-1.5'
+                      className={`rounded-full transition-all duration-300 w-[7px] h-[7px] border border-black ${
+                        currentSlide === index ? 'bg-black' : 'bg-white'
                       }`}
                       aria-label={`슬라이드 ${index + 1}로 이동`}
                     />
