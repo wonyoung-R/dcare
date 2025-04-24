@@ -8,16 +8,16 @@ import 'slick-carousel/slick/slick-theme.css';
 const Greenhouse = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // 로컬 이미지 파일 경로 배열
+  // 로컬 이미지 파일 경로 배열 (WebP 포맷으로 변경)
   const images = [
-    './images/greenhouse/entrance-01.jpeg',
-    './images/greenhouse/entrance-03.jpeg',
-    './images/greenhouse/main-lobby-02.jpeg',
-    './images/greenhouse/main-lobby-03.jpeg',
-    './images/greenhouse/main-lobby-04.jpeg',
-    './images/greenhouse/VIPRoom-01.jpeg',
-    './images/greenhouse/waitingroom-01.jpeg',
-    './images/greenhouse/waitingroom-02.jpeg',
+    '/dcare/images/greenhouse/webp/entrance-01.webp',
+    '/dcare/images/greenhouse/webp/entrance-03.webp',
+    '/dcare/images/greenhouse/webp/main-lobby-02.webp',
+    '/dcare/images/greenhouse/webp/main-lobby-03.webp',
+    '/dcare/images/greenhouse/webp/main-lobby-04.webp',
+    '/dcare/images/greenhouse/webp/VIPRoom-01.webp',
+    '/dcare/images/greenhouse/webp/waitingroom-01.webp',
+    '/dcare/images/greenhouse/webp/waitingroom-02.webp',
   ];
 
   // 이미지 설명 배열
