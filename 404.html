@@ -3,21 +3,54 @@
 <head>
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>디케어 병원 | 페이지 리다이렉션</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      background-color: #f8f9fa;
+    }
+    .container {
+      padding: 20px;
+    }
+    h1 {
+      color: #3e8491;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    p {
+      color: #666;
+      margin-bottom: 24px;
+    }
+  </style>
   <script type="text/javascript">
     // GitHub Pages에서 SPA 라우팅을 위한 리다이렉션
-    var pathSegmentsToKeep = 1;
+    // 커스텀 도메인을 사용하므로 pathSegmentsToKeep을 0으로 설정
+    var pathSegmentsToKeep = 0;
 
     var l = window.location;
+    var path = l.pathname.split('/').slice(1 + pathSegmentsToKeep).join('/');
+    
+    // 리다이렉션 실행
     l.replace(
       l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+      '/' + '?/' + path +
       (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
       l.hash
     );
   </script>
 </head>
 <body>
+  <div class="container">
+    <h1>페이지 이동 중...</h1>
+    <p>잠시만 기다려주세요.</p>
+  </div>
 </body>
 </html> 
