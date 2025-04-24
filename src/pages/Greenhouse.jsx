@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaLeaf, FaHotel, FaSpa, FaShieldAlt, FaFemale, FaCar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { getResponsiveImageUrls, getBaseUrl } from '../utils/imagePaths';
 
+// Slick 슬라이더 라이브러리 대신 직접 구현하여 모바일 호환성 문제 해결
 const Greenhouse = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [imageLoadStatus, setImageLoadStatus] = useState([]);
-  const sliderRef = useRef(null);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const slideshowRef = useRef(null);
   const autoplayTimerRef = useRef(null);
   
   // 이미지 기본 경로 정의 (앞에 /dcare 없이 상대 경로로 설정)
@@ -93,19 +93,10 @@ const Greenhouse = () => {
     preloadImages();
   }, []);
 
-  // 슬라이더가 마운트된 후 초기화를 확인하는 효과
+  // 자동 슬라이드쇼 시작
   useEffect(() => {
-    if (imagesLoaded && sliderRef.current) {
-      // 슬라이더가 로드된 후 재초기화
-      try {
-        sliderRef.current.slickGoTo(0);
-        console.log("Slider reinitialized");
-        
-        // 모바일에서 자동 재생이 작동하지 않을 경우를 대비한 백업 타이머
-        startBackupAutoplay();
-      } catch (err) {
-        console.error("Error reinitializing slider:", err);
-      }
+    if (imagesLoaded) {
+      startAutoSlide();
     }
     
     return () => {
@@ -114,35 +105,61 @@ const Greenhouse = () => {
         clearInterval(autoplayTimerRef.current);
       }
     };
-  }, [imagesLoaded]);
+  }, [imagesLoaded, currentSlide]);
   
-  // 백업 자동 재생 타이머 시작
-  const startBackupAutoplay = () => {
-    // 기존 타이머가 있으면 정리
+  // 자동 슬라이드 시작
+  const startAutoSlide = () => {
     if (autoplayTimerRef.current) {
       clearInterval(autoplayTimerRef.current);
     }
     
-    // 5초마다 다음 슬라이드로 이동하는 타이머 설정
     autoplayTimerRef.current = setInterval(() => {
-      if (sliderRef.current) {
-        try {
-          const nextSlide = (currentSlide + 1) % imagePaths.length;
-          sliderRef.current.slickGoTo(nextSlide);
-          setCurrentSlide(nextSlide);
-          console.log("Backup autoplay: moving to slide", nextSlide);
-        } catch (err) {
-          console.error("Error in backup autoplay:", err);
-        }
-      }
-    }, 5000);
+      nextSlide();
+    }, 4000);
   };
   
-  // 수동으로 슬라이드 변경하는 함수
+  // 이전 슬라이드로 이동
+  const prevSlide = () => {
+    setCurrentSlide(prev => (prev === 0 ? imagePaths.length - 1 : prev - 1));
+    
+    // 자동 재생 타이머 재설정
+    startAutoSlide();
+  };
+  
+  // 다음 슬라이드로 이동
+  const nextSlide = () => {
+    setCurrentSlide(prev => (prev === imagePaths.length - 1 ? 0 : prev + 1));
+  };
+  
+  // 특정 슬라이드로 이동
   const goToSlide = (index) => {
-    if (sliderRef.current) {
-      sliderRef.current.slickGoTo(index);
-      setCurrentSlide(index);
+    setCurrentSlide(index);
+    
+    // 자동 재생 타이머 재설정
+    startAutoSlide();
+  };
+  
+  // 터치 이벤트 핸들러 - 시작
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  
+  // 터치 이벤트 핸들러 - 종료
+  const handleTouchEnd = (e) => {
+    setTouchEnd(e.changedTouches[0].clientX);
+    handleSwipe();
+  };
+  
+  // 스와이프 처리
+  const handleSwipe = () => {
+    // 오른쪽에서 왼쪽으로 스와이프 (다음 슬라이드)
+    if (touchStart - touchEnd > 50) {
+      nextSlide();
+    }
+    
+    // 왼쪽에서 오른쪽으로 스와이프 (이전 슬라이드)
+    if (touchEnd - touchStart > 50) {
+      prevSlide();
     }
   };
 
@@ -157,58 +174,6 @@ const Greenhouse = () => {
     '쾌적한 로비 전경',
     '여유로운 휴식 공간'
   ];
-
-  // 슬라이더 설정
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    pauseOnHover: true,
-    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
-    // 모바일 터치 스와이프 활성화
-    swipeToSlide: true,
-    swipe: true,
-    touchMove: true,
-    touchThreshold: 5,
-    // 모바일 최적화 설정
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          autoplay: true
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: true,
-          autoplay: true,
-          arrows: true // 모바일에서도 화살표 표시
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: true,
-          autoplay: true,
-          arrows: true, // 모바일에서도 화살표 표시
-          centerMode: false
-        }
-      }
-    ]
-  };
 
   // 이미지 안전 처리를 위한 에러 핸들러
   const handleImageError = (e, index) => {
@@ -242,23 +207,33 @@ const Greenhouse = () => {
         >
           <h1 className="section-title text-center mb-8">Healing Greenhouse</h1>
           
-          {/* 병원 시설 슬라이드 */}
-          <div className="relative w-full rounded-lg overflow-hidden shadow-xl mb-12" style={{ maxHeight: '80vh', height: '600px' }}>
+          {/* 병원 시설 슬라이드 - 직접 구현 */}
+          <div 
+            className="relative w-full rounded-lg overflow-hidden shadow-xl mb-12 custom-slider" 
+            style={{ maxHeight: '80vh', height: '600px' }}
+            ref={slideshowRef}
+          >
             {!imagesLoaded && (
               <div className="w-full h-full flex items-center justify-center bg-gray-200">
                 <p className="text-gray-600 font-medium">이미지 로딩 중...</p>
               </div>
             )}
             
-            <div className={`${imagesLoaded ? 'block' : 'hidden'} h-full`}>
-              <Slider 
-                ref={sliderRef}
-                {...sliderSettings} 
-                className="h-full slick-mobile-fix"
+            {imagesLoaded && (
+              <div 
+                className="slider-container h-full"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
               >
-                {imageDescriptions.map((description, index) => (
-                  <div key={index} className="h-full outline-none">
-                    <div className="relative w-full h-full">
+                {/* 슬라이더 이미지 */}
+                <div className="relative h-full w-full overflow-hidden">
+                  {imagePaths.map((_, index) => (
+                    <div 
+                      key={index} 
+                      className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ${
+                        index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                      }`}
+                    >
                       <picture className="w-full h-full block">
                         <source 
                           srcSet={imageUrls[index].webp} 
@@ -266,43 +241,60 @@ const Greenhouse = () => {
                         />
                         <img 
                           src={imageUrls[index].fallback}
-                          alt={description}
+                          alt={imageDescriptions[index]}
                           className="w-full h-full object-cover"
-                          loading="lazy"
+                          loading={index === 0 ? "eager" : "lazy"}
                           decoding="async"
                           onError={(e) => handleImageError(e, index)}
                         />
                       </picture>
                       
                       {/* 이미지 로드 실패 시 대체 콘텐츠 */}
-                      {imageLoadStatus[index] === false && imagesLoaded && (
+                      {imageLoadStatus[index] === false && (
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
                           <p className="text-gray-600 font-medium text-center">이미지를 불러올 수 없습니다</p>
                         </div>
                       )}
                       
                       <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4">
-                        <p className="text-center">{description}</p>
+                        <p className="text-center">{imageDescriptions[index]}</p>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </Slider>
-            </div>
-            
-            {/* 모바일용 커스텀 슬라이드 인디케이터 */}
-            <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-10">
-              {imageDescriptions.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                    currentSlide === index ? 'bg-white w-4' : 'bg-white/50'
-                  }`}
-                  aria-label={`이동: 슬라이드 ${index + 1}`}
-                />
-              ))}
-            </div>
+                  ))}
+                </div>
+                
+                {/* 이전/다음 버튼 */}
+                <button 
+                  onClick={prevSlide} 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/50 hover:bg-white/70 rounded-full p-3 focus:outline-none transition-all duration-300"
+                  aria-label="이전 슬라이드"
+                >
+                  <FaChevronLeft className="text-gray-800 text-xl" />
+                </button>
+                
+                <button 
+                  onClick={nextSlide} 
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/50 hover:bg-white/70 rounded-full p-3 focus:outline-none transition-all duration-300"
+                  aria-label="다음 슬라이드"
+                >
+                  <FaChevronRight className="text-gray-800 text-xl" />
+                </button>
+                
+                {/* 슬라이드 인디케이터 */}
+                <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-20">
+                  {imagePaths.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToSlide(index)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        currentSlide === index ? 'bg-white w-4' : 'bg-white/50 w-2'
+                      }`}
+                      aria-label={`슬라이드 ${index + 1}로 이동`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           
           {/* 특징 설명 섹션 */}
@@ -390,30 +382,6 @@ const Greenhouse = () => {
         </motion.div>
       </div>
     </div>
-  );
-};
-
-// 이전 버튼 컴포넌트
-const PrevArrow = ({ onClick }) => {
-  return (
-    <button
-      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 hover:bg-white/60 rounded-full p-2 focus:outline-none transition-all duration-300"
-      onClick={onClick}
-    >
-      <FaChevronLeft className="text-white text-xl" />
-    </button>
-  );
-};
-
-// 다음 버튼 컴포넌트
-const NextArrow = ({ onClick }) => {
-  return (
-    <button
-      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/30 hover:bg-white/60 rounded-full p-2 focus:outline-none transition-all duration-300"
-      onClick={onClick}
-    >
-      <FaChevronRight className="text-white text-xl" />
-    </button>
   );
 };
 
