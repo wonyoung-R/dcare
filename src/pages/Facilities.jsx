@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Facilities = () => {
   // 병원시설 이미지
@@ -46,14 +46,14 @@ const Facilities = () => {
   };
 
   // 자동 슬라이더를 위한 효과
-  React.useEffect(() => {
+  useEffect(() => {
     const hospitalTimer = setInterval(() => {
       nextHospitalSlide();
-    }, 5000);
+    }, 3500);
 
     const checkupTimer = setInterval(() => {
       nextCheckupSlide();
-    }, 5000);
+    }, 3500);
 
     return () => {
       clearInterval(hospitalTimer);
@@ -79,13 +79,18 @@ const Facilities = () => {
             <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">병원시설</h2>
             
             <div className="relative max-w-5xl mx-auto">
-              <div className="aspect-w-16 aspect-h-10 bg-gray-100 rounded-lg overflow-hidden shadow-lg" style={{ height: '500px' }}>
+              <div className="aspect-w-16 aspect-h-10 bg-gray-100 rounded-lg overflow-hidden shadow-lg custom-slider" style={{ height: '500px' }}>
                 {hospitalFacilities.map((facility, index) => (
                   <div
                     key={facility.id}
-                    className={`absolute inset-0 transition-all duration-1000 ${
+                    className={`absolute inset-0 ${
                       index === currentHospitalIndex ? 'opacity-100' : 'opacity-0'
                     }`}
+                    style={{
+                      transition: 'opacity 0.5s ease-in-out',
+                      zIndex: index === currentHospitalIndex ? 10 : 0,
+                      pointerEvents: index === currentHospitalIndex ? 'auto' : 'none'
+                    }}
                   >
                     <img
                       src={facility.src}
@@ -101,40 +106,42 @@ const Facilities = () => {
                         e.target.parentNode.appendChild(textElement);
                       }}
                     />
+                    
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4">
+                      <p className="text-center">{facility.description}</p>
+                    </div>
                   </div>
                 ))}
                 
                 <button
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-3 shadow-md z-10"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-primary hover:bg-primary-light rounded-full p-3 flex items-center justify-center focus:outline-none transition-all duration-300"
                   onClick={prevHospitalSlide}
+                  aria-label="이전 슬라이드"
                 >
-                  <FaArrowLeft className="text-primary" />
+                  <FaChevronLeft className="text-white text-xl" />
                 </button>
                 
                 <button
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-3 shadow-md z-10"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-primary hover:bg-primary-light rounded-full p-3 flex items-center justify-center focus:outline-none transition-all duration-300"
                   onClick={nextHospitalSlide}
+                  aria-label="다음 슬라이드"
                 >
-                  <FaArrowRight className="text-primary" />
+                  <FaChevronRight className="text-white text-xl" />
                 </button>
-              </div>
-              
-              <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
-                <p className="text-lg text-gray-700 text-center">
-                  {hospitalFacilities[currentHospitalIndex]?.description}
-                </p>
-              </div>
-              
-              <div className="flex justify-center mt-4 space-x-2">
-                {hospitalFacilities.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`w-3 h-3 rounded-full ${
-                      index === currentHospitalIndex ? 'bg-primary' : 'bg-gray-300'
-                    }`}
-                    onClick={() => setCurrentHospitalIndex(index)}
-                  ></button>
-                ))}
+                
+                {/* 슬라이드 인디케이터 */}
+                <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-4 z-20">
+                  {hospitalFacilities.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentHospitalIndex(index)}
+                      className={`rounded-full transition-all duration-300 w-[7px] h-[7px] ${
+                        currentHospitalIndex === index ? 'bg-white opacity-100' : 'bg-white opacity-70'
+                      }`}
+                      aria-label={`슬라이드 ${index + 1}로 이동`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -144,13 +151,18 @@ const Facilities = () => {
             <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">검사시설</h2>
             
             <div className="relative max-w-5xl mx-auto">
-              <div className="aspect-w-16 aspect-h-10 bg-gray-100 rounded-lg overflow-hidden shadow-lg" style={{ height: '500px' }}>
+              <div className="aspect-w-16 aspect-h-10 bg-gray-100 rounded-lg overflow-hidden shadow-lg custom-slider" style={{ height: '500px' }}>
                 {checkupFacilities.map((facility, index) => (
                   <div
                     key={facility.id}
-                    className={`absolute inset-0 transition-all duration-1000 ${
+                    className={`absolute inset-0 ${
                       index === currentCheckupIndex ? 'opacity-100' : 'opacity-0'
                     }`}
+                    style={{
+                      transition: 'opacity 0.5s ease-in-out',
+                      zIndex: index === currentCheckupIndex ? 10 : 0,
+                      pointerEvents: index === currentCheckupIndex ? 'auto' : 'none'
+                    }}
                   >
                     <img
                       src={facility.src}
@@ -166,40 +178,42 @@ const Facilities = () => {
                         e.target.parentNode.appendChild(textElement);
                       }}
                     />
+                    
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4">
+                      <p className="text-center">{facility.description}</p>
+                    </div>
                   </div>
                 ))}
                 
                 <button
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-3 shadow-md z-10"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-primary hover:bg-primary-light rounded-full p-3 flex items-center justify-center focus:outline-none transition-all duration-300"
                   onClick={prevCheckupSlide}
+                  aria-label="이전 슬라이드"
                 >
-                  <FaArrowLeft className="text-primary" />
+                  <FaChevronLeft className="text-white text-xl" />
                 </button>
                 
                 <button
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-3 shadow-md z-10"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-primary hover:bg-primary-light rounded-full p-3 flex items-center justify-center focus:outline-none transition-all duration-300"
                   onClick={nextCheckupSlide}
+                  aria-label="다음 슬라이드"
                 >
-                  <FaArrowRight className="text-primary" />
+                  <FaChevronRight className="text-white text-xl" />
                 </button>
-              </div>
-              
-              <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
-                <p className="text-lg text-gray-700 text-center">
-                  {checkupFacilities[currentCheckupIndex]?.description}
-                </p>
-              </div>
-              
-              <div className="flex justify-center mt-4 space-x-2">
-                {checkupFacilities.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`w-3 h-3 rounded-full ${
-                      index === currentCheckupIndex ? 'bg-primary' : 'bg-gray-300'
-                    }`}
-                    onClick={() => setCurrentCheckupIndex(index)}
-                  ></button>
-                ))}
+                
+                {/* 슬라이드 인디케이터 */}
+                <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-4 z-20">
+                  {checkupFacilities.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentCheckupIndex(index)}
+                      className={`rounded-full transition-all duration-300 w-[7px] h-[7px] ${
+                        currentCheckupIndex === index ? 'bg-white opacity-100' : 'bg-white opacity-70'
+                      }`}
+                      aria-label={`슬라이드 ${index + 1}로 이동`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

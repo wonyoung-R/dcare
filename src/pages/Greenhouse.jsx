@@ -291,8 +291,8 @@ const Greenhouse = () => {
                     <button
                       key={index}
                       onClick={() => goToSlide(index)}
-                      className={`rounded-full transition-all duration-300 w-[7px] h-[7px] border border-black ${
-                        currentSlide === index ? 'bg-black' : 'bg-white'
+                      className={`rounded-full transition-all duration-300 w-[7px] h-[7px] ${
+                        currentSlide === index ? 'bg-white opacity-100' : 'bg-white opacity-70'
                       }`}
                       aria-label={`슬라이드 ${index + 1}로 이동`}
                     />
