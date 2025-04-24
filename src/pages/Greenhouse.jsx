@@ -11,6 +11,7 @@ const Greenhouse = () => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [imageLoadStatus, setImageLoadStatus] = useState([]);
   const sliderRef = useRef(null);
+  const autoplayTimerRef = useRef(null);
   
   // 이미지 기본 경로 정의 (앞에 /dcare 없이 상대 경로로 설정)
   const imagePaths = [
@@ -99,11 +100,51 @@ const Greenhouse = () => {
       try {
         sliderRef.current.slickGoTo(0);
         console.log("Slider reinitialized");
+        
+        // 모바일에서 자동 재생이 작동하지 않을 경우를 대비한 백업 타이머
+        startBackupAutoplay();
       } catch (err) {
         console.error("Error reinitializing slider:", err);
       }
     }
+    
+    return () => {
+      // 컴포넌트 언마운트 시 타이머 정리
+      if (autoplayTimerRef.current) {
+        clearInterval(autoplayTimerRef.current);
+      }
+    };
   }, [imagesLoaded]);
+  
+  // 백업 자동 재생 타이머 시작
+  const startBackupAutoplay = () => {
+    // 기존 타이머가 있으면 정리
+    if (autoplayTimerRef.current) {
+      clearInterval(autoplayTimerRef.current);
+    }
+    
+    // 5초마다 다음 슬라이드로 이동하는 타이머 설정
+    autoplayTimerRef.current = setInterval(() => {
+      if (sliderRef.current) {
+        try {
+          const nextSlide = (currentSlide + 1) % imagePaths.length;
+          sliderRef.current.slickGoTo(nextSlide);
+          setCurrentSlide(nextSlide);
+          console.log("Backup autoplay: moving to slide", nextSlide);
+        } catch (err) {
+          console.error("Error in backup autoplay:", err);
+        }
+      }
+    }, 5000);
+  };
+  
+  // 수동으로 슬라이드 변경하는 함수
+  const goToSlide = (index) => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(index);
+      setCurrentSlide(index);
+    }
+  };
 
   // 이미지 설명 배열
   const imageDescriptions = [
@@ -134,7 +175,7 @@ const Greenhouse = () => {
     swipeToSlide: true,
     swipe: true,
     touchMove: true,
-    touchThreshold: 10,
+    touchThreshold: 5,
     // 모바일 최적화 설정
     responsive: [
       {
@@ -142,6 +183,7 @@ const Greenhouse = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          autoplay: true
         }
       },
       {
@@ -150,7 +192,8 @@ const Greenhouse = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           dots: true,
-          arrows: false // 모바일에서는 화살표 숨김
+          autoplay: true,
+          arrows: true // 모바일에서도 화살표 표시
         }
       },
       {
@@ -158,9 +201,10 @@ const Greenhouse = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false,
-          arrows: false, // 모바일에서는 화살표 숨김
-          centerMode: false // 모바일에서 센터 모드 끄기
+          dots: true,
+          autoplay: true,
+          arrows: true, // 모바일에서도 화살표 표시
+          centerMode: false
         }
       }
     ]
@@ -246,14 +290,16 @@ const Greenhouse = () => {
               </Slider>
             </div>
             
-            {/* 슬라이드 인디케이터 (선택 사항) */}
+            {/* 모바일용 커스텀 슬라이드 인디케이터 */}
             <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-10">
               {imageDescriptions.map((_, index) => (
-                <div 
+                <button
                   key={index}
+                  onClick={() => goToSlide(index)}
                   className={`h-2 w-2 rounded-full transition-all duration-300 ${
                     currentSlide === index ? 'bg-white w-4' : 'bg-white/50'
                   }`}
+                  aria-label={`이동: 슬라이드 ${index + 1}`}
                 />
               ))}
             </div>
