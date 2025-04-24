@@ -165,4 +165,44 @@
 
 .fp-section {
   @apply h-screen relative overflow-hidden;
+}
+
+/* 모바일 슬라이더 수정 */
+.slick-mobile-fix {
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.slick-mobile-fix .slick-list,
+.slick-mobile-fix .slick-track {
+  height: 100% !important;
+}
+
+.slick-mobile-fix .slick-slide {
+  height: 100% !important;
+}
+
+.slick-mobile-fix .slick-slide > div {
+  height: 100% !important;
+}
+
+/* 슬라이더 이미지 최적화 */
+picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* iOS Safari에서 이미지가 제대로 표시되도록 수정 */
+@supports (-webkit-touch-callout: none) {
+  picture img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+  
+  .slick-slider, .slick-list, .slick-track {
+    -webkit-transform: translate3d(0, 0, 0) !important;
+  }
 } 

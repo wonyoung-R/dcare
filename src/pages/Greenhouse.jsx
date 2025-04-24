@@ -1,36 +1,109 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaLeaf, FaHotel, FaSpa, FaShieldAlt, FaFemale, FaCar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { getResponsiveImageUrls, getBaseUrl } from '../utils/imagePaths';
 
 const Greenhouse = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [imageLoadStatus, setImageLoadStatus] = useState([]);
+  const sliderRef = useRef(null);
   
-  // 로컬 이미지 파일 경로 배열 (WebP 포맷으로 변경)
-  const images = {
-    webp: [
-      '/dcare/images/greenhouse/webp/entrance-01.webp?v=2',
-      '/dcare/images/greenhouse/webp/entrance-03.webp?v=2',
-      '/dcare/images/greenhouse/webp/main-lobby-02.webp?v=2',
-      '/dcare/images/greenhouse/webp/main-lobby-03.webp?v=2',
-      '/dcare/images/greenhouse/webp/main-lobby-04.webp?v=2',
-      '/dcare/images/greenhouse/webp/VIPRoom-01.webp?v=2',
-      '/dcare/images/greenhouse/webp/waitingroom-01.webp?v=2',
-      '/dcare/images/greenhouse/webp/waitingroom-02.webp?v=2',
-    ],
-    jpeg: [
-      '/dcare/images/greenhouse/entrance-01.jpeg?v=2',
-      '/dcare/images/greenhouse/entrance-03.jpeg?v=2',
-      '/dcare/images/greenhouse/main-lobby-02.jpeg?v=2',
-      '/dcare/images/greenhouse/main-lobby-03.jpeg?v=2',
-      '/dcare/images/greenhouse/main-lobby-04.jpeg?v=2',
-      '/dcare/images/greenhouse/VIPRoom-01.jpeg?v=2',
-      '/dcare/images/greenhouse/waitingroom-01.jpeg?v=2',
-      '/dcare/images/greenhouse/waitingroom-02.jpeg?v=2',
-    ]
-  };
+  // 이미지 기본 경로 정의 (앞에 /dcare 없이 상대 경로로 설정)
+  const imagePaths = [
+    '/images/greenhouse/entrance-01',
+    '/images/greenhouse/entrance-03',
+    '/images/greenhouse/main-lobby-02',
+    '/images/greenhouse/main-lobby-03',
+    '/images/greenhouse/main-lobby-04',
+    '/images/greenhouse/VIPRoom-01',
+    '/images/greenhouse/waitingroom-01',
+    '/images/greenhouse/waitingroom-02',
+  ];
+  
+  // 이미지 URL 생성
+  const imageUrls = imagePaths.map(path => getResponsiveImageUrls(path));
+  
+  // 현재 base URL 확인 (디버깅용)
+  console.log("Base URL: ", getBaseUrl());
+  console.log("Image URLs: ", imageUrls);
+  
+  // 이미지 모두 로딩 후 표시하기 위한 효과
+  useEffect(() => {
+    const preloadImages = () => {
+      // 이미지 로드 상태 초기화
+      setImageLoadStatus(new Array(imagePaths.length).fill(false));
+      
+      const preloadImage = (url, index, isWebP) => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          
+          img.onload = () => {
+            console.log(`Image loaded: ${url}`);
+            if (!isWebP) {
+              // JPEG 이미지가 로드되면 해당 슬라이드의 로드 상태를 업데이트
+              setImageLoadStatus(prev => {
+                const newStatus = [...prev];
+                newStatus[index] = true;
+                return newStatus;
+              });
+            }
+            resolve(true);
+          };
+          
+          img.onerror = () => {
+            console.error(`Failed to load image: ${url}`);
+            resolve(false);
+          };
+          
+          img.src = url;
+        });
+      };
+      
+      // 모든 이미지에 대해 병렬로 프리로드 시도
+      const preloadPromises = [];
+      
+      imageUrls.forEach((urls, index) => {
+        // WebP와 JPEG 모두 프리로드
+        preloadPromises.push(preloadImage(urls.webp, index, true));
+        preloadPromises.push(preloadImage(urls.fallback, index, false));
+      });
+      
+      // 4초 후에는 무조건 로딩 표시 제거
+      const timeoutPromise = new Promise(resolve => {
+        setTimeout(() => {
+          console.log("Loading timeout reached");
+          resolve();
+        }, 4000);
+      });
+      
+      // 모든 이미지가 로드되거나 타임아웃에 도달하면 로딩 표시 제거
+      Promise.race([
+        Promise.all(preloadPromises),
+        timeoutPromise
+      ]).then(() => {
+        setImagesLoaded(true);
+      });
+    };
+    
+    preloadImages();
+  }, []);
+
+  // 슬라이더가 마운트된 후 초기화를 확인하는 효과
+  useEffect(() => {
+    if (imagesLoaded && sliderRef.current) {
+      // 슬라이더가 로드된 후 재초기화
+      try {
+        sliderRef.current.slickGoTo(0);
+        console.log("Slider reinitialized");
+      } catch (err) {
+        console.error("Error reinitializing slider:", err);
+      }
+    }
+  }, [imagesLoaded]);
 
   // 이미지 설명 배열
   const imageDescriptions = [
@@ -57,6 +130,12 @@ const Greenhouse = () => {
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+    // 모바일 터치 스와이프 활성화
+    swipeToSlide: true,
+    swipe: true,
+    touchMove: true,
+    touchThreshold: 10,
+    // 모바일 최적화 설정
     responsive: [
       {
         breakpoint: 1024,
@@ -64,8 +143,49 @@ const Greenhouse = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
         }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
+          arrows: false // 모바일에서는 화살표 숨김
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: false,
+          arrows: false, // 모바일에서는 화살표 숨김
+          centerMode: false // 모바일에서 센터 모드 끄기
+        }
       }
     ]
+  };
+
+  // 이미지 안전 처리를 위한 에러 핸들러
+  const handleImageError = (e, index) => {
+    console.error(`Image load error (index ${index}): ${e.target.src}`);
+    e.target.onerror = null;
+    
+    try {
+      // 이미지 에러 시 대체 텍스트 표시
+      e.target.style.display = 'none';
+      
+      // 이미 placeholder가 있는지 확인
+      const parentElement = e.target.parentNode;
+      if (!parentElement.querySelector('.placeholder-text')) {
+        const textElement = document.createElement('div');
+        textElement.textContent = '이미지를 불러올 수 없습니다';
+        textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200 placeholder-text';
+        parentElement.appendChild(textElement);
+      }
+    } catch (err) {
+      console.error('Error handling image failure:', err);
+    }
   };
 
   return (
@@ -79,38 +199,52 @@ const Greenhouse = () => {
           <h1 className="section-title text-center mb-8">Healing Greenhouse</h1>
           
           {/* 병원 시설 슬라이드 */}
-          <div className="relative w-full h-[600px] rounded-lg overflow-hidden shadow-xl mb-12">
-            <Slider {...sliderSettings} className="h-full">
-              {imageDescriptions.map((description, index) => (
-                <div key={index} className="h-[600px] outline-none">
-                  <div className="relative w-full h-full">
-                    <picture>
-                      <source 
-                        srcSet={images.webp[index]} 
-                        type="image/webp" 
-                      />
-                      <img 
-                        src={images.jpeg[index]}
-                        alt={description}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.style.display = 'none';
-                          e.target.parentNode.classList.add('placeholder-image');
-                          const textElement = document.createElement('div');
-                          textElement.textContent = '이미지 준비중';
-                          textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200';
-                          e.target.parentNode.appendChild(textElement);
-                        }}
-                      />
-                    </picture>
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4">
-                      <p className="text-center">{description}</p>
+          <div className="relative w-full rounded-lg overflow-hidden shadow-xl mb-12" style={{ maxHeight: '80vh', height: '600px' }}>
+            {!imagesLoaded && (
+              <div className="w-full h-full flex items-center justify-center bg-gray-200">
+                <p className="text-gray-600 font-medium">이미지 로딩 중...</p>
+              </div>
+            )}
+            
+            <div className={`${imagesLoaded ? 'block' : 'hidden'} h-full`}>
+              <Slider 
+                ref={sliderRef}
+                {...sliderSettings} 
+                className="h-full slick-mobile-fix"
+              >
+                {imageDescriptions.map((description, index) => (
+                  <div key={index} className="h-full outline-none">
+                    <div className="relative w-full h-full">
+                      <picture className="w-full h-full block">
+                        <source 
+                          srcSet={imageUrls[index].webp} 
+                          type="image/webp" 
+                        />
+                        <img 
+                          src={imageUrls[index].fallback}
+                          alt={description}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                          onError={(e) => handleImageError(e, index)}
+                        />
+                      </picture>
+                      
+                      {/* 이미지 로드 실패 시 대체 콘텐츠 */}
+                      {imageLoadStatus[index] === false && imagesLoaded && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
+                          <p className="text-gray-600 font-medium text-center">이미지를 불러올 수 없습니다</p>
+                        </div>
+                      )}
+                      
+                      <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4">
+                        <p className="text-center">{description}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </Slider>
+                ))}
+              </Slider>
+            </div>
             
             {/* 슬라이드 인디케이터 (선택 사항) */}
             <div className="absolute bottom-16 left-0 right-0 flex justify-center gap-2 z-10">
