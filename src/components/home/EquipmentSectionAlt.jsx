@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import EquipmentCard from './EquipmentCard';
 
 // 장비 데이터
 const equipmentItems = [
@@ -89,80 +90,10 @@ const equipmentItems = [
   }
 ];
 
-// 장비 카드 컴포넌트 (별도 분리하여 복잡성 감소)
-const EquipmentCard = ({ equipment }) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageFailed, setImageFailed] = useState(false);
-
-  const handleImageLoad = () => {
-    console.log(`[EquipmentCard] 이미지 로드 성공: ${equipment.name}`);
-    setImageLoaded(true);
-  };
-
-  const handleImageError = () => {
-    console.error(`[EquipmentCard] 이미지 로드 실패: ${equipment.name}`);
-    setImageFailed(true);
-  };
-
-  return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
-      <div className="relative overflow-hidden aspect-[4/3]">
-        {!imageFailed ? (
-          <img
-            src={equipment.image}
-            alt={equipment.name}
-            className={`w-full h-full object-cover transition-transform duration-500 hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-            loading="lazy"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200">
-            {equipment.name}
-          </div>
-        )}
-        
-        {!imageLoaded && !imageFailed && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        )}
-        
-        <div className="absolute top-0 left-0 m-3">
-          <span className="bg-primary/90 text-white px-3 py-1 rounded-full text-sm font-medium">
-            {equipment.category}
-          </span>
-        </div>
-      </div>
-      
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-gray-800 mb-3">{equipment.name}</h3>
-        <p className="text-gray-600 mb-4">{equipment.description}</p>
-        
-        <div className="mb-4">
-          <h4 className="text-lg font-semibold text-gray-800 mb-2">주요 특징</h4>
-          <ul className="space-y-1">
-            {equipment.features.map((feature, index) => (
-              <li key={index} className="flex items-start">
-                <span className="text-primary mr-2 mt-1">•</span>
-                <span className="text-gray-600 text-sm">{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        
-        <div className="mt-auto">
-          <h4 className="text-lg font-semibold text-gray-800 mb-2">최적 활용 분야</h4>
-          <p className="text-gray-600 text-sm">{equipment.optimumFor}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // 메인 Equipment 섹션 컴포넌트
 const EquipmentSectionAlt = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = React.useRef(null);
 
   useEffect(() => {
     // 컴포넌트 마운트 로깅
@@ -187,33 +118,64 @@ const EquipmentSectionAlt = () => {
       });
     };
     
+    // 모바일에서 IntersectionObserver를 지원하지 않을 경우 대비
+    if (!('IntersectionObserver' in window)) {
+      console.log('[EquipmentSectionAlt] IntersectionObserver 지원하지 않음, 즉시 표시');
+      setIsVisible(true);
+      prefetchImages();
+      return;
+    }
+    
     // IntersectionObserver를 사용하여 보이는 영역으로 스크롤되면 표시
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          console.log('[EquipmentSectionAlt] 화면에 보임');
-          setIsVisible(true);
-          prefetchImages();
-          observer.disconnect();
-        }
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            console.log('[EquipmentSectionAlt] 화면에 보임');
+            setIsVisible(true);
+            prefetchImages();
+            observer.disconnect();
+          }
+        });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '50px' }
     );
     
-    // 현재 컴포넌트 관찰 시작
-    const sectionElement = document.getElementById('equipment-section-alt');
-    if (sectionElement) {
-      observer.observe(sectionElement);
+    // 현재 컴포넌트 관찰 시작 (ref 사용)
+    if (sectionRef.current) {
+      console.log('[EquipmentSectionAlt] 관찰 시작:', sectionRef.current);
+      observer.observe(sectionRef.current);
+    } else {
+      console.warn('[EquipmentSectionAlt] ref가 없음, 즉시 표시');
+      setIsVisible(true);
     }
     
     return () => {
       console.log('[EquipmentSectionAlt] 컴포넌트 언마운트됨');
-      observer.disconnect();
+      if (observer) {
+        observer.disconnect();
+      }
     };
   }, []);
 
+  // 모바일에서 첫 렌더링 시 즉시 표시를 위한 추가 처리
+  useEffect(() => {
+    // 모바일 환경에서 1초 후 강제로 표시 (fallback)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      const timer = setTimeout(() => {
+        if (!isVisible) {
+          console.log('[EquipmentSectionAlt] 모바일 환경에서 타임아웃으로 강제 표시');
+          setIsVisible(true);
+        }
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
+
   return (
-    <div id="equipment-section-alt" className="py-16 md:py-24">
+    <div ref={sectionRef} className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         <div className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <div className="text-center mb-12 md:mb-16">
@@ -235,7 +197,7 @@ const EquipmentSectionAlt = () => {
                     : 'translate-y-10 opacity-0'
                 }`}
                 style={{ 
-                  transitionDelay: `${equipment.id * 150}ms` 
+                  transitionDelay: `${equipment.id * 100}ms` 
                 }}
               >
                 <EquipmentCard equipment={equipment} />
