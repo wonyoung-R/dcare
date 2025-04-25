@@ -8,20 +8,18 @@ const doctors = [
     id: 1,
     name: '류효충',
     position: '대표원장',
-    specialty: '산부인과전문의, 여성검진, 산부인과진료',
+    specialty: ['산부인과전문의', '여성검진', '산부인과진료', '줄기세포 클리닉'],
     education: ['계명대학교 의과대학', '계명대학교 산부인과 전문의'],
-    experience: ['현 디케어건강검진센터 대표원장', '전 신라산부인과 원장', '전 영재산부인과 원장'],
-    description: '류효충 대표원장은 풍부한 임상 경험을 바탕으로 여성 건강검진 및 산부인과 진료를 전문적으로 진행하고 있습니다. 환자 개개인에게 맞춤형 의료 서비스를 제공합니다.',
+    experience: ['현 디케어건강검진센터 대표원장', '현 동국의대 산부인과 외래교수', '현 계명의대 산부인과 외래교수', '전 신라산부인과 원장', '전 영재산부인과 원장', '세계 산부인과 초음파학회 회원', '미국 부인비뇨기과학회 회원', '미국 불임 내분비학회 회원'],
     image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
   },
   {
     id: 2,
     name: '한정우',
     position: '원장',
-    specialty: '영남의대 대장항문외과 전문의, 위ㆍ대장내시경',
+    specialty: ['영남의대 대장항문외과 전문의', '위ㆍ대장내시경'],
     education: ['영남대학교 의과대학', '영남대학교 대장항문외과 전문의'],
-    experience: [],
-    description: '한정우 원장은 대장항문외과 전문의로서 위ㆍ대장내시경 검사 및 진료에 탁월한 전문성을 갖추고 있습니다. 정확한 진단과 환자 중심의 맞춤형 치료로 소화기 질환 진료에 최선을 다하고 있습니다.',
+    experience: ['현 디케어건강증진센터 원장', '전 구미 삼성연합의원 원장', '전 새동산병원 건강증진센터장', '대한외과학회 평생회원', '대한대장항문외과학회 평생회원', '대한내시경복강경외과학회 정회원', '대한위대장내시경학회 정회원'],
     image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80'
   }
 ];
@@ -60,14 +58,16 @@ const DoctorCard = ({ doctor }) => {
           <p className="text-primary font-medium">{doctor.position}</p>
         </div>
         
-        <ResponsiveText variant="body" className="text-gray-600 mb-6">
-          {doctor.description}
-        </ResponsiveText>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
             <h4 className="text-lg font-semibold text-gray-800 mb-2">전문 분야</h4>
-            <p className="text-gray-600">{doctor.specialty}</p>
+            <ul className="text-gray-600 space-y-1">
+              {doctor.specialty.map((spec, index) => (
+                <li key={index} className="flex items-start">
+                  <span className="text-primary mr-2">•</span> {spec}
+                </li>
+              ))}
+            </ul>
           </div>
           
           <div>
@@ -111,7 +111,7 @@ const Doctors = () => {
           </ResponsiveText>
           <p className="section-subtitle text-center mx-auto mb-12">
             디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며,<br />
-            환자분들께 최고의 의료 서비스를 제공하기 위해 노력하고 있습니다.
+            환자분들께 의료 서비스를 제공하기 위해 노력하고 있습니다.
           </p>
           
           <div className="space-y-10 mt-12">

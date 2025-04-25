@@ -23,7 +23,7 @@ const footerLinks = [
     links: [
       { name: '종합건강검진', path: '/checkup' },
       { name: 'Healing Greenhouse', path: '/greenhouse' },
-      { name: '검진외일반진료', path: '/general' },
+      { name: '검진 외 일반진료', path: '/general' },
       { name: '줄기세포 치료', path: '/stemcell' },
     ],
   }

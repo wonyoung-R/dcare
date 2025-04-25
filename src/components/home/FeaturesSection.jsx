@@ -12,7 +12,7 @@ const features = [
   {
     id: 1,
     title: '의료진 전문성',
-    description: '각 분야 최고의 전문의들이 정확한 진단과 최적의 치료를 제공합니다.',
+    description: '각 분야 전문의들이 정확한 진단과 치료를 제공합니다.',
     icon: <FaUserMd className="h-12 w-12 text-primary" />,
     color: 'bg-primary/5 border-primary/20'
   },

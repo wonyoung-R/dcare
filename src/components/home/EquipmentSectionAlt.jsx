@@ -30,7 +30,7 @@ const equipmentItems = [
       '이온화 방사선 없음'
     ],
     optimumFor: '다발성 경화증, 동맥류, 관절 손상 진단',
-    image: `${getBaseUrl()}/images/medicalequipment/webp/xray.webp?v=1`,
+    image: `${getBaseUrl()}/images/medicalequipment/webp/mri.webp?v=1`,
     category: 'MRI'
   },
   {

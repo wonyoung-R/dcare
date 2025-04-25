@@ -306,7 +306,7 @@ const Greenhouse = () => {
           <div className="mt-8">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="p-8">
-                <h2 className="text-3xl font-bold text-primary mb-8 text-center">최고의 힐링 공간에서 건강을 되찾으세요</h2>
+                <h2 className="text-3xl font-bold text-primary mb-8 text-center">힐링 공간에서 건강을 되찾으세요</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
                   <div className="bg-gray-50 p-6 rounded-lg shadow-md transition-transform duration-300 hover:scale-105">

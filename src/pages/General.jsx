@@ -63,7 +63,7 @@ const General = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="section-title text-center">검진외일반진료</h1>
+          <h1 className="section-title text-center">검진 외 일반진료</h1>
           <p className="section-subtitle text-center mx-auto">
             건강검진 이외에도 다양한 전문 진료를 통해 고객님의 건강을 책임지고 있습니다.
           </p>

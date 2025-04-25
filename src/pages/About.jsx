@@ -14,7 +14,7 @@ const About = () => {
         >
           <h1 className="section-title text-center">병원 소개</h1>
           <p className="section-subtitle text-center mx-auto mb-12">
-            디케어 병원은 최첨단 의료 장비와 전문 의료진을 통해<br />
+            디케어건강검진센터는 최첨단 의료 장비와 전문 의료진을 통해<br />
             환자 중심의 맞춤형 의료 서비스를 제공합니다.
           </p>
           
@@ -22,7 +22,7 @@ const About = () => {
             <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">병원 개요</h2>
               <p className="text-gray-600">
-                디케어 병원은 2010년 설립 이래 최첨단 영상의학 장비와 숙련된 의료진을 통해 정확한 진단과 치료를 제공하고 있습니다. 
+                디케어건강검진센터는 최첨단 영상의학 장비와 숙련된 의료진을 통해 정확한 진단과 치료를 제공하고 있습니다. 
                 환자의 건강과 편안함을 최우선으로 생각하며, 지속적인 의료 품질 향상을 위해 노력하고 있습니다.
               </p>
             </div>
@@ -30,12 +30,12 @@ const About = () => {
           
           {/* 디케어센터 소개 */}
           <div className="bg-white rounded-lg shadow-md p-8 mt-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">디케어센터 소개</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">디케어건강검진센터 소개</h2>
             <p className="text-gray-600 mb-8">
-              디케어센터는 높은 수준의 의료 서비스와 특별한 공간 경험을 통해 건강검진을 넘어 건강한 라이프스타일을 제안하는 프리미엄 의료서비스를 제공합니다.
+              높은 수준의 의료 서비스와 특별한 공간 경험을 통해 건강검진을 넘어 건강한 라이프스타일을 제안하는 프리미엄 의료서비스를 제공합니다.
             </p>
             
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">디케어센터의 핵심 가치</h3>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4">핵심 가치</h3>
             <ul className="space-y-4 mb-8">
               <li className="flex items-start">
                 <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
@@ -51,7 +51,7 @@ const About = () => {
               </li>
             </ul>
             
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">디케어센터만의 차별화된 시그니처 서비스</h3>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4">차별화된 VIP서비스</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
                 <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
@@ -59,11 +59,7 @@ const About = () => {
               </li>
               <li className="flex items-start">
                 <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
-                <span>호텔급 숙박 서비스, 발렛 주차 등 퀄리티 높은 서비스</span>
-              </li>
-              <li className="flex items-start">
-                <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
-                <span>실내 클라이밍, 카페 등 센터의 만족도를 위한 시설</span>
+                <span>호텔급 숙박 서비스, 카페 등 센터의 만족도를 위한 시설과 퀄리티 높은 서비스</span>
               </li>
             </ul>
           </div>
@@ -97,7 +93,7 @@ const About = () => {
                   </li>
                   <li className="flex items-start">
                     <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
-                    <span>20여 대학병원에서 최우선 예약과 진료를 받을 수 있는 협진 시스템</span>
+                    <span>환자분의 건강 상태에 따른 협력 기관들과의 협진 시스템</span>
                   </li>
                 </ul>
               </div>
@@ -138,7 +134,7 @@ const About = () => {
                 style={{ border: 0 }} 
                 allowFullScreen="" 
                 loading="lazy"
-                title="디케어 병원 위치"
+                title="디케어건강검진센터 위치"
               ></iframe>
             </div>
             <div className="mt-8">

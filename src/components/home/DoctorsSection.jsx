@@ -146,7 +146,7 @@ const DoctorsSection = () => {
                 }}
               >
                 디케어 병원의 의료진은 각 분야의<br className="block sm:hidden" /> 전문가로 구성되어 있으며,<br /> 
-                환자분들께 최고의 의료 서비스를<br className="block sm:hidden" /> 제공하기 위해 노력하고 있습니다.
+                환자분들께 의료 서비스를<br className="block sm:hidden" /> 제공하기 위해 노력하고 있습니다.
               </motion.p>
             </div>
 

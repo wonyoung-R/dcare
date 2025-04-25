@@ -9,7 +9,7 @@
     },
     "checkup": "종합건강검진",
     "greenhouse": "Healing Greenhouse",
-    "general": "검진외일반진료",
+    "general": "검진 외 일반진료",
     "stemcell": "줄기세포 치료"
   },
   "hero": {
@@ -42,7 +42,7 @@
   },
   "doctors": {
     "title": "전문 의료진",
-    "description": "디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며, \n환자분들께 최고의 의료 서비스를 제공하기 위해 노력하고 있습니다.",
+    "description": "디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며, \n환자분들께 의료 서비스를 제공하기 위해 노력하고 있습니다.",
     "info": {
       "specialty": "전문 분야",
       "education": "학력",
