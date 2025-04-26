@@ -131,8 +131,12 @@ const LocationSection = () => {
                     <FaPhone className="text-primary mt-1 mr-3 h-5 w-5" />
                     <div>
                       <h4 className="text-lg font-semibold text-gray-800 mb-1">연락처</h4>
-                      <p className="text-gray-600">대표전화: 053.288.3000</p>
-                      <p className="text-gray-600">홈페이지: www.dcare.or.kr</p>
+                      <p className="text-gray-600">
+                        대표전화: <a href="tel:053-288-3000" className="text-primary hover:underline">053.288.3000</a>
+                      </p>
+                      <p className="text-gray-600">
+                        홈페이지: <a href="https://www.dcarecenter.kr" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.dcarecenter.kr</a>
+                      </p>
                     </div>
                   </div>
                   
