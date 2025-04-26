@@ -306,7 +306,7 @@ const Greenhouse = () => {
           <div className="mt-8">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <div className="p-8">
-                <h2 className="text-3xl font-bold text-primary mb-8 text-center">힐링 공간에서 건강을 되찾으세요</h2>
+                <h2 className="text-3xl font-bold text-primary mb-8 text-center">고객들이 편히 대기할 수 있는 힐링 공간 추구</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
                   <div className="bg-gray-50 p-6 rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
@@ -314,7 +314,7 @@ const Greenhouse = () => {
                       <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
                         <FaHotel className="text-white text-xl" />
                       </div>
-                      <h3 className="text-xl font-semibold ml-4">럭셔리 시설</h3>
+                      <h3 className="text-xl font-semibold ml-4">웰니스센터급의 시설</h3>
                     </div>
                     <p className="text-gray-700">
                       800평의 높은층고, 웰니스 센터급의 럭셔리 시설
@@ -326,10 +326,10 @@ const Greenhouse = () => {
                       <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
                         <FaSpa className="text-white text-xl" />
                       </div>
-                      <h3 className="text-xl font-semibold ml-4">힐링 인테리어</h3>
+                      <h3 className="text-xl font-semibold ml-4">플랜테리어</h3>
                     </div>
                     <p className="text-gray-700">
-                      나를 더 깊게 케어하고 휴식을 누릴 수 있는 힐링 인테리어
+                      나를 더 깊게 케어하고 휴식을 누릴 수 있는 플랜테리어
                     </p>
                   </div>
                   
@@ -341,22 +341,10 @@ const Greenhouse = () => {
                       <h3 className="text-xl font-semibold ml-4">원스톱 서비스</h3>
                     </div>
                     <p className="text-gray-700">
-                      모든 분야의 정밀검진을 하루에 받을 수 있는 One-stop 서비스
+                      환자가 필요한 검진을 한곳에서 받을 수 있는 One-stop 서비스
                     </p>
                   </div>
-                  
-                  <div className="bg-gray-50 p-6 rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
-                    <div className="flex items-center mb-4">
-                      <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                        <FaLeaf className="text-white text-xl" />
-                      </div>
-                      <h3 className="text-xl font-semibold ml-4">Eco+Smart</h3>
-                    </div>
-                    <p className="text-gray-700">
-                      자연을 담은 공간에 스마트함을 더한 Eco+Smart 검진센터
-                    </p>
-                  </div>
-                  
+      
                   <div className="bg-gray-50 p-6 rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
                     <div className="flex items-center mb-4">
                       <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">

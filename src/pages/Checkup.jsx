@@ -17,7 +17,7 @@ const Checkup = () => {
           <h1 className="section-title text-center">종합건강검진</h1>
           
           <p className="section-subtitle text-center mx-auto mb-12">
-            최신 의료장비를 통한 체계적인 검진으로 질병을 발견하고 예방할 수 있도록 도와드립니다. MRI, CT 등 최첨단 장비뿐만 아니라 초음파검사, 스트레스검사, 뇌파검사, 근골격계검사 등 신속하고 정확한 검진이 가능합니다
+            최신 의료장비를 통한 체계적인 검진으로 질병을 발견하고 예방할 수 있도록 도와드립니다. MRI, CT 등 장비뿐만 아니라 초음파검사, 스트레스검사, 뇌파검사, 근골격계검사 등의 검진이 가능합니다
           </p>
           
           <div className="bg-white rounded-lg shadow-md p-8 mt-12">
@@ -131,7 +131,7 @@ const Checkup = () => {
                   </li>
                   <li className="flex items-start">
                     <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
-                    <span><strong>Two Track System</strong>으로 완벽한 프라이버시 보장</span>
+                    <span>고객관리프로그램의 <strong>Two Track System</strong></span>
                   </li>
                 </ul>
               </div>
