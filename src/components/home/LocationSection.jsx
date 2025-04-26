@@ -66,8 +66,8 @@ const LocationSection = () => {
     } else {
       // API가 아직 로드되지 않았으면 동적으로 스크립트 추가
       const script = document.createElement('script');
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=468c95aa4078e05413620d6a96823a93&autoload=false`;
       script.async = true;
-      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=6df064a56d1b3dc79847950b6c9258f7&autoload=false`;
       
       script.onload = () => {
         window.kakao.maps.load(initMap);
