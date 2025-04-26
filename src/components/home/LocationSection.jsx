@@ -25,62 +25,6 @@ const LocationSection = () => {
     }
   }, [controls, inView]);
 
-  // Initialize Kakao Map
-  useEffect(() => {
-    // 디케어센터 정확한 좌표
-    const latitude = 35.864703;  // 위도
-    const longitude = 128.55810800000037; // 경도
-
-    const initMap = () => {
-      if (window.kakao && window.kakao.maps && mapRef.current) {
-        const options = {
-          center: new window.kakao.maps.LatLng(latitude, longitude), // 디케어센터 좌표
-          level: 3,
-        };
-
-        const map = new window.kakao.maps.Map(mapRef.current, options);
-        const marker = new window.kakao.maps.Marker({
-          position: new window.kakao.maps.LatLng(latitude, longitude),
-          map: map,
-        });
-
-        // Custom overlay for hospital name
-        const content = `
-          <div style="padding:5px;background:#fff;border-radius:4px;border:1px solid #ddd;font-size:12px;font-weight:bold;">
-            디케어센터
-          </div>
-        `;
-
-        new window.kakao.maps.CustomOverlay({
-          position: new window.kakao.maps.LatLng(latitude, longitude),
-          content: content,
-          map: map,
-          yAnchor: 1.5,
-        });
-      }
-    };
-
-    // 카카오맵 API 로드
-    if (window.kakao && window.kakao.maps) {
-      initMap();
-    } else {
-      // API가 아직 로드되지 않았으면 동적으로 스크립트 추가
-      const script = document.createElement('script');
-      script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=468c95aa4078e05413620d6a96823a93&autoload=false`;
-      script.async = true;
-      
-      script.onload = () => {
-        window.kakao.maps.load(initMap);
-      };
-      
-      document.head.appendChild(script);
-      
-      return () => {
-        document.head.removeChild(script);
-      };
-    }
-  }, [mapRef]);
-
   const sectionVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -151,9 +95,22 @@ const LocationSection = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Map */}
-            <motion.div variants={itemVariants} className="h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-lg">
-              <div ref={mapRef} className="w-full h-full" />
+            {/* Map - Google Maps */}
+            <motion.div variants={itemVariants} className="h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-lg flex items-center justify-center">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3233.238151383703!2d128.53370141526748!3d35.85889668015502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3565e3c3365d94dd%3A0xf933929fb5979098!2z64yA6rWs6rSR7IKs7J207Iud7JuQ!5e0!3m2!1sko!2skr!4v1620112040456!5m2!1sko!2skr" 
+                width="100%" 
+                height="100%" 
+                style={{ 
+                  border: 0,
+                  display: 'block',
+                  margin: 'auto'
+                }} 
+                allowFullScreen="" 
+                loading="lazy"
+                title="디케어건강검진센터 위치"
+                className="w-full h-full object-cover"
+              ></iframe>
             </motion.div>
 
             {/* Info */}
