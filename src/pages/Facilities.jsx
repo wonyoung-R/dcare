@@ -5,10 +5,10 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const Facilities = () => {
   // 병원시설 이미지
   const hospitalFacilities = [
-    { id: 1, src: './images/facilities/waitingroom-01.jpeg', alt: '대기실', description: '환자분들이 편안하게 대기할 수 있는 공간' },
-    { id: 2, src: './images/facilities/waitingroom-02.jpeg', alt: '대기실', description: '쾌적한 환경의 환자 대기 공간' },
-    { id: 3, src: './images/facilities/waitingroom-03.jpeg', alt: '대기실', description: '넓고 편안한 환자 휴식 공간' },
-    { id: 4, src: './images/facilities/lobby-01.jpeg', alt: '로비', description: '넓고 쾌적한 로비 공간' }
+    { id: 1, src: './images/facilities/webp/waitingroom-01.webp', alt: '대기실', description: '환자분들이 편안하게 대기할 수 있는 공간' },
+    { id: 2, src: './images/facilities/webp/waitingroom-02.webp', alt: '대기실', description: '쾌적한 환경의 환자 대기 공간' },
+    { id: 3, src: './images/facilities/webp/waitingroom-03.webp', alt: '대기실', description: '넓고 편안한 환자 휴식 공간' },
+    { id: 4, src: './images/facilities/webp/lobby-01.webp', alt: '로비', description: '넓고 쾌적한 로비 공간' }
   ];
 
   // 검사시설 이미지
@@ -16,7 +16,11 @@ const Facilities = () => {
     { id: 1, src: './images/facilities/webp/checkup-01.webp', alt: '검사실', description: '최신 장비를 갖춘 검사실' },
     { id: 2, src: './images/facilities/webp/checkup-02.webp', alt: '검사실', description: '정확한 검진을 위한 검사 공간' },
     { id: 3, src: './images/facilities/webp/checkup-03.webp', alt: '검사실', description: '편안하게 검사를 대기 할 수 있는 공간' },
-    { id: 4, src: './images/facilities/webp/checkup-04.webp', alt: '검사실', description: '여성들의 편리하고 프라이빗한 검진을 위한 여성존 마련' }
+    { id: 4, src: './images/facilities/webp/checkup-04.webp', alt: '검사실', description: '여성들의 편리하고 프라이빗한 검진을 위한 여성존 마련' },
+    { id: 5, src: './images/facilities/webp/checkup-05.webp', alt: '검사실', description: '내시경실' },
+    { id: 6, src: './images/facilities/webp/checkup-06.webp', alt: '검사실', description: '영상의학과 입구' },
+    { id: 7, src: './images/facilities/webp/checkup-07.webp', alt: '검사실', description: '영상의학과 진료실 내부' },
+    { id: 8, src: './images/facilities/webp/checkup-08.webp', alt: '검사실', description: '내시경실 대기실' }
   ];
 
   const [currentHospitalIndex, setCurrentHospitalIndex] = useState(0);

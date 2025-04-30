@@ -20,14 +20,14 @@ const General = () => {
       name: '내과',
       icon: <FaHeartbeat className="text-4xl text-primary-light" />,
       description: '소화기, 호흡기, 심장 등 내부 장기 전반에 대한 질환을 진단하고 치료합니다.<br /> 건강 검진 결과에 따른 후속 진료와 만성질환 관리를 전문적으로 수행합니다.',
-      images: ['images/general/general-02.webp']
+      images: ['images/general/general-03.webp']
     },
     {
       id: 3,
       name: '영상의학과',
       icon: <FaXRay className="text-4xl text-primary-light" />,
       description: '최신식 영상 장비(MRI, CT, X-ray 등)를 통해 정확한 진단을 돕습니다. <br />질환의 조기 발견과 적절한 치료 방향 설정을 위한 정밀한 영상 검사를 제공합니다.',
-      images: ['images/general/general-03.webp']
+      images: ['images/general/general-02.webp']
     }
   ];
 
@@ -83,11 +83,13 @@ const General = () => {
                   </div>
                   
                   <div className="h-64 md:h-auto overflow-hidden flex items-center justify-center p-4">
-                    <img 
-                      src={dept.images[0]} 
-                      alt={dept.name} 
-                      className="w-[80%] h-[85%] object-cover object-center shadow-lg rounded-lg border border-gray-200"
-                    />
+                    <div className="w-[85%] h-80 relative">
+                      <img 
+                        src={dept.images[0]} 
+                        alt={dept.name} 
+                        className="w-full h-full object-cover object-center shadow-lg rounded-lg border border-gray-200"
+                      />
+                    </div>
                   </div>
                 </div>
               </motion.div>
