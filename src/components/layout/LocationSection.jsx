@@ -12,7 +12,7 @@
     <div>
       <h4 className="text-lg font-semibold text-gray-800 mb-1">연락처</h4>
       <p className="text-gray-600">대표전화: 053.288.3000</p>
-      <p className="text-gray-600">홈페이지: www.dcare.or.kr</p>
+      <p className="text-gray-600">홈페이지: www.dcarecenter.kr</p>
     </div>
   </div>
 </div> 
