@@ -132,9 +132,13 @@ const DoctorsSection = () => {
               <motion.h2 variants={titleVariants} className="section-title text-white">
                 전문 의료진
               </motion.h2>
+
+              {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
               <motion.p 
                 variants={titleVariants} 
-                className="section-subtitle text-white/90 mx-auto text-center px-4 sm:px-6 w-full max-w-full sm:max-w-md md:max-w-xl lg:max-w-2xl break-words whitespace-normal overflow-hidden responsive-text-container"
+                className="section-subtitle text-center mx-auto mb-12 md:hidden"
+
+                //className="section-subtitle text-white/90 mx-auto text-center px-4 sm:px-6 w-full max-w-full sm:max-w-md md:max-w-xl lg:max-w-2xl break-words whitespace-normal overflow-hidden responsive-text-container"
                 style={{ 
                   textAlign: 'center', 
                   margin: '0 auto', 
@@ -147,6 +151,16 @@ const DoctorsSection = () => {
               >
                 디케어 병원의 의1료진은 각 분야의<br className="block sm:hidden" /> 전문가로 구성되어 있으며,<br /> 
                 환자분들께 의료 서비스를<br className="block sm:hidden" /> 제공하기 위해 노력하고 있습니다.
+              </motion.p>
+
+              {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
+              <motion.p 
+                variants={titleVariants} 
+                className="section-subtitle text-center mx-auto mb-12 hidden md:block"
+                // className="section-subtitle text-white/90 mx-auto text-center px-4 sm:px-6 w-full max-w-full sm:max-w-md md:block lg:max-w-2xl break-words whitespace-normal overflow-hidden responsive-text-container hidden md:block"
+              >
+                디케어 병원의 의12료진은 각 분야의 전문가로 구성되어 있으며,<br /> 
+                환자분들께 의료 서비스를 제공하기 위해 노력하고 있습니다.
               </motion.p>
             </div>
 
