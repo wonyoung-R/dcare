@@ -58,11 +58,13 @@ const Footer = () => {
               </div>
               <div className="flex items-start">
                 <FaPhone className="mt-1 mr-2 text-primary flex-shrink-0" />
-                <p>대표전화: 053.288.3000</p>
+                <p>
+                  대표전화: <a href="tel:053-288-3000" className="text-primary hover:underline">053.288.3000</a>
+                </p>
               </div>
               <div className="flex items-start">
                 <FaClock className="mt-1 mr-2 text-primary flex-shrink-0" />
-                <p>평일: 08:00 - 17:00 | 토요일: 08:00 - 13:00 <br />- 일요일 및 공휴일 휴진</p>
+                <p>- 평일: 08:00 - 17:00<br />- 토요일: 08:00 - 13:00 <br />- 일요일 및 공휴일 휴진</p>
               </div>
             </div>
           </div>

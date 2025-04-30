@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaHeartbeat, FaCheckCircle, FaHospital, FaUserMd, FaChartLine, FaLeaf } from 'react-icons/fa';
+import { FaHeartbeat, FaCheckCircle, FaHospital, FaUserMd, FaChartLine, FaLeaf, FaMapMarkerAlt, FaPhone, FaClock } from 'react-icons/fa';
 
 const About = () => {
   return (
@@ -137,18 +137,22 @@ const About = () => {
               ></iframe>
             </div>
             <div className="mt-8">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">주소</h3>
-              <p className="text-gray-600 mb-4">대구광역시 달서구 와룡로 307</p>
-              
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">연락처</h3>
-              <p className="text-gray-600 mb-4">대표전화: 053.288.3000</p>
-              
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">진료시간</h3>
-              <ul className="text-gray-600">
-                <li className="mb-2">평일: 08:00 - 17:00</li>
-                <li className="mb-2">토요일: 08:00 - 13:00</li>
-                <li>일요일 및 공휴일 휴진</li>
-              </ul>
+              <div className="space-y-3 text-lg text-black">
+                <div className="flex items-start">
+                  <FaMapMarkerAlt className="mt-1 mr-2 text-primary flex-shrink-0" />
+                  <p>대구광역시 달서구 와룡로 307 디센터 1976 2층</p>
+                </div>
+                <div className="flex items-start">
+                  <FaPhone className="mt-1 mr-2 text-primary flex-shrink-0" />
+                  <p>
+                    대표전화: <a href="tel:053-288-3000" className="text-primary hover:underline">053.288.3000</a>
+                  </p>
+                </div>
+                <div className="flex items-start">
+                  <FaClock className="mt-1 mr-2 text-primary flex-shrink-0" />
+                  <p>- 평일: 08:00 - 17:00<br />- 토요일: 08:00 - 13:00 <br />- 일요일 및 공휴일 휴진</p>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
