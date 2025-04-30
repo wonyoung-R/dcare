@@ -31,7 +31,7 @@
       "description": "자연 친화적 공간에서 몸과 마음의 치유를 위한 특별한 힐링 경험을 제공합니다."
     },
     "general": {
-      "title": "검진외 일반진료",
+      "title": "검진 외 일반진료",
       "description": "내과, 산부인과 등 다양한 전문 진료를 통해 고객님의 건강을 책임집니다."
     },
     "doctors": {
@@ -63,8 +63,8 @@
     "addressValue": "대구광역시 달서구 와룡로 307 디센터 1976 2층",
     "phoneValue": "대표전화: 053.288.3000",
     "websiteValue": "홈페이지: www.dcare.or.kr",
-    "weekdayHours": "평일: 08:30 - 17:30",
-    "saturdayHours": "토요일: 08:30 - 13:00",
+    "weekdayHours": "평일: 08:00 - 17:00",
+    "saturdayHours": "토요일: 08:00 - 13:00",
     "sundayHours": "일요일 및 공휴일 휴진",
     "findUs": "찾아오시는 방법",
     "subway": "지하철",
