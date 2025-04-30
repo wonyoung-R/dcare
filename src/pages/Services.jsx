@@ -100,9 +100,16 @@ const Services = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="section-title text-center">진료 안내</h1>
-          <p className="section-subtitle text-center mx-auto">
-            디케어 병원은 첨단 의료장비와 전문 의료진을 통해 환자분들께 
+
+          {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
+          <p className="section-subtitle text-center mx-auto mb-12 md:hidden">
+            디케어 병원은 첨단 의료장비와 <br />전문 의료진을 통해 환자분들께 <br />
             최상의 맞춤형 의료 서비스를 제공합니다.
+          </p>
+          
+          {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
+          <p className="section-subtitle text-center mx-auto mb-12 hidden md:block">
+            디케어 병원은 첨단 의료장비와 전문 의료진을 통해 환자분들께 최상의 맞춤형 의료 서비스를 제공합니다.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">

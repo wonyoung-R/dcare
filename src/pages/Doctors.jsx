@@ -109,11 +109,17 @@ const Doctors = () => {
           <ResponsiveText as="h1" variant="title" className="text-center mx-auto">
             의료진 소개
           </ResponsiveText>
-          <p className="section-subtitle text-center mx-auto mb-12">
-            디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며,<br />
-            환자분들께 의료 서비스를 제공하기 위해 노력하고 있습니다.
+
+          {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
+          <p className="section-subtitle text-center mx-auto mb-12 md:hidden">
+            디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며, <br />환자분들께 의료 서비스를 제공하기 위해 노력하고 있습니다.
           </p>
           
+          {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
+          <p className="section-subtitle text-center mx-auto mb-12 hidden md:block">
+            디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며, 환자분들께 의료 서비스를 제공하기 위해 노력하고 있습니다.
+          </p>
+
           <div className="space-y-10 mt-12">
             {doctors.map((doctor) => (
               <DoctorCard key={doctor.id} doctor={doctor} />
