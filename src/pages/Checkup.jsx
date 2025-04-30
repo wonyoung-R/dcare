@@ -16,7 +16,14 @@ const Checkup = () => {
         >
           <h1 className="section-title text-center">종합건강검진</h1>
           
-          <p className="section-subtitle text-center mx-auto mb-12">
+          {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
+          <p className="section-subtitle text-center mx-auto mb-12 md:hidden">
+          최신 의료장비를 통한 체계적인 검진으로 <br />질병을 발견하고 예방할 수 있도록 도와드립니다. 
+          <br />MRI, CT 등 장비뿐만 아니라 초음파검사, <br />스트레스검사, 뇌파검사, 근골격계검사 등의 검진이 가능합니다
+          </p>
+          
+          {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
+          <p className="section-subtitle text-center mx-auto mb-12 hidden md:block">
             최신 의료장비를 통한 체계적인 검진으로 질병을 발견하고 예방할 수 있도록 도와드립니다. MRI, CT 등 장비뿐만 아니라 초음파검사, 스트레스검사, 뇌파검사, 근골격계검사 등의 검진이 가능합니다
           </p>
           

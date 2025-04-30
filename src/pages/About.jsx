@@ -13,7 +13,14 @@ const About = () => {
           className="max-w-4xl mx-auto"
         >
           <h1 className="section-title text-center">병원 소개</h1>
-          <p className="section-subtitle text-center mx-auto mb-12">
+          {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
+          <p className="section-subtitle text-center mx-auto mb-12 md:hidden">
+            디케어건강검진센터는<br />최첨단 의료 장비와 전문 의료진을 통해<br />
+            환자 중심의 맞춤형 의료 서비스를 제공합니다.
+          </p>
+          
+          {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
+          <p className="section-subtitle text-center mx-auto mb-12 hidden md:block">
             디케어건강검진센터는 최첨단 의료 장비와 전문 의료진을 통해<br />
             환자 중심의 맞춤형 의료 서비스를 제공합니다.
           </p>

@@ -64,8 +64,15 @@ const General = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="section-title text-center">검진 외 일반진료</h1>
-          <p className="section-subtitle text-center mx-auto">
-            건강검진 이외에도 다양한 전문 진료를 통해 고객님의 건강을 책임지고 있습니다.
+
+          {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
+          <p className="section-subtitle text-center mx-auto mb-12 md:hidden">
+            건강검진 이외에도 다양한 전문 진료를 통해 <br />고객님의 건강을 책임지고 있습니다.
+          </p>
+          
+          {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
+          <p className="section-subtitle text-center mx-auto mb-12 hidden md:block">
+            건강검진 이외에도 다양한 전문 진료를 통해 고객님의 건강을 책임지고 있습니다.  
           </p>
           
           <div className="mt-16 space-y-16">

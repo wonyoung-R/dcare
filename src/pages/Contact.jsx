@@ -12,9 +12,17 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="section-title text-center">문의하기</h1>
-          <p className="section-subtitle text-center mx-auto mb-12">
-            디케어 병원에 궁금한 사항이 있으시면 아래 양식을 통해 문의해 주세요. <br />
+
+          {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
+          <p className="section-subtitle text-center mx-auto mb-12 md:hidden">
+            디케어건강검진센터에 궁금한 사항이 있으시면<br />아래 양식을 통해 문의해 주세요. <br />
             빠른 시일 내에 답변 드리겠습니다.
+          </p>
+          
+          {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
+          <p className="section-subtitle text-center mx-auto mb-12 hidden md:block">
+          디케어건강검진센터에 궁금한 사항이 있으시면 아래 양식을 통해 문의해 주세요. <br />
+          빠른 시일 내에 답변 드리겠습니다.
           </p>
           
           {/* 문의 양식 */}
