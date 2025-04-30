@@ -41,7 +41,7 @@ const Footer = () => {
           <div>
             <Link to="/" className="inline-block mb-6">
               <img 
-                src="./images/logo-main.png" 
+                src="./images/logo_main_wht.png" 
                 alt="디케어 병원" 
                 className="h-12"
                 onError={(e) => {
