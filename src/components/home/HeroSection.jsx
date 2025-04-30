@@ -125,13 +125,37 @@ const HeroSection = () => {
               </ResponsiveText> */}
               
               {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
-              <p className="text-white opacity-90 mb-4 sm:mb-6 md:mb-8 mx-auto text-sm sm:text-base md:hidden">
+              {/* <p className="text-white opacity-90 mb-4 sm:mb-6 md:mb-8 mx-auto text-sm sm:text-base md:hidden">
+                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에<br />
+                꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
+              </p> */}
+              
+              {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
+              {/* <p className="text-white opacity-90 mx-auto text-xl hidden md:block">
+                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에<br />
+                꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
+              </p> */}
+
+
+
+              {/* 모바일/태블릿용 텍스트 (xs부터 sm까지 점진적으로 조정, md 크기 이상에서는 숨김) */}
+              <p className="text-white opacity-90 mx-auto 
+                            text-xs xs:text-sm sm:text-base 
+                            mb-3 xs:mb-4 sm:mb-5 
+                            leading-snug xs:leading-snug sm:leading-snug
+                            max-w-[100%] xs:max-w-[90%] sm:max-w-[80%]
+                            md:hidden">
                 치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에<br />
                 꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
               </p>
-              
-              {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
-              <p className="text-white opacity-90 mx-auto text-xl hidden md:block">
+
+              {/* 데스크톱용 텍스트 (md부터 xl까지 점진적으로 조정, md 크기 이상에서만 표시) */}
+              <p className="text-white opacity-90 mx-auto 
+                            text-lg md:text-xl lg:text-2xl xl:text-3xl
+                            mb-6 md:mb-7 lg:mb-8 xl:mb-10
+                            leading-snug md:leading-snug
+                            max-w-[100%] md:max-w-[100%] lg:max-w-[100%] xl:max-w-[100%]
+                            hidden md:block">
                 치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에<br />
                 꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
               </p>
