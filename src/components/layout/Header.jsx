@@ -27,8 +27,8 @@ const Header = () => {
       submenu: [
         { name: t('header.about_submenu.introduction'), path: '/about' },
         { name: t('header.about_submenu.doctors'), path: '/doctors' },
-        { name: t('header.about_submenu.facilities'), path: '/facilities' },
-        { name: t('header.about_submenu.inquiry'), path: '/contact' },
+        { name: t('header.about_submenu.facilities'), path: '/facilities' }
+        //{ name: t('header.about_submenu.inquiry'), path: '/contact' },
       ]
     },
     { 

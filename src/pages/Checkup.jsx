@@ -131,7 +131,11 @@ const Checkup = () => {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
-                    <span><strong>Hightech</strong> 최첨단 의료환경 구축으로 신속하고 정확한 검진 시스템 [CAM] 임상 빅데이터를 통한 지속적인 관리</span>
+                    <span><strong>Hightech</strong> 최신식 의료환경 구축으로 신속하고 정확한 검진 시스템</span>
+                  </li>
+                  <li className="flex items-start">
+                    <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
+                    <span><strong>CAM</strong> 임상 빅데이터를 통한 지속적인 관리</span>
                   </li>
                   <li className="flex items-start">
                     <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />

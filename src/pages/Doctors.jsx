@@ -11,7 +11,7 @@ const doctors = [
     specialty: ['산부인과전문의', '여성검진', '산부인과진료', '줄기세포 클리닉'],
     education: ['계명대학교 의과대학', '계명대학교 산부인과 전문의'],
     experience: ['현 디케어건강검진센터 대표원장', '현 동국의대 산부인과 외래교수', '현 계명의대 산부인과 외래교수', '전 신라산부인과 원장', '전 영재산부인과 원장', '세계 산부인과 초음파학회 회원', '미국 부인비뇨기과학회 회원', '미국 불임 내분비학회 회원'],
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    image: '/doctors/doctor_logo.png'
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const doctors = [
     specialty: ['영남의대 대장항문외과 전문의', '위ㆍ대장내시경'],
     education: ['영남대학교 의과대학', '영남대학교 대장항문외과 전문의'],
     experience: ['현 디케어건강증진센터 원장', '전 구미 삼성연합의원 원장', '전 새동산병원 건강증진센터장', '대한외과학회 평생회원', '대한대장항문외과학회 평생회원', '대한내시경복강경외과학회 정회원', '대한위대장내시경학회 정회원'],
-    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80'
+    image: '/doctors/doctor_logo.png'
   }
 ];
 

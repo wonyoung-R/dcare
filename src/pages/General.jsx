@@ -12,34 +12,22 @@ const General = () => {
       id: 1,
       name: '산부인과',
       icon: <FaUserMd className="text-4xl text-primary-light" />,
-      description: '여성 건강 전문 진료와 질환 예방을 위한 체계적인 진료를 제공합니다. 전문 의료진이 여성 질환, 임신과 출산, 갱년기 관리까지 세심하게 진료합니다.',
-      images: [
-        'https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-        'https://images.unsplash.com/photo-1631815588090-d1bcbe9b4b4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-        'https://images.unsplash.com/photo-1579154341098-e4e158cc7f55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
-      ]
+      description: '여성 건강 전문 진료와 질환 예방을 위한 체계적인 진료를 제공합니다. <br /> 전문 의료진이 여성 질환, 임신과 출산, 갱년기 관리까지 세심하게 진료합니다.',
+      images: ['images/general/general-01.webp']
     },
     {
       id: 2,
       name: '내과',
       icon: <FaHeartbeat className="text-4xl text-primary-light" />,
-      description: '소화기, 호흡기, 심장 등 내부 장기 전반에 대한 질환을 진단하고 치료합니다. 건강 검진 결과에 따른 후속 진료와 만성질환 관리를 전문적으로 수행합니다.',
-      images: [
-        'https://images.unsplash.com/photo-1612277412825-9bc73a8c822a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-        'https://images.unsplash.com/photo-1579154341098-e4e158cc7f55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-        'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
-      ]
+      description: '소화기, 호흡기, 심장 등 내부 장기 전반에 대한 질환을 진단하고 치료합니다.<br /> 건강 검진 결과에 따른 후속 진료와 만성질환 관리를 전문적으로 수행합니다.',
+      images: ['images/general/general-02.webp']
     },
     {
       id: 3,
       name: '영상의학과',
       icon: <FaXRay className="text-4xl text-primary-light" />,
-      description: '최첨단 영상 장비(MRI, CT, X-ray 등)를 통해 정확한 진단을 돕습니다. 질환의 조기 발견과 적절한 치료 방향 설정을 위한 정밀한 영상 검사를 제공합니다.',
-      images: [
-        'https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-        'https://images.unsplash.com/photo-1584982644540-c5f9712b1c23?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-        'https://images.unsplash.com/photo-1579154341098-e4e158cc7f55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
-      ]
+      description: '최신식 영상 장비(MRI, CT, X-ray 등)를 통해 정확한 진단을 돕습니다. <br />질환의 조기 발견과 적절한 치료 방향 설정을 위한 정밀한 영상 검사를 제공합니다.',
+      images: ['images/general/general-03.webp']
     }
   ];
 
@@ -91,24 +79,15 @@ const General = () => {
                       </div>
                       <h2 className="text-2xl font-bold text-primary">{dept.name}</h2>
                     </div>
-                    <p className="text-gray-600 leading-relaxed mb-6">{dept.description}</p>
+                    <p className="text-gray-600 leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: dept.description }}></p>
                   </div>
                   
-                  <div className="h-64 md:h-auto overflow-hidden">
-                    <Slider {...sliderSettings}>
-                      {dept.images.map((image, index) => (
-                        <div key={index} className="outline-none h-64 md:h-full">
-                          <div 
-                            className="w-full h-full"
-                            style={{ 
-                              backgroundImage: `url(${image})`,
-                              backgroundSize: 'cover',
-                              backgroundPosition: 'center'
-                            }}
-                          />
-                        </div>
-                      ))}
-                    </Slider>
+                  <div className="h-64 md:h-auto overflow-hidden flex items-center justify-center p-4">
+                    <img 
+                      src={dept.images[0]} 
+                      alt={dept.name} 
+                      className="w-[80%] h-[85%] object-cover object-center shadow-lg rounded-lg border border-gray-200"
+                    />
                   </div>
                 </div>
               </motion.div>

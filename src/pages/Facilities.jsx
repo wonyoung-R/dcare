@@ -5,16 +5,18 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const Facilities = () => {
   // 병원시설 이미지
   const hospitalFacilities = [
-    { id: 1, src: './images/facilities/waitingroom-01.jpeg', alt: '대기실', description: '환자분들이 편안하게 대기할 수 있는 공간입니다.' },
-    { id: 2, src: './images/facilities/waitingroom-02.jpeg', alt: '대기실', description: '쾌적한 환경의 환자 대기 공간입니다.' },
-    { id: 3, src: './images/facilities/waitingroom-03.jpeg', alt: '대기실', description: '넓고 편안한 환자 휴식 공간입니다.' },
-    { id: 4, src: './images/facilities/lobby-01.jpeg', alt: '로비', description: '넓고 쾌적한 로비 공간입니다.' }
+    { id: 1, src: './images/facilities/waitingroom-01.jpeg', alt: '대기실', description: '환자분들이 편안하게 대기할 수 있는 공간' },
+    { id: 2, src: './images/facilities/waitingroom-02.jpeg', alt: '대기실', description: '쾌적한 환경의 환자 대기 공간' },
+    { id: 3, src: './images/facilities/waitingroom-03.jpeg', alt: '대기실', description: '넓고 편안한 환자 휴식 공간' },
+    { id: 4, src: './images/facilities/lobby-01.jpeg', alt: '로비', description: '넓고 쾌적한 로비 공간' }
   ];
 
   // 검사시설 이미지
   const checkupFacilities = [
-    { id: 1, src: './images/facilities/checkup-01.jpeg', alt: '검사실', description: '최신 장비를 갖춘 검사실입니다.' },
-    { id: 2, src: './images/facilities/checkup-02.jpeg', alt: '검사실', description: '정확한 검진을 위한 검사 공간입니다.' }
+    { id: 1, src: './images/facilities/webp/checkup-01.webp', alt: '검사실', description: '최신 장비를 갖춘 검사실' },
+    { id: 2, src: './images/facilities/webp/checkup-02.webp', alt: '검사실', description: '정확한 검진을 위한 검사 공간' },
+    { id: 3, src: './images/facilities/webp/checkup-03.webp', alt: '검사실', description: '편안하게 검사를 대기 할 수 있는 공간' },
+    { id: 4, src: './images/facilities/webp/checkup-04.webp', alt: '검사실', description: '여성들의 편리하고 프라이빗한 검진을 위한 여성존 마련' }
   ];
 
   const [currentHospitalIndex, setCurrentHospitalIndex] = useState(0);
@@ -70,7 +72,7 @@ const Facilities = () => {
         >
           <h1 className="section-title text-center">시설소개</h1>
           <p className="section-subtitle text-center mx-auto mb-12">
-            최첨단 의료 장비와 편안한 환경을 갖춘 디케어 병원의 시설을 소개합니다.
+            최신식 의료 장비와 편안한 환경을 갖춘 디케어 병원의 시설을 소개합니다.
           </p>
           
           {/* 병원시설 섹션 */}
@@ -218,7 +220,7 @@ const Facilities = () => {
           </div>
           
           <div className="mt-16 bg-gray-50 p-8 rounded-lg shadow-md">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">최첨단 의료장비</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">최신식 의료장비</h3>
             <p className="text-gray-700 mb-6">
               디케어 병원은 정확한 진단과 효과적인 치료를 위해 최신 의료장비를 갖추고 있습니다. 
               MRI, CT, 초음파 등 다양한 검사 장비로 환자분들의 건강을 꼼꼼히 체크합니다.

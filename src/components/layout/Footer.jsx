@@ -12,10 +12,10 @@ const footerLinks = [
   {
     title: '바로가기',
     links: [
-      { name: '병원소개', path: '/' },
+      { name: '병원소개', path: '/about' },
       { name: '의료진 소개', path: '/doctors' },
-      { name: '의료서비스', path: '/services' },
-      { name: '문의하기', path: '/contact' },
+      { name: '의료서비스', path: '/services' }
+      //{ name: '문의하기', path: '/contact' },
     ],
   },
   {
@@ -62,7 +62,7 @@ const Footer = () => {
               </div>
               <div className="flex items-start">
                 <FaClock className="mt-1 mr-2 text-primary flex-shrink-0" />
-                <p>평일: 08:30 - 17:30 | 토요일: 08:30 - 13:00</p>
+                <p>평일: 08:00 - 17:00 | 토요일: 08:00 - 13:00 <br />- 일요일 및 공휴일 휴진</p>
               </div>
             </div>
           </div>

@@ -45,7 +45,7 @@ const Stemcell = () => {
           디케어와 줄기세포 연구소의 협력
         </h2>
         <p className="text-lg text-gray-700 mb-6">
-          디케어 건강검진센터는 EHL BIO와 협력하여 줄기세포, 엑소좀 치료 서비스를 제공합니다. 
+          디케어 건강검진센터는 EHL BIO와 협력하여 줄기세포 치료 서비스를 제공합니다. 
           우리의 목표는 환자 개개인의 면역력을 강화하고 건강한 삶을 지원하는 것입니다.
         </p>
         <p className="text-lg text-gray-700">
@@ -72,7 +72,7 @@ const Stemcell = () => {
           <div className="bg-white p-6 rounded-lg shadow-sm text-center">
             <FaRegCheckCircle className="text-primary text-4xl mx-auto mb-4" />
             <h3 className="font-medium text-xl mb-2">개인 면역력 강화</h3>
-            <p className="text-gray-600">맞춤형 치료를 통한 개인별 최적화된 면역력 증진</p>
+            <p className="text-gray-600">맞춤형 치료를 통한 개인별 최적화된 <br />면역력 증진</p>
           </div>
         </div>
       </div>

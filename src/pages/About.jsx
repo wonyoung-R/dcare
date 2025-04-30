@@ -27,9 +27,9 @@ const About = () => {
           
           <div className="mt-12 space-y-8">
             <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">병원 개요</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">병원 개요</h2>
               <p className="text-gray-600">
-                디케어건강검진센터는 최첨단 영상의학 장비와 숙련된 의료진을 통해 정확한 진단과 치료를 제공하고 있습니다. 
+                디케어건강검진센터는 최첨단 영상의학 장비와 숙련된 의료진을 통해 정확한 진단과 치료를 제공하고 있습니다. <br />
                 환자의 건강과 편안함을 최우선으로 생각하며, 지속적인 의료 품질 향상을 위해 노력하고 있습니다.
               </p>
             </div>
@@ -39,7 +39,7 @@ const About = () => {
           <div className="bg-white rounded-lg shadow-md p-8 mt-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">디케어건강검진센터 소개</h2>
             <p className="text-gray-600 mb-8">
-              높은 수준의 의료 서비스와 특별한 공간 경험을 통해 건강검진을 넘어 건강한 라이프스타일을 제안하는 프리미엄 의료서비스를 제공합니다.
+              건강검진을 넘어 건강한 라이프스타일을 제안하는 프리미엄 의료서비스를 제공합니다.
             </p>
             
             <h3 className="text-2xl font-semibold text-gray-800 mb-4">핵심 가치</h3>
@@ -50,7 +50,7 @@ const About = () => {
               </li>
               <li className="flex items-start">
                 <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
-                <span>모든 분야의 정밀검진을 하루에 받을 수 있는 One-stop 서비스</span>
+                <span>환자에게 필요한 검진을 한 곳에서 받을 수 있는 One-stop 서비스</span>
               </li>
               <li className="flex items-start">
                 <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
@@ -89,14 +89,6 @@ const About = () => {
                   <li className="flex items-start">
                     <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
                     <span>고객의 건강 데이터와 추적 검사 일정을 관리하는 CAM 시스템</span>
-                  </li>
-                  <li className="flex items-start">
-                    <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
-                    <span>평생의 생활습관 개선을 위한 클리닉 연계 상담 및 교육 시스템</span>
-                  </li>
-                  <li className="flex items-start">
-                    <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
-                    <span>검진 후 발견하고 지속적인 건강관리 및 질병 예측 프로그램</span>
                   </li>
                   <li className="flex items-start">
                     <FaCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
@@ -153,8 +145,8 @@ const About = () => {
               
               <h3 className="text-xl font-semibold text-gray-800 mb-4">진료시간</h3>
               <ul className="text-gray-600">
-                <li className="mb-2">평일: 08:30 - 17:30</li>
-                <li className="mb-2">토요일: 08:30 - 13:00</li>
+                <li className="mb-2">평일: 08:00 - 17:00</li>
+                <li className="mb-2">토요일: 08:00 - 13:00</li>
                 <li>일요일 및 공휴일 휴진</li>
               </ul>
             </div>
