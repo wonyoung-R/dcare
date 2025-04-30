@@ -11,7 +11,7 @@ const doctors = [
     specialty: ['산부인과전문의', '여성검진', '산부인과진료', '줄기세포 클리닉'],
     education: ['계명대학교 의과대학', '계명대학교 산부인과 전문의'],
     experience: ['현 디케어건강검진센터 대표원장', '현 동국의대 산부인과 외래교수', '현 계명의대 산부인과 외래교수', '전 신라산부인과 원장', '전 영재산부인과 원장', '세계 산부인과 초음파학회 회원', '미국 부인비뇨기과학회 회원', '미국 불임 내분비학회 회원'],
-    image: '/doctors/doctor_logo.png'
+    image: 'images/doctors/doctor_logo.png'
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const doctors = [
     specialty: ['영남의대 대장항문외과 전문의', '위ㆍ대장내시경'],
     education: ['영남대학교 의과대학', '영남대학교 대장항문외과 전문의'],
     experience: ['현 디케어건강증진센터 원장', '전 구미 삼성연합의원 원장', '전 새동산병원 건강증진센터장', '대한외과학회 평생회원', '대한대장항문외과학회 평생회원', '대한내시경복강경외과학회 정회원', '대한위대장내시경학회 정회원'],
-    image: '/doctors/doctor_logo.png'
+    image: 'images/doctors/doctor_logo.png'
   }
 ];
 
@@ -33,20 +33,22 @@ const DoctorCard = ({ doctor }) => {
       className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row"
     >
       <div className="md:w-1/3 relative">
-        <img
-          src={doctor.image}
-          alt={doctor.name}
-          className="w-full h-full object-cover object-center"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.style.display = 'none';
-            e.target.parentNode.classList.add('placeholder-image');
-            const textElement = document.createElement('div');
-            textElement.textContent = doctor.name;
-            textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200';
-            e.target.parentNode.appendChild(textElement);
-          }}
-        />
+        <div className="aspect-w-3 aspect-h-4 h-full">
+          <img
+            src={doctor.image}
+            alt={doctor.name}
+            className="w-full h-full object-contain object-center"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.style.display = 'none';
+              e.target.parentNode.classList.add('placeholder-image');
+              const textElement = document.createElement('div');
+              textElement.textContent = doctor.name;
+              textElement.className = 'absolute inset-0 flex items-center justify-center text-gray-600 font-medium text-center p-4 bg-gray-200';
+              e.target.parentNode.appendChild(textElement);
+            }}
+          />
+        </div>
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary to-transparent p-4 md:hidden">
           <h3 className="text-xl font-bold text-white">{doctor.name}</h3>
           <p className="text-white/90 text-sm">{doctor.position}</p>

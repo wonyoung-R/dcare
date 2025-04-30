@@ -11,7 +11,7 @@ const doctors = [
     specialty: '산부인과전문의, 여성검진, 산부인과진료',
     education: ['계명대학교 의과대학', '계명대학교 산부인과 전문의'],
     experience: ['현 디케어건강검진센터 대표원장', '전 신라산부인과 원장', '전 영재산부인과 원장'],
-    image: './images/logo-main.png'
+    image: '/images/doctors/doctor_logo.png'
   },
   {
     id: 2,
@@ -20,24 +20,26 @@ const doctors = [
     specialty: '영남의대 대장항문외과 전문의, 위ㆍ대장내시경',
     education: ['영남대학교 의과대학', '영남대학교 대장항문외과 전문의'],
     experience: [],
-    image: './images/logo-main.png'
+    image: '/images/doctors/doctor_logo.png'
   }
 ];
 
 const DoctorCard = ({ doctor }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-      <div className="relative overflow-hidden aspect-[3/4]">
-        <img
-          src={doctor.image}
-          alt={doctor.name}
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.style.display = 'none';
-            e.target.parentNode.innerHTML += `<div class="w-full h-full flex items-center justify-center bg-gray-200"><span class="text-xl font-bold text-primary">${doctor.name}</span></div>`;
-          }}
-        />
+      <div className="relative overflow-hidden">
+        <div className="aspect-[3/4] flex items-center justify-center bg-white p-4">
+          <img
+            src={doctor.image}
+            alt={doctor.name}
+            className="w-3/4 h-auto object-contain"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.style.display = 'none';
+              e.target.parentNode.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-gray-200"></div>`;
+            }}
+          />
+        </div>
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary to-transparent p-4">
           <h3 className="text-xl font-bold text-white">{doctor.name}</h3>
           <p className="text-white/90 text-sm">{doctor.position}</p>
