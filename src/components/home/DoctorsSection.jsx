@@ -70,7 +70,7 @@ const DoctorCard = ({ doctor }) => {
             ))}
             {doctor.experience.length === 0 && (
               <li className="flex items-start">
-                <span className="text-primary mr-2">•</span> <span className="text-gray-500 italic break-words">경력 정보 업데이트 예정</span>
+                <span className="text-primary mr-2">•</span> <span className="text-gray-500 italic break-words">경력 정보 업데이트 수정예정(0508)</span>
               </li>
             )}
           </ul>
