@@ -262,7 +262,7 @@ const Equipment = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="section-title text-center">의료1 장비</h1>
+          <h1 className="section-title text-center">의료 장비</h1>
           <p className="section-subtitle text-center mx-auto">
             디케어 병원은 최첨단 의료 장비를 갖추고 있어
             정확하고 빠른 진단과 치료를 제공합니다.

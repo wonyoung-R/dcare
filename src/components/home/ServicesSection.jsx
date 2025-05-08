@@ -96,7 +96,7 @@ const ServicesSection = () => {
           <motion.div variants={titleVariants} className="w-full flex justify-center">
             <ResponsiveTextContainer>
               <ResponsiveText variant="body" className="text-secondary-400 text-center mb-8 w-full px-4 sm:px-0">
-                디케어건강검진센터는 최신식 의료장비와 전문 의료진을 통해
+                디케어건강검진센터는 최신식 의료장비와 전문 의료진을 통해<br /> 
                 환자분들께 최상의 의료 서비스를 제공하고자 노력하고 있습니다.
               </ResponsiveText>
             </ResponsiveTextContainer>
