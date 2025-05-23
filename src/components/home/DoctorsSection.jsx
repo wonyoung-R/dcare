@@ -101,22 +101,28 @@ const DoctorCard = ({ doctor }) => {
 const DoctorsSection = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
     triggerOnce: true,
+    rootMargin: '200px 0px',
   });
 
+  const isMobile = typeof window !== 'undefined' && 
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
   useEffect(() => {
-    if (inView) {
+    if (isMobile) {
+      controls.start('visible');
+    } else if (inView) {
       controls.start('visible');
     }
-  }, [controls, inView]);
+  }, [controls, inView, isMobile]);
 
   const sectionVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.6,
+        duration: isMobile ? 0.2 : 0.6,
       },
     },
   };
@@ -126,9 +132,15 @@ const DoctorsSection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 },
+      transition: { duration: isMobile ? 0.2 : 0.6 },
     },
   };
+
+  useEffect(() => {
+    if (isMobile) {
+      controls.start('visible');
+    }
+  }, []);
 
   return (
     <div className="relative w-full py-16 md:py-24">
