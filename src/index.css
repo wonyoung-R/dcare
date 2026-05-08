@@ -158,15 +158,6 @@
   }
 }
 
-/* Custom styles for fullpage.js */
-.fp-watermark {
-  display: none !important;
-}
-
-.fp-section {
-  @apply h-screen relative overflow-hidden;
-}
-
 /* 모바일 슬라이더 수정 */
 .slick-mobile-fix {
   height: 100% !important;

@@ -27,8 +27,8 @@ const Header = () => {
       submenu: [
         { name: t('header.about_submenu.introduction'), path: '/about' },
         { name: t('header.about_submenu.doctors'), path: '/doctors' },
-        { name: t('header.about_submenu.facilities'), path: '/facilities' }
-        //{ name: t('header.about_submenu.inquiry'), path: '/contact' },
+        { name: t('header.about_submenu.facilities'), path: '/facilities' },
+        { name: t('header.about_submenu.inquiry'), path: '/contact' },
       ]
     },
     { 
@@ -129,7 +129,7 @@ const Header = () => {
 
                 {/* Submenu */}
                 {item.submenu && (
-                  <div 
+                  <div
                     className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
                     onMouseLeave={() => setActiveSubmenu(null)}
                   >
@@ -148,6 +148,19 @@ const Header = () => {
                 )}
               </div>
             ))}
+
+            {/* CTA: 예약 문의 */}
+            <a
+              href="tel:053-288-3000"
+              className={`ml-6 px-4 py-2 rounded-md text-sm font-semibold transition-all duration-200 ${
+                (scrolled || !isHomePage)
+                  ? 'bg-primary text-white hover:bg-primary-light'
+                  : 'border border-white text-white hover:bg-white hover:text-primary'
+              }`}
+            >
+              <span className="block text-xs opacity-80">예약 문의</span>
+              <span className="block font-bold">053-288-3000</span>
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -223,6 +236,14 @@ const Header = () => {
                     )}
                   </div>
                 ))}
+
+                {/* Mobile CTA: 예약 문의 */}
+                <a
+                  href="tel:053-288-3000"
+                  className="mt-4 flex items-center justify-center w-full py-3 bg-primary text-white rounded-md font-semibold text-sm"
+                >
+                  📞 예약 문의: 053-288-3000
+                </a>
               </nav>
             </div>
           </motion.div>

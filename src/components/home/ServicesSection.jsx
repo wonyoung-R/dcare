@@ -23,7 +23,7 @@ const ServicesSection = () => {
       descriptionKey: 'services.checkup.description',
       icon: <FaHeartbeat className="h-10 w-10 text-white" />,
       link: '/checkup',
-      color: 'from-primary to-cyan-500',
+      color: 'from-primary to-teal-400',
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ const ServicesSection = () => {
       descriptionKey: 'services.greenhouse.description',
       icon: <FaLeaf className="h-10 w-10 text-white" />,
       link: '/greenhouse',
-      color: 'from-green-600 to-green-400',
+      color: 'from-emerald-600 to-emerald-400',
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const ServicesSection = () => {
       descriptionKey: 'services.general.description',
       icon: <FaStethoscope className="h-10 w-10 text-white" />,
       link: '/general',
-      color: 'from-indigo-600 to-indigo-400',
+      color: 'from-sky-600 to-sky-400',
     },
     {
       id: 4,
@@ -47,7 +47,7 @@ const ServicesSection = () => {
       descriptionKey: 'services.doctors.description',
       icon: <FaUserMd className="h-10 w-10 text-white" />,
       link: '/doctors',
-      color: 'from-violet-600 to-violet-400',
+      color: 'from-teal-700 to-teal-500',
     },
   ];
 

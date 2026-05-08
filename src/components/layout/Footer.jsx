@@ -14,8 +14,8 @@ const footerLinks = [
     links: [
       { name: '병원소개', path: '/about' },
       { name: '의료진 소개', path: '/doctors' },
-      { name: '의료서비스', path: '/services' }
-      //{ name: '문의하기', path: '/contact' },
+      { name: '의료서비스', path: '/services' },
+      { name: '문의하기', path: '/contact' },
     ],
   },
   {
@@ -25,6 +25,7 @@ const footerLinks = [
       { name: 'Healing Greenhouse', path: '/greenhouse' },
       { name: '검진 외 일반진료', path: '/general' },
       { name: '줄기세포 치료', path: '/stemcell' },
+      { name: '비급여 진료비용 안내', path: '/nonbenefit' },
     ],
   }
 ];
@@ -64,7 +65,7 @@ const Footer = () => {
               </div>
               <div className="flex items-start">
                 <FaClock className="mt-1 mr-2 text-primary flex-shrink-0" />
-                <p>- 평일: 08:00 - 17:00<br />- 토요일: 08:00 - 13:00 <br />- 일요일 및 공휴일 휴진</p>
+                <p>- 평일: 07:30 - 16:00<br />- 토요일: 07:30 - 12:30 <br />- 일요일 및 공휴일 휴진</p>
               </div>
             </div>
           </div>
@@ -90,6 +91,42 @@ const Footer = () => {
           ))}
         </div>
         
+        {/* SNS & 리뷰 링크 */}
+        <div className="border-t border-gray-800 mt-8 pt-6 mb-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="text-sm text-gray-400 mb-3 text-center sm:text-left">지도 & 후기</p>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://kko.kakao.com/NbwXEgiBWa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-yellow-400 transition-colors"
+                >
+                  <span className="text-lg">🗺️</span>
+                  <span>카카오맵</span>
+                </a>
+                <a
+                  href="https://map.naver.com/p/search/디케어건강검진센터"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-green-400 transition-colors"
+                >
+                  <span className="text-lg">📍</span>
+                  <span>네이버 지도</span>
+                </a>
+              </div>
+            </div>
+            <a
+              href="tel:053-288-3000"
+              className="flex items-center gap-2 px-5 py-2 bg-primary rounded-md text-white text-sm font-semibold hover:bg-primary-light transition-colors"
+            >
+              <span>📞</span>
+              <span>예약 문의 053-288-3000</span>
+            </a>
+          </div>
+        </div>
+
         {/* Copyright - Simplified */}
         <div className="border-t border-gray-800 mt-8 pt-5">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm">

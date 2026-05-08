@@ -107,31 +107,18 @@ const EquipmentSectionAlt = () => {
       setIsVisible(true);
       setIsLoading(false);
     }, isMobile ? 100 : 300); // 모바일에서는 더 빠르게
-    
-    // 컴포넌트 마운트 로깅
-    console.log('[EquipmentSectionAlt] 컴포넌트 마운트됨');
-    console.log('[EquipmentSectionAlt] 모바일 환경:', isMobile);
-    
-    // 브라우저 환경 로깅
-    console.log('[EquipmentSectionAlt] 브라우저 환경:', {
-      userAgent: navigator.userAgent,
-      screenSize: `${window.innerWidth}x${window.innerHeight}`,
-      pixelRatio: window.devicePixelRatio
-    });
-    
+
     // 이미지 프리페칭
     const prefetchImages = () => {
-      console.log('[EquipmentSectionAlt] 이미지 프리페칭 시작');
       equipmentItems.forEach(item => {
         const link = document.createElement('link');
         link.rel = 'prefetch';
         link.href = item.image;
         link.as = 'image';
         document.head.appendChild(link);
-        console.log(`[EquipmentSectionAlt] 이미지 프리페치: ${item.image}`);
       });
     };
-    
+
     // 모바일 환경에서는 즉시 프리페치
     if (isMobile) {
       prefetchImages();
@@ -142,7 +129,6 @@ const EquipmentSectionAlt = () => {
           (entries) => {
             entries.forEach(entry => {
               if (entry.isIntersecting) {
-                console.log('[EquipmentSectionAlt] 화면에 보임');
                 setIsVisible(true);
                 setIsLoading(false);
                 prefetchImages();
@@ -152,13 +138,12 @@ const EquipmentSectionAlt = () => {
           },
           { threshold: 0.1, rootMargin: '100px' }
         );
-        
+
         // 현재 컴포넌트 관찰 시작 (ref 사용)
         if (sectionRef.current) {
-          console.log('[EquipmentSectionAlt] 관찰 시작:', sectionRef.current);
           observer.observe(sectionRef.current);
         }
-        
+
         return () => {
           clearTimeout(timeoutId);
           if (observer) {
@@ -172,10 +157,9 @@ const EquipmentSectionAlt = () => {
         prefetchImages();
       }
     }
-    
+
     return () => {
       clearTimeout(timeoutId);
-      console.log('[EquipmentSectionAlt] 컴포넌트 언마운트됨');
     };
   }, []);
 

@@ -8,37 +8,19 @@ const doctors = [
     id: 1,
     name: '류효충',
     position: '대표원장',
-    specialty: '산부인과전문의, 여성검진, 산부인과진료',
+    specialty: '산부인과전문의, 여성검진, 산부인과진료, 줄기세포 클리닉',
     education: ['계명대학교 의과대학', '계명대학교 산부인과 전문의'],
     experience: ['현 디케어건강검진센터 대표원장', '현 동국의대 산부인과 외래교수', '현 계명의대 산부인과 외래교수', '전 신라산부인과 원장', '전 영재산부인과 원장', '세계 산부인과 초음파학회 회원', '미국 부인비뇨기과학회 회원', '미국 불임 내분비학회 회원'],
-    image: '/images/doctors/doctor_logo.png'
+    image: '/images/doctors/doctor_ryu.jpeg'
   },
   {
     id: 2,
-    name: '한정우',
-    position: '외과',
-    specialty: '대장항문외과 전문의, 위ㆍ대장내시경',
-    education: ['영남대학교 의과대학', '영남대학교 대장항문외과 전문의'],
-    experience: ['현 디케어건강증진센터 원장', '전 구미 삼성연합의원 원장', '전 새동산병원 건강증진센터장', '대한외과학회 평생회원', '대한대장항문외과학회 평생회원', '대한내시경복강경외과학회 정회원', '대한위대장내시경학회 정회원'],
-    image: '/images/doctors/doctor_logo.png'
-  },
-  {
-    id: 3,
-    name: '장세정',
-    position: '내과',
-    specialty: '내과, 가정의학과',
-    education: ['경북대학교 의전원 졸업', '대구 곽병원 가정의학과 전공의 수련'],
-    experience: ['현 디케어건강검진센터 원장', '전 세강병원 내시경전담 과장', '전 드림병원 내시경전담 과장', '전 브이라이프 검진센터 과장', '대한가정의학과 정회원', '한국심초음파학회 인증의 취득', '대한위대장내시경학회 회원', '대한임상초음파학회 평생회원'],
-    image: '/images/doctors/doctor_logo.png'
-  },
-  {
-    id: 4,
-    name: '백수진',
-    position: '영상의학과',
-    specialty: '영상의학과',
-    education: ['계명대학교 의과대학', '경북대학교 영상의학과 전문의'],
-    experience: ['현 디케어건강검진센터 원장', '전 굿모닝병원 영상의학과 과장', '전 닥터스 영상의학과 원장', '전 미즈맘여성병원 영상의학과 과장', '전 대구 카톨릭병원 영상의학과 과장', '대한영상의학회 정회원', '대한신경영상의학회 정회원', '대한근골격영상의학회 정회원'],
-    image: '/images/doctors/doctor_logo.png'
+    name: '김민수',
+    position: '직업환경의학과원장',
+    specialty: '직업환경의학과전문의',
+    education: ['동국대학교 의과대학', '아주대학교 의학석사'],
+    experience: ['현 디케어건강검진센터 직업환경의학과 원장', '전 국군부산병원 의무과장', '전 안성성모병원 작업환경의학과 과장', '전 평택성모병원 작업환경의학과 과장'],
+    image: '/images/doctors/doctor_kim.jpeg'
   }
 ];
 
@@ -165,27 +147,14 @@ const DoctorsSection = () => {
                 전문 의료진
               </motion.h2>
 
-              {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
-              <motion.p 
-                variants={titleVariants} 
-                className="section-subtitle text-white/90 mx-auto text-center mb-12 md:hidden"
-              >
-                디케어 병원의 의료진은 각 분야의<br className="block sm:hidden" /> 전문가로 구성되어 있으며,<br /> 
-                환자분들께 의료 서비스를<br className="block sm:hidden" /> 제공하기 위해 노력하고 있습니다.
-              </motion.p>
-
-              {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
-              <motion.p 
-                variants={titleVariants} 
-                className="section-subtitle text-white/90 mx-auto text-center mb-12 hidden md:block"
-              >
-                디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며,<br /> 
+              <motion.p variants={titleVariants} className="section-subtitle text-white/90 mx-auto text-center mb-12">
+                디케어 병원의 의료진은 각 분야의 전문가로 구성되어 있으며,
                 환자분들께 의료 서비스를 제공하기 위해 노력하고 있습니다.
               </motion.p>
             </div>
 
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {doctors.map((doctor) => (
                   <div key={doctor.id} className="px-2 h-full">
                     <DoctorCard doctor={doctor} />

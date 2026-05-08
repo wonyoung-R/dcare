@@ -27,11 +27,7 @@ const Greenhouse = () => {
   
   // 이미지 URL 생성
   const imageUrls = imagePaths.map(path => getResponsiveImageUrls(path));
-  
-  // 현재 base URL 확인 (디버깅용)
-  console.log("Base URL: ", getBaseUrl());
-  console.log("Image URLs: ", imageUrls);
-  
+
   // 이미지 모두 로딩 후 표시하기 위한 효과
   useEffect(() => {
     const preloadImages = () => {
@@ -41,9 +37,8 @@ const Greenhouse = () => {
       const preloadImage = (url, index, isWebP) => {
         return new Promise((resolve) => {
           const img = new Image();
-          
+
           img.onload = () => {
-            console.log(`Image loaded: ${url}`);
             if (!isWebP) {
               // JPEG 이미지가 로드되면 해당 슬라이드의 로드 상태를 업데이트
               setImageLoadStatus(prev => {
@@ -54,12 +49,11 @@ const Greenhouse = () => {
             }
             resolve(true);
           };
-          
+
           img.onerror = () => {
-            console.error(`Failed to load image: ${url}`);
             resolve(false);
           };
-          
+
           img.src = url;
         });
       };
@@ -76,7 +70,6 @@ const Greenhouse = () => {
       // 4초 후에는 무조건 로딩 표시 제거
       const timeoutPromise = new Promise(resolve => {
         setTimeout(() => {
-          console.log("Loading timeout reached");
           resolve();
         }, 4000);
       });
@@ -177,13 +170,12 @@ const Greenhouse = () => {
 
   // 이미지 안전 처리를 위한 에러 핸들러
   const handleImageError = (e, index) => {
-    console.error(`Image load error (index ${index}): ${e.target.src}`);
     e.target.onerror = null;
-    
+
     try {
       // 이미지 에러 시 대체 텍스트 표시
       e.target.style.display = 'none';
-      
+
       // 이미 placeholder가 있는지 확인
       const parentElement = e.target.parentNode;
       if (!parentElement.querySelector('.placeholder-text')) {
@@ -193,7 +185,7 @@ const Greenhouse = () => {
         parentElement.appendChild(textElement);
       }
     } catch (err) {
-      console.error('Error handling image failure:', err);
+      // 에러 무시
     }
   };
 

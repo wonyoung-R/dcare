@@ -117,48 +117,25 @@ const HeroSection = () => {
               className="space-y-2 mt-2"
               variants={itemVariants}
             >
-              {/* <ResponsiveText 
-                variant="body" 
-                className="text-white opacity-90 mx-auto"
+              <p className="text-white opacity-90 mx-auto text-sm sm:text-base md:text-xl lg:text-2xl mb-6 max-w-2xl">
+                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에
+                꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
+              </p>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+              <a
+                href="tel:053-288-3000"
+                className="inline-flex items-center justify-center px-8 py-3 bg-white text-primary font-bold rounded-md hover:bg-primary hover:text-white transition-all duration-200 text-sm sm:text-base"
               >
-                {t('hero.subtitle1')}
-              </ResponsiveText> */}
-              
-              {/* 모바일용 텍스트 (기본적으로 보이고, md 크기 이상에서는 숨김) */}
-              {/* <p className="text-white opacity-90 mb-4 sm:mb-6 md:mb-8 mx-auto text-sm sm:text-base md:hidden">
-                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에<br />
-                꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
-              </p> */}
-              
-              {/* 데스크톱용 텍스트 (기본적으로 숨기고, md 크기 이상에서만 표시) */}
-              {/* <p className="text-white opacity-90 mx-auto text-xl hidden md:block">
-                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에<br />
-                꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
-              </p> */}
-
-
-
-              {/* 모바일/태블릿용 텍스트 (xs부터 sm까지 점진적으로 조정, md 크기 이상에서는 숨김) */}
-              <p className="text-white opacity-90 mx-auto 
-                            text-xs xs:text-sm sm:text-base 
-                            mb-3 xs:mb-4 sm:mb-5 
-                            leading-snug xs:leading-snug sm:leading-snug
-                            max-w-[100%] xs:max-w-[90%] sm:max-w-[80%]
-                            md:hidden">
-                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에<br />
-                꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
-              </p>
-
-              {/* 데스크톱용 텍스트 (md부터 xl까지 점진적으로 조정, md 크기 이상에서만 표시) */}
-              <p className="text-white opacity-90 mx-auto 
-                            text-lg md:text-xl lg:text-2xl xl:text-3xl
-                            mb-6 md:mb-7 lg:mb-8 xl:mb-10
-                            leading-snug md:leading-snug
-                            max-w-[100%] md:max-w-[100%] lg:max-w-[100%] xl:max-w-[100%]
-                            hidden md:block">
-                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에<br />
-                꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
-              </p>
+                📞 예약 문의: 053-288-3000
+              </a>
+              <a
+                href="/checkup"
+                className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-md hover:bg-white hover:text-primary transition-all duration-200 text-sm sm:text-base"
+              >
+                건강검진 프로그램 보기
+              </a>
             </motion.div>
           </motion.div>
         </div>
