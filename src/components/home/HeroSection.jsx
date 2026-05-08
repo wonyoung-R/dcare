@@ -118,23 +118,17 @@ const HeroSection = () => {
               variants={itemVariants}
             >
               <p className="text-white opacity-90 mx-auto text-sm sm:text-base md:text-xl lg:text-2xl mb-6 max-w-2xl">
-                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에
+                치료 중심에서 예방 중심으로 패러다임이 바뀌고 있는 시대에<br />
                 꼭 필요한 원스탑 의료 서비스를 제공하는 디케어센터
               </p>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+            <motion.div variants={itemVariants} className="flex justify-center mt-6">
               <a
                 href="tel:053-288-3000"
                 className="inline-flex items-center justify-center px-8 py-3 bg-white text-primary font-bold rounded-md hover:bg-primary hover:text-white transition-all duration-200 text-sm sm:text-base"
               >
                 📞 예약 문의: 053-288-3000
-              </a>
-              <a
-                href="/checkup"
-                className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-semibold rounded-md hover:bg-white hover:text-primary transition-all duration-200 text-sm sm:text-base"
-              >
-                건강검진 프로그램 보기
               </a>
             </motion.div>
           </motion.div>

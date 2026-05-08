@@ -47,7 +47,10 @@ export const ResponsiveSection = ({ children, className = '', id }) => {
  */
 export const ResponsiveTextContainer = ({ children, className = '' }) => {
   return (
-    <div className={`responsive-text max-w-prose mx-auto ${className}`}>
+    <div
+      className={`mx-auto text-center ${className}`}
+      style={{ width: 'var(--text-container-sm)' }}
+    >
       {children}
     </div>
   );
